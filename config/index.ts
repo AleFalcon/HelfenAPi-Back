@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import logger from '../app/logger';
 
-import { IConfig } from '../types/config';
+import { Iconfig } from '../types/config';
 import { DeepPartial } from '../types/utils';
 
 const ENVIRONMENT: string = process.env.NODE_ENV || 'development';
@@ -17,10 +18,10 @@ const isObject = (variable: unknown): boolean => variable instanceof Object;
 /*
  * Deep immutable copy of source object into tarjet object and returns a new object.
  */
-const deepMerge = (target: IConfig, source: DeepPartial<IConfig>): IConfig => {
+const deepMerge = (target: Iconfig, source: DeepPartial<Iconfig>): Iconfig => {
   if (isObject(target) && isObject(source)) {
     return Object.keys(source).reduce(
-      (output: IConfig, key: string) => ({
+      (output: Iconfig, key: string) => ({
         ...output,
         [key]: isObject(source[key]) && key in target ? deepMerge(target[key], source[key]) : source[key]
       }),
@@ -30,7 +31,7 @@ const deepMerge = (target: IConfig, source: DeepPartial<IConfig>): IConfig => {
   return target;
 };
 
-const config: IConfig = {
+const config: Iconfig = {
   environment: ENVIRONMENT,
   common: {
     database: {
@@ -39,7 +40,7 @@ const config: IConfig = {
       database: process.env.DB_NAME || 'database',
       username: process.env.DB_USERNAME || 'username',
       password: process.env.DB_PASSWORD || 'password',
-      type: 'postgres',
+      type: 'mysql',
       logging: logger.info
     },
     api: {
@@ -61,6 +62,6 @@ const config: IConfig = {
   }
 };
 
-const customConfig: IConfig = deepMerge(config, environmentConfig);
+const customConfig: Iconfig = deepMerge(config, environmentConfig);
 
 export default customConfig;
