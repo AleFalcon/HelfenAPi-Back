@@ -1,0 +1,1053 @@
+{
+	"info": {
+		"_postman_id": "3f52cf08-e16a-41bd-8f2c-6f76d8c882af",
+		"name": "Helfen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312331\",\n    \"localAddress\": \"liniers\",\n    \"mail\": \"alex11@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/users",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mail Exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNunber\": \"12312332\",\n    \"localAddress\": \"liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-2IqcFXZYX+dlhINYS6hpfqkkZ+U\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 16:12:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"406 Not Acceptable. Mail already exists\"\n}"
+				},
+				{
+					"name": "Dni Exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312332\",\n    \"localAddress\": \"liniers\",\n    \"mail\": \"alex1@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-dkaYvdAj9Abm5Hks4rvThywvqMo\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 16:18:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"406 Not Acceptable. Dni already exists\"\n}"
+				},
+				{
+					"name": "User Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312333\",\n    \"localAddress\": \"liniers\",\n    \"mail\": \"alex1@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"103-8wovtlPv9Md6woSC+BaIHhcWbMU\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 18:02:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"userType\": 1,\n        \"name\": \"u3\",\n        \"lastName\": \"u3\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"12312333\",\n        \"localAddress\": \"liniers\",\n        \"mail\": \"alex1@alex.com\",\n        \"phoneNumber\": \"1111112221\",\n        \"password\": \"$2b$10$VxrvD/pDb1Gszbk.UNasKeASh4ma/6rugw62aIvmjvStBBJBYcwNG\",\n        \"id\": 17\n    }\n}"
+				},
+				{
+					"name": "Phone Exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312331\",\n    \"localAddress\": \"liniers\",\n    \"mail\": \"alex11@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3d-sUq7ijrV7HGsXLblIdfdvTrb2Bo\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 18:05:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"406 Not Acceptable. Phone number already exists\"\n}"
+				},
+				{
+					"name": "Required Fields",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312331\",\n\n    \"mail\": \"alex11@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5a-GbXzJ863UKoQMqaCY+hZlTsAK08\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 18:38:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"400 Bad Request Error. All fields are required. Missing fields: localAddress\" //localAdress es una lista que puede tener un largo total igual a la cantidad de atributos obligatorios del body\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User By DNI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{path}}/users/12312332",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"users",
+						"12312332"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/users/12312333",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users",
+								"12312333"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-shIAcvzfSSMC89yjeNFzfO76UW4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:49:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"404 Not Found Error. User not found\"\n}"
+				},
+				{
+					"name": "Information User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/users/12312332",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users",
+								"12312332"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "269"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10d-FADXUzYPWQIgEsin2HwaVIIqD2A\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:50:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userType\": 1,\n    \"name\": \"Alex\",\n    \"lastName\": \"Falcon1\",\n    \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n    \"dniNumber\": \"12312332\",\n    \"localAddress\": \"Liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"$2b$10$kwhr/mXxuMlxvn8CTg5tN.tzyxi.iaiFBN6o0QnQUXV2Qc0fv.U4e\",\n    \"id\": 4\n}"
+				}
+			]
+		},
+		{
+			"name": "Put User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Alex\" ,\n    \"lastName\": \"Falcon1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312332\",\n    \"localAddress\": \"Liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/users",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Modification User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex\" ,\n    \"lastName\": \"Falcon1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312332\",\n    \"localAddress\": \"Liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "170"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"aa-9ubUUHBWYV4ozb/SbEiBt0aXC74\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:44:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"name\": \"Alex\",\n        \"lastName\": \"Falcon1\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"12312332\",\n        \"localAddress\": \"Liniers\",\n        \"mail\": \"alex@alex.com\",\n        \"phoneNumber\": \"1111112222\"\n    }\n}"
+				},
+				{
+					"name": "User Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex\" ,\n    \"lastName\": \"Falcon1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"12312333\",\n    \"localAddress\": \"Liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-shIAcvzfSSMC89yjeNFzfO76UW4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:53:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"404 Not Found Error. User not found\"\n}"
+				},
+				{
+					"name": "Bad Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex\" ,\n    \"lastName\": \"Falcon1\",\n    \"dateOfBirth\": \"1994-10-25\",\n\n    \"localAddress\": \"Liniers\",\n    \"mail\": \"alex@alex.com\",\n    \"phoneNumber\": \"1111112222\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3c-M0WbmOSfrfYjn6L8ghNMLtOnuf0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 18:40:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"400 Bad Request Error. Dni number is required.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put Change Password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dniNumber\":\"12312332\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/changePassword",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"changePassword"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Password Mischmasch",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dniNumber\":\"12312332\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/changePassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-d9zuqb85UbLmswDKH8GOFvSj+0g\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:21:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"406 Not Acceptable. Password is mischmasch\"\n}"
+				},
+				{
+					"name": "User Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dniNumber\":\"12312333\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/changePassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-shIAcvzfSSMC89yjeNFzfO76UW4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:51:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"404 Not Found Error. User not found\"\n}"
+				},
+				{
+					"name": "Confirmation Password Mischmasch",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dniNumber\":\"12312332\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456788\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/changePassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5f-NnMM6UvI5gm7zPLM38BFHL4ohZM\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:51:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"406 Not Acceptable. The new password is mischmasch with the confirmation password\"\n}"
+				},
+				{
+					"name": "Password Changed",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dniNumber\":\"12312332\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/changePassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "278"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"116-WFMBKlbKyNK4Z1k2q5YiJzXIv/Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 15:52:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"userType\": 1,\n        \"name\": \"Alex\",\n        \"lastName\": \"Falcon1\",\n        \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n        \"dniNumber\": \"12312332\",\n        \"localAddress\": \"Liniers\",\n        \"mail\": \"alex@alex.com\",\n        \"phoneNumber\": \"1111112222\",\n        \"password\": \"$2b$10$kVlrHO4iWrqTqSnijkjCK.8zkSOTJe3Wwr2QcQHyx4xU.bRXj8UDu\",\n        \"id\": 4\n    }\n}"
+				},
+				{
+					"name": "Bad Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/changePassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"changePassword"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3c-M0WbmOSfrfYjn6L8ghNMLtOnuf0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 11 May 2022 18:40:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"400 Bad Request Error. Dni number is required.\"\n}"
+				}
+			]
+		}
+	]
+}
