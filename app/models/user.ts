@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Diary } from './diary';
 
 @Entity({ name: 'User' })
 export class User {
@@ -57,6 +58,9 @@ export class User {
     type: "varchar",
     nullable: false})
   password: string;
+
+  @OneToOne(() => Diary) @JoinColumn()
+  diaryId: number;
 
   constructor(type: number, name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string, mail: string, phoneNumber: string, password: string) {
     this.userType = type;

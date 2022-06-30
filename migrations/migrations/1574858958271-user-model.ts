@@ -15,13 +15,14 @@ export class UserModel1574858958271 implements MigrationInterface {
           { name: 'localAddress', type: 'varchar' },
           { name: 'mail', type: 'varchar', isUnique: true },
           { name: 'phoneNumber', type: 'varchar', isUnique: true },
-          { name: 'password', type: 'varchar' }
+          { name: 'password', type: 'varchar' },
+          { name: 'diaryId', type: 'int'}
         ]
       })
     );
   }
 
-  public down(queryRunner: QueryRunner): Promise<void> {
+  public async down(queryRunner: QueryRunner): Promise<void> {
     return queryRunner.dropTable('User');
   }
 }
