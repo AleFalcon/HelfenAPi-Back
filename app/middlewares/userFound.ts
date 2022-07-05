@@ -1,17 +1,19 @@
 import { Response, NextFunction, Request } from 'express';
 
-import { getRepository, Repository } from 'typeorm';
 import { HandlerError } from '../errors/handlerError';
 import HttpStatus from 'http-status-codes';
-import { User } from '../models/user';
+import { FamiliarUsers } from '../models/familiarUser';
+import { CarerUser } from '../models/carerUser';
 
 import { mailExistsError, phoneExistsError, userExistsError, userNotFoundError } from '../errors/constantsErrors';
+import { getTypeUser, userRepository } from './setTypeUser';
 
-const userRepository = (): Repository<User> => getRepository(User);
+
 
 export async function userFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const user: User | undefined = await userRepository().findOne({dniNumber: req.body.dniNumber});
+        const user: FamiliarUsers | CarerUser | undefined = await userRepository(getTypeUser(res))
+            .findOne({dniNumber: req.body.dniNumber});
         if( user === undefined ) {
             throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND);
         } else {
@@ -26,11 +28,11 @@ export async function userFound (req: Request, res: Response, next: NextFunction
 
 export async function userNotFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        let user: User | undefined = await userRepository().findOne({dniNumber: req.body.dniNumber});
+        let user: FamiliarUsers | CarerUser | undefined = await userRepository(getTypeUser(res)).findOne({dniNumber: req.body.dniNumber});
         if( user === undefined ) {
-            user = await userRepository().findOne({mail: req.body.mail});
+            user = await userRepository(getTypeUser(res)).findOne({mail: req.body.mail});
             if( user === undefined ) {
-                user = await userRepository().findOne({phoneNumber: req.body.phoneNumber});
+                user = await userRepository(getTypeUser(res)).findOne({phoneNumber: req.body.phoneNumber});
                 if( user === undefined ) {
                     return next();
                 } else {

@@ -1,5 +1,5 @@
 import request from 'supertest';
-import userRepository from '../app/services/users';
+import userRepository from '../app/services/familiarUsers';
 import app from '../app';
 
 describe('/changePassword PUT', () => {

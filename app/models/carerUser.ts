@@ -1,19 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'User' })
-export class User {
+@Entity({ name: 'CarerUsers' })
+export class CarerUser {
   @PrimaryGeneratedColumn()
   id: number;
-
-  /* 
-  * 1 corresponde al roll de usuario
-  * 2 corresponde al roll de cuidador
-  * 3 corresponde al roll de administrador
-  */
-  @Column({
-    type: "int",
-    nullable: false})
-  userType: number;
 
   @Column({
     type: "varchar",
@@ -38,11 +28,6 @@ export class User {
 
   @Column({
     type: "varchar",
-    nullable: false})
-  localAddress: string;
-
-  @Column({
-    type: "varchar",
     unique: true,
     nullable: false})
   mail: string;
@@ -58,16 +43,43 @@ export class User {
     nullable: false})
   password: string;
 
-  constructor(type: number, name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string, mail: string, phoneNumber: string, password: string) {
-    this.userType = type;
+  @Column({
+    type: "int",
+    nullable: true})
+    reviews: number;
+
+  @Column({
+    type: "int",
+    nullable: true})
+    carer: number;
+
+  @Column({
+    type: "int",
+    nullable: false})
+    diaryId: number;
+
+  @Column({
+    type: "int",
+    nullable: false})
+    amountCate: number;
+
+  @Column({
+    type: "int",
+    nullable: false})
+    price: number;
+
+
+  constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string,
+     mail: string, phoneNumber: string, password: string, amountCare: number, price: number) {
     this.name = name;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
     this.dniNumber = dniNumber;
-    this.localAddress = localAddress;
     this.mail = mail;
     this.phoneNumber = phoneNumber;
     this.password = password;
+    this.amountCate = amountCare;
+    this.price = price;
   }
 
 }

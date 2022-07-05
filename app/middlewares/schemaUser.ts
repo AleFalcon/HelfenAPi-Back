@@ -2,6 +2,7 @@ import { Response, NextFunction, Request } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 
 import { HandlerError } from '../errors/handlerError';
+import { getTypeUser } from './setTypeUser';
 
 function validateGenericParameter(parameterValue: string, missingFields: string, parameterName: string): string {
     if (parameterValue === undefined || parameterValue  === ''){
@@ -13,12 +14,18 @@ function validateGenericParameter(parameterValue: string, missingFields: string,
 
 export function validateSchemaUser (req: Request, res: Response, next: NextFunction): void {
     let missingFields = '';
-    missingFields = validateGenericParameter(req.body.userType, missingFields, 'userType');
     missingFields = validateGenericParameter(req.body.name, missingFields, 'name');
     missingFields = validateGenericParameter(req.body.lastName, missingFields, 'lastName');
     missingFields = validateGenericParameter(req.body.dateOfBirth, missingFields, 'dateOfBirth');
     missingFields = validateGenericParameter(req.body.dniNumber, missingFields, 'dniNumber');
-    missingFields = validateGenericParameter(req.body.localAddress, missingFields, 'localAddress');
+
+    if (getTypeUser(res) === true) {
+        missingFields = validateGenericParameter(req.body.amountCare, missingFields, 'amountCare');
+        missingFields = validateGenericParameter(req.body.price, missingFields, 'price');
+    } else {
+        missingFields = validateGenericParameter(req.body.localAddress, missingFields, 'localAddress');
+    }
+
     missingFields = validateGenericParameter(req.body.mail, missingFields, 'mail');
     missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
     missingFields = validateGenericParameter(req.body.password, missingFields, 'password');

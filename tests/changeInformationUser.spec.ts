@@ -1,12 +1,12 @@
 import request from 'supertest';
-import userRepository from '../app/services/users';
+import userRepository from '../app/services/familiarUsers';
 import app from '../app';
 
 describe('/users PUT', () => {
     const requestBody = { name: "u3" , lastName: "u3", dateOfBirth: "1994-10-25", dniNumber: "12312331", 
       localAddress: "Liniers", mail: "alex11@alex.com", phoneNumber: "1111112221"};
     beforeEach(() => userRepository.createMany([
-      { userType: 1, name: "u1" , lastName: "u1",dateOfBirth: "1994-10-25", dniNumber: "12312332", 
+      { name: "u1" , lastName: "u1",dateOfBirth: "1994-10-25", dniNumber: "12312332", 
       localAddress: "Liniers", mail: "alex@alex.com", phoneNumber: "1111112222", password: "123456789" }
     ]));
     
