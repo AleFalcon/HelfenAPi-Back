@@ -1,85 +1,62 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Users } from './user';
 
-@Entity({ name: 'CarerUsers' })
-export class CarerUser {
+@Entity({ name: 'Carers' })
+export class Carers {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
-    type: "varchar",
-    nullable: false})
-  name: string;
-
-  @Column({
-    type: "varchar",
-    nullable: false})
-  lastName: string;
-
-  @Column({
-    type: Date,
-    nullable: false})
-  dateOfBirth: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  dniNumber: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  mail: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  phoneNumber: string;
-
-  @Column({
-    type: "varchar",
-    nullable: false})
-  password: string;
-
-  @Column({
     type: "int",
     nullable: true})
-    reviews: number;
-
-  @Column({
-    type: "int",
-    nullable: true})
-    carer: number;
+  reviewId?: number;
 
   @Column({
     type: "int",
     nullable: false})
-    diaryId: number;
+  diaryId?: number;
 
   @Column({
     type: "int",
     nullable: false})
-    amountCate: number;
+  amountCare: number;
 
   @Column({
     type: "int",
     nullable: false})
-    price: number;
+  price: number;
 
+  @Column({
+    type: "varchar",
+    nullable: false})
+  specialty?: string;
 
-  constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string,
-     mail: string, phoneNumber: string, password: string, amountCare: number, price: number) {
-    this.name = name;
-    this.lastName = lastName;
-    this.dateOfBirth = dateOfBirth;
-    this.dniNumber = dniNumber;
-    this.mail = mail;
-    this.phoneNumber = phoneNumber;
-    this.password = password;
-    this.amountCate = amountCare;
-    this.price = price;
+  @Column({
+    type: "varchar",
+    nullable: false})
+  experience?: string;
+
+  @OneToOne(() => Users)
+  @JoinColumn( {name: "userId"})
+  userId: number;
+
+  public modifyData({diaryId, reviewId, amountCare, price, specialty, experience, userId}: any) : void{
+    this.reviewId = reviewId === undefined ? this.reviewId : reviewId;
+    this.diaryId = diaryId === undefined ? this.diaryId : diaryId;
+    this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
+    this.price = price === undefined ? this.price : price;
+    this.specialty = specialty === undefined ? this.specialty : specialty;
+    this.experience = experience === undefined ? this.experience : experience;
+    this.userId = userId;
   }
 
+  constructor(amountCare: number = 0, price: number, userId: number, reviewId?: number, diaryId?: number , experience?: string, specialty?: string, ) {
+    this.userId = userId;
+    this.reviewId = reviewId;
+    this.diaryId = diaryId;
+    this.amountCare = amountCare;
+    this.price = price;
+    this.specialty = specialty;
+    this.experience = experience;
+ }
 }

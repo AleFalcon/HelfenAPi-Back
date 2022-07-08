@@ -1,21 +1,21 @@
-import { CarerUser } from '../models/carerUser';
-import { FamiliarUsers } from '../models/familiarUser';
+import { Carers } from '../models/carerUser';
+import { Familiars } from '../models/familiarUser';
 import { Response, NextFunction, Request } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
-export async function addHeaderCarer (req: Request, res: Response, next: NextFunction): Promise<void> {
+export function addHeaderCarer (req: Request, res: Response, next: NextFunction): void {
     res.setHeader('carer', 'true');
-    return next();
+    next();
 }
 
-export function userRepository(header: Boolean): Repository<FamiliarUsers | CarerUser> {
-    if ( header === true) {
-        return getRepository(CarerUser);
+export function userRepository(header: boolean): Repository<Familiars | Carers> {
+    if ( header ) {
+        return getRepository(Carers);
    } else {
-        return getRepository(FamiliarUsers);
+        return getRepository(Familiars);
    }
 }
 
-export function getTypeUser(res: Response): Boolean {
-    return res.getHeader('carer') === 'true' ? true : false
+export function getTypeUser(res: Response): boolean {
+    return res.getHeader('carer') === 'true';
 }

@@ -18,21 +18,22 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
     missingFields = validateGenericParameter(req.body.lastName, missingFields, 'lastName');
     missingFields = validateGenericParameter(req.body.dateOfBirth, missingFields, 'dateOfBirth');
     missingFields = validateGenericParameter(req.body.dniNumber, missingFields, 'dniNumber');
+    missingFields = validateGenericParameter(req.body.localAddress, missingFields, 'localAddress');
+    missingFields = validateGenericParameter(req.body.postalCode, missingFields, 'postalCode');
+    missingFields = validateGenericParameter(req.body.province, missingFields, 'province');
+    missingFields = validateGenericParameter(req.body.mail, missingFields, 'mail');
+    missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
+    missingFields = validateGenericParameter(req.body.password, missingFields, 'password');
 
     if (getTypeUser(res) === true) {
         missingFields = validateGenericParameter(req.body.amountCare, missingFields, 'amountCare');
         missingFields = validateGenericParameter(req.body.price, missingFields, 'price');
-    } else {
-        missingFields = validateGenericParameter(req.body.localAddress, missingFields, 'localAddress');
     }
-
-    missingFields = validateGenericParameter(req.body.mail, missingFields, 'mail');
-    missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
-    missingFields = validateGenericParameter(req.body.password, missingFields, 'password');
+    
     if (missingFields.length > 0){
         const missing = missingFields.substring(0, missingFields.length-2);
         const error = new HandlerError(`All fields are required. Missing fields: ${missing}`, BAD_REQUEST);
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();
     }
@@ -41,7 +42,7 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
 export function validateDni (req: Request, res: Response, next: NextFunction): void {
     if (req.body.dniNumber === undefined) {
         const error = new HandlerError("Dni number is required.", BAD_REQUEST);
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();
     }

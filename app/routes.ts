@@ -1,18 +1,13 @@
 import { Application } from 'express';
 
-import { validatePasswordMiddleware } from './middlewares/validatePassword';
-import { modifyFamiliarUser, createFamiliarUser, modifyPassword, getFamiliarUserByDni } from './controllers/user';
-import { modifyCarerUser, createCarerUser, getCarerUserByDni } from './controllers/user';
+import { createUser, getUserByDni, modifyPassword, modifyUser }  from './controllers/user';
 import { userFound, userNotFound } from './middlewares/userFound';
-import { validateDni, validateSchemaUser } from './middlewares/schemaUser';
-import { addHeaderCarer } from './middlewares/setTypeUser';
+import { validateSchemaUser } from './middlewares/schemaUser';
+import { validatePasswordMiddleware } from './middlewares/validatePassword';
 
 export const init = (app: Application): void => {
-  app.put('/familiarUser', [validateDni, userFound], modifyFamiliarUser);
-  app.put('/changePassword', [validateDni, userFound, validatePasswordMiddleware], modifyPassword);
-  app.post('/familiarUsers', [validateSchemaUser, userNotFound ], createFamiliarUser);
-  app.get('/familiarUsers/:dniNumber',  getFamiliarUserByDni);
-  app.put('/carerUser', [addHeaderCarer, validateDni, userFound], modifyCarerUser);
-  app.post('/carerUsers', [addHeaderCarer, validateSchemaUser, userNotFound ], createCarerUser);
-  app.get('/carerUsers/:dniNumber', getCarerUserByDni);
+  app.put('/users', [userFound], modifyUser);
+  app.post('/users', [validateSchemaUser, userNotFound], createUser);
+  app.get('/users/:dniNumber',  getUserByDni);
+  app.patch('/users', [userFound, validatePasswordMiddleware], modifyPassword);
 };

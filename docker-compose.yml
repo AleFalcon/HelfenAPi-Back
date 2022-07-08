@@ -8,7 +8,7 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=eiffel-helfenApiBack_nodeJs_dev
+      - MYSQL_DATABASE=helfenApiBack_nodeJs_dev
       - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
     ports:
       - '3306:3306'

@@ -1,73 +1,35 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Users } from './user';
 
-@Entity({ name: 'FamiliarUsers' })
-export class FamiliarUsers {
+@Entity({ name: 'Familiars' })
+export class Familiars {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
-    type: "varchar",
-    nullable: false})
-  name: string;
-
-  @Column({
-    type: "varchar",
-    nullable: false})
-  lastName: string;
-
-  @Column({
-    type: Date,
-    nullable: false})
-  dateOfBirth: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  dniNumber: string;
-
-  @Column({
-    type: "varchar",
-    nullable: false})
-  localAddress: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  mail: string;
-
-  @Column({
-    type: "varchar",
-    unique: true,
-    nullable: false})
-  phoneNumber: string;
-
-  @Column({
-    type: "varchar",
-    nullable: false})
-  password: string;
+    type: "int",
+    nullable: true})
+    reviews?: number;
 
   @Column({
     type: "int",
     nullable: true})
-    reviews: number;
+    carer?: number;
 
-  @Column({
-    type: "int",
-    nullable: true})
-    carer: number;
+  @OneToOne(() => Users)
+  @JoinColumn({name: "userId"})
+  userId: number;
 
-  constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string,
-     mail: string, phoneNumber: string, password: string) {
-    this.name = name;
-    this.lastName = lastName;
-    this.dateOfBirth = dateOfBirth;
-    this.dniNumber = dniNumber;
-    this.localAddress = localAddress;
-    this.mail = mail;
-    this.phoneNumber = phoneNumber;
-    this.password = password;
+  modifyData({reviews, carer, userId}: any): void{
+    this.reviews = reviews === undefined ? this.reviews : reviews;
+    this.carer = carer === undefined ? this.carer : carer;
+    this.userId = userId;
+  }
+  
+  constructor(userId: number, reviews?: number, carer?: number) {
+    this.reviews = reviews;
+    this.carer = carer;
+    this.userId = userId;
   }
 
 }
