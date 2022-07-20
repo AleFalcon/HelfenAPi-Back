@@ -72,9 +72,14 @@ export class Users {
     type: "varchar",
     nullable: true})
   floor?: string;
+
+  @Column({
+    type: "char",
+    nullable: true})
+  gender: string;
   
   constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string,
-    mail: string, phoneNumber: string, password: string, postalCode: string, province: string, otherMail?: string,
+    mail: string, phoneNumber: string, password: string, postalCode: string, province: string, gender: string, otherMail?: string,
     apartment?: string, floor?: string) {
       this.name = name;
       this.lastName = lastName;
@@ -87,19 +92,20 @@ export class Users {
       this.password = password;
       this.postalCode = postalCode;
       this.province = province;
+      this.gender = gender;
       this.apartment  = apartment;
       this.floor = floor;
     }
 
   static builder({id, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-    postalCode, province, apartment, otherMail, floor}: any ): Users {
+    postalCode, province, apartment, gender, otherMail, floor}: any ): Users {
     let user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-        postalCode, province, apartment, otherMail, floor )
+        postalCode, province, apartment, gender, otherMail, floor )
     user.id = id;
     return user;
     }
 
-  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, floor }: any){
+  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor }: any){
       this.name = name === undefined ? this.name : name;
       this.lastName = lastName === undefined ? this.lastName : lastName;
       this.dateOfBirth = dateOfBirth === undefined ? this.dateOfBirth : dateOfBirth;
@@ -109,6 +115,7 @@ export class Users {
       this.postalCode = postalCode === undefined ? this.postalCode : postalCode;
       this.province = province === undefined ? this.province : province;
       this.apartment  = apartment === undefined ? this.apartment : apartment;
+      this.gender  = gender === undefined ? this.gender : gender;
       this.floor = floor === undefined ? this.floor : floor;
   }
 }
