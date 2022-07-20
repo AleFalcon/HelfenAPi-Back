@@ -18,7 +18,7 @@ export async function eventFound (req: Request, res: Response, next: NextFunctio
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
@@ -35,7 +35,7 @@ export async function eventNotFound (req: Request, res: Response, next: NextFunc
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
@@ -50,6 +50,6 @@ export async function listEventFound (req: Request, res: Response, next: NextFun
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }

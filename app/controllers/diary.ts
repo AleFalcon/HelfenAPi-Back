@@ -11,7 +11,7 @@ export async function createDiary(req: Request, res: Response, next: NextFunctio
         .createAndSave(diary)
         .then( () => res.status(HttpStatus.CREATED).send({ diary }))
         .catch( (error: HandlerError) => {
-          res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+          res.status(error.getErrorCode()).send( {message: error.getMessage()} );
           next();
         });
   }
@@ -21,7 +21,7 @@ export async function deleteDiary(req: Request, res: Response, next: NextFunctio
         .deleteDiary(req.params.diaryId)
         .then( () => res.status(HttpStatus.NO_CONTENT))
         .catch( (error: HandlerError) => {
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
         next();
     });
 }

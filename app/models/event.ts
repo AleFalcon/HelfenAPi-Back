@@ -7,21 +7,6 @@ export class Event {
   @ManyToOne(() => Diary, diary => diary.userIdCarer)
   id: number;
 
-  @Column({
-    type: "int",
-    nullable: false})
-    diaryId: number;
-
-  @Column({
-    type: "int",
-    nullable: false})
-    userIdCarer: number;
-
-  @Column({
-    type: "int",
-    nullable: false})
-    userIdCare: number;
-
   /*
    * Los días van del 1 al 7, siendo 1 para el Domingo y 7 para el Sabado 
    */
@@ -29,6 +14,11 @@ export class Event {
     type: "int",
     nullable: false})
     day: number;
+
+  @Column({
+    type: "varchar",
+    nullable: true})
+    notes: string;
 
   @Column({
     type: "varchar",
@@ -41,24 +31,22 @@ export class Event {
     endTime: string;
 
   @Column({
+    type: "varchar",
+    nullable: false})
+    localAddress: string;
+
+  @Column({
     type: Date,
     nullable: false})
     expirationDate: string;
 
-  @Column({
-    type: "varchar"
-    })
-    notes: string;
-
-  constructor(diaryId: number, userIdCarer: number, userIdCare: number, day: number, startTime: string, endTime: string, expirationDate: string, notes: string) {
-    this.diaryId = diaryId;
-    this.userIdCarer = userIdCarer;
-    this.userIdCare = userIdCare;
+  constructor(day: number, notes: string, startTime: string, endTime: string, localAddress: string, expirationDate: string) {
     this.day = day;
+    this.notes = notes;
     this.startTime = startTime;
     this.endTime = endTime;
+    this.localAddress = localAddress;
     this.expirationDate = expirationDate;
-    this.notes = notes;
   }
 
 }

@@ -1,32 +1,37 @@
 import { Response, NextFunction, Request } from 'express';
 
-import { getRepository, Repository } from 'typeorm';
 import { HandlerError } from '../errors/handlerError';
 import HttpStatus from 'http-status-codes';
-import { User } from '../models/user';
 
-import { mailExistsError, phoneExistsError, userExistsError, userNotFoundError } from '../errors/constantsErrors';
+import { Users } from '../models/user';
 
-const userRepository = (): Repository<User> => getRepository(User);
+import { mailExistsError, phoneExistsError, userExistsError, userIdRequered, userNotFoundError } from '../errors/constantsErrors';
+import { getRepository, Repository } from 'typeorm';
+
+const userRepository = (): Repository<Users> => getRepository(Users);
 
 export async function userFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const user: User | undefined = await userRepository().findOne({dniNumber: req.body.dniNumber});
-        if( user === undefined ) {
-            throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND);
+        if ( req.body.userId !== undefined ){
+            const user: Users | undefined = await userRepository().findOne({id: req.body.userId});
+            if( user === undefined ) {
+                throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.user = user;
+                return next();
+            }
         } else {
-            req.body.user = user;
-            return next();
+            throw new HandlerError(userIdRequered, HttpStatus.BAD_REQUEST);
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
 export async function userNotFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        let user: User | undefined = await userRepository().findOne({dniNumber: req.body.dniNumber});
+        let user: Users | undefined = await userRepository().findOne({ dniNumber: req.body.dniNumber });
         if( user === undefined ) {
             user = await userRepository().findOne({mail: req.body.mail});
             if( user === undefined ) {
@@ -44,6 +49,6 @@ export async function userNotFound (req: Request, res: Response, next: NextFunct
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }

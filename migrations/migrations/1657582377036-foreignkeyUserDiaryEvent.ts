@@ -1,22 +1,22 @@
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class ForeignkeyUserDiaryEvent1654013565838 implements MigrationInterface {
+export class foreignkeyUserDiaryEvent1657582377036 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createForeignKey(
-            "User", new TableForeignKey({
+            "Carers", new TableForeignKey({
                 columnNames: ["diaryId"],
-                referencedColumnNames: ["userIdCarer"],
-                referencedTableName: "Diary",
+                referencedColumnNames: ["id"],
+                referencedTableName: "Diaries",
                 onDelete: "CASCADE",
             })
           )
 
         await queryRunner.createForeignKey(
-        "Diary", new TableForeignKey({
-            columnNames: ["events"],
+        "Diaries", new TableForeignKey({
+            columnNames: ["eventId"],
             referencedColumnNames: ["id"],
-            referencedTableName: "Event",
+            referencedTableName: "Events",
             onDelete: "CASCADE",
         })
         )
@@ -25,22 +25,22 @@ export class ForeignkeyUserDiaryEvent1654013565838 implements MigrationInterface
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        let table: Table|undefined = await queryRunner.getTable("User");
+        let table: Table|undefined = await queryRunner.getTable("Carers");
         if(table !== undefined) {
         const foreignKey: TableForeignKey | undefined = table.foreignKeys.find(
             (fk) => fk.columnNames.includes("diaryId"),
           )
             if(foreignKey !== undefined) {
-            await queryRunner.dropForeignKey("User", foreignKey)
+            await queryRunner.dropForeignKey("Carers", foreignKey)
            }
         }
-        table = await queryRunner.getTable("Diary");
+        table = await queryRunner.getTable("Diaries");
         if(table !== undefined) {
           const foreignKey: TableForeignKey | undefined = table.foreignKeys.find(
             (fk) => fk.columnNames.includes("events"),
         )
           if(foreignKey !== undefined) {
-            await queryRunner.dropForeignKey("Diary", foreignKey)
+            await queryRunner.dropForeignKey("Diaries", foreignKey)
           }
         }
     }

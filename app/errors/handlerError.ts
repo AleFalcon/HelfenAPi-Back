@@ -7,7 +7,7 @@ export class HandlerError extends Error {
       return this.message;
     }
 
-    gerErrorCode(): number {
+    getErrorCode(): number {
         return this.errorCode;
     }
 

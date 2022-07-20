@@ -19,7 +19,7 @@ export async function diaryFound (req: Request, res: Response, next: NextFunctio
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
@@ -33,7 +33,7 @@ export async function diaryNotFound (req: Request, res: Response, next: NextFunc
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
@@ -48,6 +48,6 @@ export async function diaryFoundDelete (req: Request, res: Response, next: NextF
         next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }

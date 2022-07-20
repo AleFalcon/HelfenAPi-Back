@@ -1,20 +1,9 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Diary } from './diary';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'User' })
-export class User {
+@Entity({ name: 'Users' })
+export class Users {
   @PrimaryGeneratedColumn()
   id: number;
-
-  /* 
-  * 1 corresponde al roll de usuario
-  * 2 corresponde al roll de cuidador
-  * 3 corresponde al roll de administrador
-  */
-  @Column({
-    type: "int",
-    nullable: false})
-  userType: number;
 
   @Column({
     type: "varchar",
@@ -50,6 +39,11 @@ export class User {
 
   @Column({
     type: "varchar",
+    nullable: true})
+  otherMail?: string;
+
+  @Column({
+    type: "varchar",
     unique: true,
     nullable: false})
   phoneNumber: string;
@@ -59,19 +53,62 @@ export class User {
     nullable: false})
   password: string;
 
-  @OneToOne(() => Diary) @JoinColumn()
-  diaryId: number;
+  @Column({
+    type: "varchar",
+    nullable: false})
+  postalCode: string;
 
-  constructor(type: number, name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string, mail: string, phoneNumber: string, password: string) {
-    this.userType = type;
-    this.name = name;
-    this.lastName = lastName;
-    this.dateOfBirth = dateOfBirth;
-    this.dniNumber = dniNumber;
-    this.localAddress = localAddress;
-    this.mail = mail;
-    this.phoneNumber = phoneNumber;
-    this.password = password;
+  @Column({
+    type: "varchar",
+    nullable: false})
+  province: string;
+
+  @Column({
+    type: "varchar",
+    nullable: true})
+  apartment?: string;
+
+  @Column({
+    type: "varchar",
+    nullable: true})
+  floor?: string;
+  
+  constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string,
+    mail: string, phoneNumber: string, password: string, postalCode: string, province: string, otherMail?: string,
+    apartment?: string, floor?: string) {
+      this.name = name;
+      this.lastName = lastName;
+      this.dateOfBirth = dateOfBirth;
+      this.dniNumber = dniNumber;
+      this.localAddress = localAddress;
+      this.mail = mail;
+      this.otherMail = otherMail;
+      this.phoneNumber = phoneNumber;
+      this.password = password;
+      this.postalCode = postalCode;
+      this.province = province;
+      this.apartment  = apartment;
+      this.floor = floor;
+    }
+
+  static builder({id, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
+    postalCode, province, apartment, otherMail, floor}: any ): Users {
+    let user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
+        postalCode, province, apartment, otherMail, floor )
+    user.id = id;
+    return user;
+    }
+
+  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, floor }: any){
+      this.name = name === undefined ? this.name : name;
+      this.lastName = lastName === undefined ? this.lastName : lastName;
+      this.dateOfBirth = dateOfBirth === undefined ? this.dateOfBirth : dateOfBirth;
+      this.localAddress = localAddress === undefined ? this.localAddress : localAddress;
+      this.otherMail = otherMail === undefined ? this.otherMail : otherMail;
+      this.phoneNumber = phoneNumber === undefined ? this.phoneNumber : phoneNumber;
+      this.postalCode = postalCode === undefined ? this.postalCode : postalCode;
+      this.province = province === undefined ? this.province : province;
+      this.apartment  = apartment === undefined ? this.apartment : apartment;
+      this.floor = floor === undefined ? this.floor : floor;
   }
-
 }

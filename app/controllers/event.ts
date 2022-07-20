@@ -11,7 +11,7 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
         .createAndSave(event)
         .then( () => res.status(HttpStatus.CREATED).send({ event }))
         .catch( (error: HandlerError) => {
-          res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+          res.status(error.getErrorCode()).send( {message: error.getMessage()} );
           next();
         });        
   }
@@ -23,7 +23,7 @@ export async function modifyEvent(req: Request, res: Response, next: NextFunctio
     .modify(event)
     .then( () => res.status(HttpStatus.OK).send({ event }))
     .catch( (error: HandlerError) => {
-      res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+      res.status(error.getErrorCode()).send( {message: error.getMessage()} );
       next();
     })
 }
@@ -33,7 +33,7 @@ export async function deleteDiary(req: Request, res: Response, next: NextFunctio
         .deleteEvent(req.params.eventId)
         .then( () => res.status(HttpStatus.NO_CONTENT))
         .catch( (error: HandlerError) => {
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
         next();
     });
 }

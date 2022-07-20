@@ -17,7 +17,7 @@ export function validateSchemaDiary (req: Request, res: Response, next: NextFunc
     if (missingFields.length > 0){
         const missing = missingFields.substring(0, missingFields.length-2);
         const error = new HandlerError(`All fields are required. Missing fields: ${missing}`, BAD_REQUEST);
-        res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();
     }
