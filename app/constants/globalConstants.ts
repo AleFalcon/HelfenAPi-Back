@@ -1,0 +1,1 @@
+export const carerType = 2;

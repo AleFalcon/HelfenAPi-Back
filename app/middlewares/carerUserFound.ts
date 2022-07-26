@@ -7,8 +7,7 @@ import { Carers } from '../models/carerUser';
     
 import userService from '../services/users';
 import { userNotFoundError, userIdRequered } from '../errors/constantsErrors';
-
-const carerType = 2;
+import { carerType } from '../constants/globalConstants';
 
 export async function carerUserFound(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

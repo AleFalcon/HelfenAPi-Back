@@ -1,8 +1,8 @@
+import { carerType } from '../constants/globalConstants';
 import { Response, NextFunction, Request } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 
 import { HandlerError } from '../errors/handlerError';
-import { getTypeUser } from './setTypeUser';
 
 function validateGenericParameter(parameterValue: string, missingFields: string, parameterName: string): string {
     if (parameterValue === undefined || parameterValue  === ''){
@@ -26,8 +26,7 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
     missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
     missingFields = validateGenericParameter(req.body.password, missingFields, 'password');
 
-    if (getTypeUser(res) === true) {
-        missingFields = validateGenericParameter(req.body.amountCare, missingFields, 'amountCare');
+    if (req.body.userType === carerType) {
         missingFields = validateGenericParameter(req.body.price, missingFields, 'price');
     }
     
