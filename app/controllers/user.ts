@@ -23,7 +23,8 @@ export async function createUser(req: Request, res: Response, next: NextFunction
       .createAndSave(req.body)
       .then( (user: Familiars | Carers) => res.status(HttpStatus.CREATED).send({ user }))
       .catch( (error: any) => {
-        res.status(error.codes).send( {message: error} );
+        const handlerError = new HandlerError(error, error.getErrorCode);
+        res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
         next();
       });
 }
@@ -32,7 +33,8 @@ export async function modifyPassword(req: Request, res: Response, next: NextFunc
   return await userService.modifyPassword(req.body.userId, req.body.newPassword)
     .then( ( ) => res.status(HttpStatus.ACCEPTED).send())
     .catch( (error: any) => {
-    res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+      const handlerError = new HandlerError(error, error.getErrorCode);
+    res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
   })
 }
@@ -42,7 +44,8 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
   .modify(Number.parseInt(req.body.type), req.body)
   .then( (user: any) => res.status(HttpStatus.OK).send({ user }))
   .catch( (error: any) => {
-    res.status(400).send( {message: error.message} );
+    const handlerError = new HandlerError(error, error.getErrorCode);
+    res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
   })
 }

@@ -6,7 +6,6 @@ import { HandlerError } from '../errors/handlerError';
 import { Events } from '../models/event';
 import { eventIdRequered } from '../errors/constantsErrors';
 import { Carers } from '../models/carerUser';
-import { ListCollectionsOptions } from 'typeorm';
 
 export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   const event: Events = new Events(req.body.user as Carers, req.body.day, req.body.date, req.body.startEvent, req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes);
@@ -16,7 +15,8 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
         res.status(HttpStatus.CREATED).send({ event: newEvent.convertToJson() })
       } )
       .catch( (error: any) => {
-        res.status(400).send( {message: error.message} );
+        const handlerError = new HandlerError(error, error.getErrorCode);
+        res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
         next();
       });        
   }
