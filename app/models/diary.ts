@@ -1,20 +1,25 @@
-import { Entity, OneToMany, PrimaryColumn } from 'typeorm';
-import { Event } from './event';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Carers } from './carerUser';
+import { Events } from './event';
 
-@Entity({ name: 'Diary' })
-export class Diary {
+@Entity({ name: 'Diaries' })
+export class Diaries {
 
-  @PrimaryColumn({
-    type: "int",
-    unique: true,
-    nullable: false})
-    userIdCarer: number;
+  @PrimaryGeneratedColumn()
+    id: number;
   
-  @OneToMany(() => Event, event => event.id)
-  events: Event[];
+   @Column({
+     type: "int",
+     nullable: false})
+  //userId: number;
+  carerUser: Carers
 
-  constructor(userIdCarer: number, events: Event[]) {
-    this.userIdCarer = userIdCarer;
+  @OneToMany(() => Events, (event) => event.id)
+  events: Events[];
+
+  constructor(carerUser: Carers, events: Events[]) {
+    //this.userId = userId;
+    this.carerUser = carerUser;
     this.events = events;
   }
 

@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class events1657582357496 implements MigrationInterface {
+export class Events1657582357496 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         return queryRunner.createTable(
@@ -9,10 +9,12 @@ export class events1657582357496 implements MigrationInterface {
               columns: [
                 { name: 'id', type: 'int', isPrimary: true, generationStrategy: 'increment', isGenerated: true },
                 { name: 'day', type: 'int' },
-                { name: 'startTime', type: 'varchar' },
-                { name: 'endTime', type: 'varchar' },
-                { name: 'expirationDate', type: 'Date' },
-                { name: 'notes', type: 'varchar' },
+                { name: 'carer', type: 'int' },
+                { name: 'date', type: 'Date' },
+                { name: 'startEvent', type: 'varchar' },
+                { name: 'endEvent', type: 'varchar' },
+                { name: 'expirationDate', type: 'Date', isNullable: true },
+                { name: 'notes', type: 'varchar', isNullable: true  },
                 { name: 'localAddress', type: 'varchar' },
               ]
             })

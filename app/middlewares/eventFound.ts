@@ -1,53 +1,67 @@
-import { Response, NextFunction, Request } from 'express';
-
-import { getRepository, Repository } from 'typeorm';
 import { HandlerError } from '../errors/handlerError';
-import { eventFoundError, eventNotFoundError } from '../errors/constantsErrors';
-import { Event } from '../models/event';
+import { Response, NextFunction, Request } from 'express';
 import HttpStatus from 'http-status-codes';
 
-const eventRepository = (): Repository<Event> => getRepository(Event);
+import { FindConditions, getRepository, Repository } from "typeorm";
+import { Events } from "../models/event";
+import { eventIdRequered, eventNotFoundError } from '../errors/constantsErrors';
+
+const eventRepository = (): Repository<Events> => getRepository(Events);
 
 export async function eventFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const event: Event | undefined = await eventRepository().findOne({ id: Number(req.params.eventId) });
-        if( event === undefined ) {
-            throw new HandlerError(eventNotFoundError, HttpStatus.NOT_ACCEPTABLE);
+        const eventId = req.body.id; 
+        if ( eventId !== undefined ){
+            const event: Events | undefined = await eventRepository().findOne({id: eventId});
+            if( event === undefined ) {
+                throw new HandlerError(eventNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.event = event;
+                return next();
+            }
+        } else {
+            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
         }
-        res.status(HttpStatus.OK).send( {event} );
-        next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
-export async function eventNotFound (req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function eventList (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const userId = Number(req.params.userIdCarer);
-        const day = Number(req.params.day);
-        const event: Event | undefined = await eventRepository().findOne({ userIdCarer: userId, day: day, startTime: req.params.startTime,
-            endTime: req.params.endTime });
-        if( event !== undefined ) {
-            throw new HandlerError(eventFoundError, HttpStatus.NOT_ACCEPTABLE);
+        const eventId = Number.parseInt(req.params.userId); 
+        if ( eventId !== undefined ){
+            const event: Events[] | undefined = await eventRepository().find({ carer: eventId as FindConditions<Events> });
+            if( event === undefined ) {
+                throw new HandlerError(eventNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.event = event;
+                return next();
+            }
+        } else {
+            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
         }
-        res.status(HttpStatus.OK).send( {event} );
-        next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 
-export async function listEventFound (req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function eventFoundByParams (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const userId = Number(req.params.userIdCarer);
-        const event: Event[] | undefined = await eventRepository().find({ userIdCarer: userId});
-        if( event === undefined ) {
-            throw new HandlerError(eventNotFoundError, HttpStatus.NOT_ACCEPTABLE);
+        const eventId = Number.parseInt(req.params.eventId); 
+        if ( eventId !== undefined ){
+            const event: Events | undefined = await eventRepository().findOne({id: eventId});
+            if( event === undefined ) {
+                throw new HandlerError(eventNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.event = event;
+                return next();
+            }
+        } else {
+            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
         }
-        res.status(HttpStatus.OK).send( {eventList: event} );
-        next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );

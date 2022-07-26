@@ -10,7 +10,8 @@ import { HandlerError } from '../errors/handlerError';
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
   .findUser(Number.parseInt(req.body.userType), { dniNumber: req.params.dniNumber })
-  .then((user: any ) => { return res.send(user) })
+  .then((user: Familiars | Carers ) => { 
+    return res.send(user) })
   .catch( (error: HandlerError) => {
     res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     next();

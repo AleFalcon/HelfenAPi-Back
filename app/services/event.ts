@@ -1,26 +1,26 @@
 import { internalError } from '../errors/constantsErrors';
 import { HandlerError } from '../errors/handlerError';
 import { DeleteResult, getRepository, Repository } from 'typeorm';
-import { Event } from '../models/event';
+import { Events } from '../models/event';
 import HttpStatus from 'http-status-codes';
 
-const eventRepository = (): Repository<Event> => getRepository(Event);
+const eventRepository = (): Repository<Events> => getRepository(Events);
 
-export function createAndSave(event: Event): Promise<Event> {
-    return eventRepository().save(event);
+export async function createAndSave(event: Events): Promise<Events> {
+ return await eventRepository().save(event);
 }
 
-export async function modify(event: Event): Promise<Event | void> {
+export async function modify(event: Events): Promise<Events | void> {
     await eventRepository().update({id: event.id}, event)
     .then( () => { return event })
     .catch( () => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR) });
-  }
+}
+
 
 export async function deleteEvent(eventId: string): Promise<DeleteResult | void> {
-    return await eventRepository().delete(eventId)
-    .then()
-    .catch( () => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR) });
-  }
+  const eventIdNumber: number = Number.parseInt(eventId);
+  await eventRepository().delete(eventIdNumber);
+  } 
 
 export default {
     createAndSave,

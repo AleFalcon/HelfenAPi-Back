@@ -17,19 +17,19 @@ export class Familiars {
     carer?: number;
 
   @OneToOne(() => Users)
-  @JoinColumn({name: "userId"})
-  userId: number;
+  @JoinColumn( { name: "userId", referencedColumnName: "id" })
+  user: Users;
 
-  modifyData({reviews, carer, userId}: any): void{
+  modifyData({reviews, carer, user}: any): void{
     this.reviews = reviews === undefined ? this.reviews : reviews;
     this.carer = carer === undefined ? this.carer : carer;
-    this.userId = userId;
+    this.user = user;
   }
   
-  constructor(userId: number, reviews?: number, carer?: number) {
+  constructor(user: Users, reviews?: number, carer?: number) {
     this.reviews = reviews;
     this.carer = carer;
-    this.userId = userId;
+    this.user = user;
   }
 
 }

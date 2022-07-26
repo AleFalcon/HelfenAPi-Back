@@ -1,10 +1,9 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Diary } from './diary';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Carers } from './carerUser';
 
-@Entity({ name: 'Event' })
-export class Event {
+@Entity({ name: 'Events' })
+export class Events {
   @PrimaryGeneratedColumn()
-  @ManyToOne(() => Diary, diary => diary.userIdCarer)
   id: number;
 
   /*
@@ -18,35 +17,69 @@ export class Event {
   @Column({
     type: "varchar",
     nullable: true})
-    notes: string;
+    notes?: string;
 
   @Column({
     type: "varchar",
     nullable: false})
-    startTime: string;
+    date: string;
 
   @Column({
     type: "varchar",
     nullable: false})
-    endTime: string;
+    startEvent: string;
+
+  @Column({
+    type: "varchar",
+    nullable: false})
+    endEvent: string;
 
   @Column({
     type: "varchar",
     nullable: false})
     localAddress: string;
 
+  //If this field is null, don't exist expiration date
   @Column({
     type: Date,
-    nullable: false})
-    expirationDate: string;
+    nullable: true})
+    expirationDate?: string;
 
-  constructor(day: number, notes: string, startTime: string, endTime: string, localAddress: string, expirationDate: string) {
+  @ManyToOne(type => Carers, (carer: Carers) => carer.events)
+  @JoinColumn({name: "carer", referencedColumnName: "id"})
+  carer: Carers
+  //   diary: Diaries;
+
+  constructor(carer: Carers, day: number, date: string, startEvent: string, endEvent: string, localAddress: string, expirationDate: string, notes: string) {
+    this.carer = carer;
     this.day = day;
     this.notes = notes;
-    this.startTime = startTime;
-    this.endTime = endTime;
+    this.date = date;
+    this.startEvent = startEvent;
+    this.endEvent = endEvent;
     this.localAddress = localAddress;
     this.expirationDate = expirationDate;
   }
 
+  convertToJson(): any{
+    return { date: this.date, day: this.day, endEvent: this.endEvent,
+      expirationDate: this.expirationDate, localAddress: this.localAddress, notes: this.notes, startEvent: this.startEvent }
+  }
+
+  static builder(user: Carers, {event: eventSaved, id, day, date, startEvent, endEvent, localAddress, expirationDate, notes}: any ): Events {
+    const event: Events = new Events( user,
+      day === undefined ? eventSaved.day : day,
+      date === undefined ? eventSaved.date : date,
+      startEvent === undefined ? eventSaved.startEvent : startEvent,
+      endEvent === undefined ? eventSaved.endEvent : endEvent,
+      localAddress === undefined ? eventSaved.localAddress : localAddress,
+      expirationDate === undefined ? eventSaved.expirationDate : expirationDate,
+      notes === undefined ? eventSaved.notes : notes);
+    event.id = id;
+    return event;
+    }
+
+    static convertToJson({date, day, endEvent, expirationDate, localAddress, notes, startEvent}: any): any{
+      return { date: date, day: day, endEvent: endEvent,expirationDate: expirationDate, localAddress: localAddress, notes: notes, startEvent: startEvent }
+    }
 }
