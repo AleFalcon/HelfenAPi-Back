@@ -3,11 +3,15 @@ import { HandlerError } from '../errors/handlerError';
 import { DeleteResult, getRepository, Repository } from 'typeorm';
 import { Events } from '../models/event';
 import HttpStatus from 'http-status-codes';
+import userService from '../services/users';
 
 const eventRepository = (): Repository<Events> => getRepository(Events);
+const CARER_TYPE: number = 2;
 
 export async function createAndSave(event: Events): Promise<Events> {
- return await eventRepository().save(event);
+  const newEvent: Events = await eventRepository().save(event);
+  userService.modifyAditionalInformation(CARER_TYPE, event.carer)
+  return newEvent;
 }
 
 export async function modify(event: Events): Promise<Events | void> {
