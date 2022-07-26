@@ -2,7 +2,7 @@ type ENV_VAR = string | undefined;
 
 type dialect = 'postgres' | 'mysql' | 'sqlite' | 'mssql' | 'oracle';
 
-export interface IConfig {
+export interface Iconfig {
   isDevelopment?: boolean;
   isProduction?: boolean;
   isTesting?: boolean;

@@ -1,0 +1,16 @@
+export const matchPasswordError = "Password is mischmasch";
+export const newPasswordEqualsPasswordError = "The new password is equals the actual password";
+export const newPasswordError = "The new password is mischmasch with the confirmation password";
+export const internalError = "Internal error";
+export const userNotFoundError = "User not found";
+export const aditionalUserNotFoundError = "Aditional user not found";
+export const userExistsError = "Dni number already exists";
+export const mailExistsError = "Mail already exists";
+export const phoneExistsError = "Phone number already exists";
+export const userIdRequered = "userId is required.";
+export const passwordRequered = "password is required.";
+export const diaryNotFoundError = "Diary not found";
+export const diaryExistsError = "Diary already exists";
+export const eventNotFoundError = "Event not found";
+export const eventFoundError = "Event already exists";
+export const eventIdRequered = "Id is required.";

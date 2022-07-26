@@ -1,4 +1,4 @@
-/* eslint-disable id-length */
+/* eslint-disable @typescript-eslint/camelcase */
 import { inspect } from 'util';
 import { Request, Response, NextFunction } from 'express';
 
@@ -30,7 +30,6 @@ export function errorHandlerMiddleware(
   if (error.internalCode) {
     res.status(error.statusCode || DEFAULT_STATUS_CODE);
   } else {
-    // Unrecognized error! notifying it to error tracking tool.
     logger.error(inspect(error));
     res.status(DEFAULT_STATUS_CODE);
     return next(error);
