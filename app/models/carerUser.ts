@@ -1,5 +1,4 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Diaries } from './diary';
 import { Events } from './event';
 import { Users } from './user';
 
@@ -41,7 +40,7 @@ export class Carers {
   @JoinColumn({})
   user: Users;
 
-  public modifyData({diary, reviewId, amountCare, price, specialty, experience, user}: any): void{
+  public modifyData({reviewId, amountCare, price, specialty, experience, user}: any): void{
     this.reviewId = reviewId === undefined ? this.reviewId : reviewId;
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
     this.price = price === undefined ? this.price : price;
@@ -50,7 +49,7 @@ export class Carers {
     this.user = user;
   }
 
-  constructor(amountCare: number, price: number, user: Users, reviewId?: number, diary?: Diaries , experience?: string, specialty?: string ) {
+  constructor(amountCare: number, price: number, user: Users, reviewId?: number, experience?: string, specialty?: string ) {
     this.user = user;
     this.reviewId = reviewId;
     this.amountCare = amountCare;
