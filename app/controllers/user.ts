@@ -10,7 +10,8 @@ import { HandlerError } from '../errors/handlerError';
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
   .findUser(Number.parseInt(req.body.userType), { dniNumber: req.params.dniNumber })
-  .then((user: any ) => { return res.send(user) })
+  .then((user: Familiars | Carers ) => { 
+    return res.send(user) })
   .catch( (error: HandlerError) => {
     res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     next();
@@ -31,7 +32,7 @@ export async function modifyPassword(req: Request, res: Response, next: NextFunc
   return await userService.modifyPassword(req.body.userId, req.body.newPassword)
     .then( ( ) => res.status(HttpStatus.ACCEPTED).send())
     .catch( (error: any) => {
-    res.status(error.gerErrorCode()).send( {message: error.getMessage()} );
+    res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     next();
   })
 }

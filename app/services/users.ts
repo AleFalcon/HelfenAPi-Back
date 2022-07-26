@@ -4,7 +4,7 @@ import { Carers } from '../models/carerUser';
 import { Users } from '../models/user';
 
 import { HandlerError } from '../errors/handlerError';
-import { userNotFoundError } from '../errors/constantsErrors';
+import { aditionalUserNotFoundError, userNotFoundError } from '../errors/constantsErrors';
 import HttpStatus from 'http-status-codes';
 
 import bcrypt from 'bcrypt';
@@ -29,27 +29,36 @@ const actionUpdate = new Map<number, any>([
 ]);
 
 export async function findUser(type: number, options?: FindConditions<Users>): Promise<any> {
-  return await userRepository().findOne(options)
-  .then( (user: Users) => {
-    const aditionalInformation: Familiars | Carers | undefined = actionFind.get(type)({ userId: user.id });
-    return {...user, ...aditionalInformation};
-  })
-  .catch( () => { throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND) });
+  const user: Users | void = await userRepository().findOne(options);
+  if (user !== undefined) {
+    const aditionalInformation: Familiars | Carers | undefined = await actionFind.get(type)({ userId: user.id });
+    if (aditionalInformation !== undefined) {
+      aditionalInformation.user = user;
+      return aditionalInformation;
+    } else {
+      throw new HandlerError(aditionalUserNotFoundError, HttpStatus.NOT_FOUND)
+    }
+  } else {
+    throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND)
+  }
+}
 
+export async function findCarerById(id: number): Promise<Carers> {
+  return await actionFind.get(2)({ userId: id });
 }
 
 export async function createAndSave({userType: type, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-  postalCode, province, apartment, floor, amountCare, price, specialty, experience }: any): Promise<any> {
+  postalCode, province, apartment, gender, floor, price, specialty, experience }: any): Promise<any> {
   const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress,
-    mail, phoneNumber, bcrypt.hashSync(password, bcrypt.genSaltSync(10)), postalCode, province, apartment,
+    mail, phoneNumber, bcrypt.hashSync(password, bcrypt.genSaltSync(10)), postalCode, province, gender, apartment,
     floor);
   const userCreated = await userRepository().save(user)
-  const userTypeCreated: Familiars | Carers = await actionSave.get(type)({amountCare, price, specialty, experience, id: userCreated.id});
+  const userTypeCreated: Familiars | Carers = await actionSave.get(type)({amountCare: 0 , price, specialty, experience, id: userCreated.id});
   return {...user, ...userTypeCreated};
 }
 
 export async function modifyPassword(userId: number, newPassword: string): Promise<void> {
-  userRepository().update({id: userId}, {password: bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10))})
+  await userRepository().update({id: userId}, {password: bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10))})
 }
 
 export async function modify(type: number, params: any): Promise<any> {
@@ -66,6 +75,10 @@ export async function modify(type: number, params: any): Promise<any> {
   }
 }
 
+export async function modifyAditionalInformation(type: number, aditionalInformation: Carers): Promise<any> {
+  return await actionUpdate.get(type)({id: aditionalInformation.id}, aditionalInformation );
+}
+
 /*  
 //export function findAll(options?: FindManyOptions): Promise<User[]> {
 //  return userRepository().find(options);
@@ -78,5 +91,7 @@ export default {
   modify,
   modifyPassword,
   findUser,
+  findCarerById,
+  modifyAditionalInformation,
   createAndSave
 };

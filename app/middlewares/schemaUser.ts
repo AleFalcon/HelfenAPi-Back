@@ -22,6 +22,7 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
     missingFields = validateGenericParameter(req.body.postalCode, missingFields, 'postalCode');
     missingFields = validateGenericParameter(req.body.province, missingFields, 'province');
     missingFields = validateGenericParameter(req.body.mail, missingFields, 'mail');
+    missingFields = validateGenericParameter(req.body.gender, missingFields, 'gender');
     missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
     missingFields = validateGenericParameter(req.body.password, missingFields, 'password');
 

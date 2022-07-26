@@ -99,7 +99,7 @@ export class Users {
 
   static builder({id, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
     postalCode, province, apartment, gender, otherMail, floor}: any ): Users {
-    let user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
+    const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
         postalCode, province, apartment, gender, otherMail, floor )
     user.id = id;
     return user;
