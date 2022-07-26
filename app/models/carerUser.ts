@@ -5,6 +5,7 @@ import { Users } from './user';
 @Entity({ name: 'Carers' })
 export class Carers {
   @PrimaryGeneratedColumn()
+  @OneToMany(() => Events, event => event.id)
   id: number;
 
   @Column({
@@ -12,8 +13,7 @@ export class Carers {
     nullable: true})
   reviewId?: number;
 
-  @OneToMany(() => Events, event => event.id)
-  events: Events[]
+//  events: Events[]
   
   @Column({
     type: "int",

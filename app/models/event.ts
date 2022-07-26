@@ -45,7 +45,7 @@ export class Events {
     nullable: true})
     expirationDate?: string;
 
-  @ManyToOne(type => Carers, (carer: Carers) => carer.events)
+  @ManyToOne(type => Carers, (carer: Carers) => carer.id)
   @JoinColumn({name: "carer", referencedColumnName: "id"})
   carer: Carers
   //   diary: Diaries;

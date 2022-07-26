@@ -98,9 +98,9 @@ export class Users {
     }
 
   static builder({id, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-    postalCode, province, apartment, gender, otherMail, floor}: any ): Users {
+    postalCode, province, gender, otherMail, apartment, floor}: any ): Users {
     const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-        postalCode, province, apartment, gender, otherMail, floor )
+        postalCode, province, gender, otherMail, apartment, floor )
     user.id = id;
     return user;
     }

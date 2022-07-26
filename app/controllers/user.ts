@@ -41,7 +41,7 @@ export async function modifyPassword(req: Request, res: Response, next: NextFunc
 
 export async function modifyUser(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
   return await userService
-  .modify(Number.parseInt(req.body.type), req.body)
+  .modify(Number.parseInt(req.body.userType), req.body)
   .then( (user: any) => res.status(HttpStatus.OK).send({ user }))
   .catch( (error: any) => {
     const handlerError = new HandlerError(error, error.getErrorCode);

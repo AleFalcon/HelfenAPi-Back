@@ -63,7 +63,7 @@ export async function modifyPassword(userId: number, newPassword: string): Promi
 
 export async function modify(type: number, params: any): Promise<any> {
   const user: Users = Users.builder(params.user);
-  user.modifyData(params.user);
+  user.modifyData(params);
   userRepository().update({id: params.userId}, user);
   const aditionalInformation: Familiars | Carers | undefined = await actionFind.get(type)({ userId: user.id });
   if (aditionalInformation === undefined){

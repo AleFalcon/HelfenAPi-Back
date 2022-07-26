@@ -4,10 +4,10 @@ export class ForeignkeyUserDiaryEvent1657582377036 implements MigrationInterface
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createForeignKey(
-            "Carers", new TableForeignKey({
-                columnNames: ["events"],
+            "Events", new TableForeignKey({
+                columnNames: ["carer"],
                 referencedColumnNames: ["id"],
-                referencedTableName: "Events",
+                referencedTableName: "Carers",
                 onDelete: "CASCADE",
             })
           )
