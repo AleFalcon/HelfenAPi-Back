@@ -4,13 +4,13 @@ import { DeleteResult, getRepository, Repository } from 'typeorm';
 import { Events } from '../models/event';
 import HttpStatus from 'http-status-codes';
 import userService from '../services/users';
+import { carerType } from '../constants/globalConstants';
 
 const eventRepository = (): Repository<Events> => getRepository(Events);
-const CARER_TYPE: number = 2;
 
 export async function createAndSave(event: Events): Promise<Events> {
   const newEvent: Events = await eventRepository().save(event);
-  userService.modifyAditionalInformation(CARER_TYPE, event.carer)
+  userService.modifyAditionalInformation(carerType, event.carer)
   return newEvent;
 }
 

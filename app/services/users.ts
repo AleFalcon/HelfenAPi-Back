@@ -43,10 +43,6 @@ export async function findUser(type: number, options?: FindConditions<Users>): P
   }
 }
 
-export async function findCarerById(id: number): Promise<Carers> {
-  return await actionFind.get(2)({ userId: id });
-}
-
 export async function createAndSave({userType: type, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
   postalCode, province, apartment, gender, floor, price, specialty, experience }: any): Promise<any> {
   const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress,
@@ -79,19 +75,10 @@ export async function modifyAditionalInformation(type: number, aditionalInformat
   return await actionUpdate.get(type)({id: aditionalInformation.id}, aditionalInformation );
 }
 
-/*  
-//export function findAll(options?: FindManyOptions): Promise<User[]> {
-//  return userRepository().find(options);
-//}
-
-*/
-
 export default {
-  //findAll,
   modify,
   modifyPassword,
   findUser,
-  findCarerById,
   modifyAditionalInformation,
   createAndSave
 };

@@ -4,7 +4,7 @@ import HttpStatus from 'http-status-codes';
 
 import { FindConditions, getRepository, Repository } from "typeorm";
 import { Events } from "../models/event";
-import { eventIdRequered, eventNotFoundError } from '../errors/constantsErrors';
+import { idRequered, eventNotFoundError } from '../errors/constantsErrors';
 
 const eventRepository = (): Repository<Events> => getRepository(Events);
 
@@ -20,7 +20,7 @@ export async function eventFound (req: Request, res: Response, next: NextFunctio
                 return next();
             }
         } else {
-            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
+            throw new HandlerError(idRequered, HttpStatus.BAD_REQUEST);
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;
@@ -40,7 +40,7 @@ export async function eventList (req: Request, res: Response, next: NextFunction
                 return next();
             }
         } else {
-            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
+            throw new HandlerError(idRequered, HttpStatus.BAD_REQUEST);
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;
@@ -60,7 +60,7 @@ export async function eventFoundByParams (req: Request, res: Response, next: Nex
                 return next();
             }
         } else {
-            throw new HandlerError(eventIdRequered, HttpStatus.BAD_REQUEST);
+            throw new HandlerError(idRequered, HttpStatus.BAD_REQUEST);
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;

@@ -105,7 +105,7 @@ export class Users {
     return user;
     }
 
-  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor }: any){
+  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor }: any): void{
       this.name = name === undefined ? this.name : name;
       this.lastName = lastName === undefined ? this.lastName : lastName;
       this.dateOfBirth = dateOfBirth === undefined ? this.dateOfBirth : dateOfBirth;

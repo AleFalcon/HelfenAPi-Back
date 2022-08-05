@@ -9,6 +9,8 @@ Correr los siguiente comandos:
 * volta install node
 * volta install npm
 * npm i --save-dev @types/bcrypt
+* Configurar archivo .env
+* docker-compose up -d
 * npm run migrations
 
 Para levanta el proyecto ejecutar:

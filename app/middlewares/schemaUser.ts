@@ -3,6 +3,7 @@ import { Response, NextFunction, Request } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 
 import { HandlerError } from '../errors/handlerError';
+import { allFieldRequered } from '../errors/constantsErrors';
 
 function validateGenericParameter(parameterValue: string, missingFields: string, parameterName: string): string {
     if (parameterValue === undefined || parameterValue  === ''){
@@ -32,7 +33,7 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
     
     if (missingFields.length > 0){
         const missing = missingFields.substring(0, missingFields.length-2);
-        const error = new HandlerError(`All fields are required. Missing fields: ${missing}`, BAD_REQUEST);
+        const error = new HandlerError(allFieldRequered + missing, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();

@@ -14,10 +14,10 @@ export class ForeignkeyUserDiaryEvent1657582377036 implements MigrationInterface
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        let table: Table|undefined = await queryRunner.getTable("Carers");
+        const table: Table|undefined = await queryRunner.getTable("Carers");
         if(table !== undefined) {
         const foreignKey: TableForeignKey | undefined = table.foreignKeys.find(
-            (fk) => fk.columnNames.includes("events"),
+            (fk) => fk.columnNames.includes("carer"),
           )
             if(foreignKey !== undefined) {
             await queryRunner.dropForeignKey("Carers", foreignKey)

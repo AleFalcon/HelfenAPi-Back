@@ -4,7 +4,7 @@ import HttpStatus from 'http-status-codes';
 import eventService from '../services/event';
 import { HandlerError } from '../errors/handlerError';
 import { Events } from '../models/event';
-import { eventIdRequered } from '../errors/constantsErrors';
+import { idRequered } from '../errors/constantsErrors';
 import { Carers } from '../models/carerUser';
 
 export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
@@ -36,7 +36,7 @@ export async function modifyEvent(req: Request, res: Response, next: NextFunctio
 
 export async function deleteEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   if (req.params.eventId === undefined) {
-    const error = new HandlerError (eventIdRequered, HttpStatus.BAD_REQUEST)
+    const error = new HandlerError (idRequered, HttpStatus.BAD_REQUEST)
     res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     next();
   } else {
@@ -50,11 +50,11 @@ export async function deleteEvent(req: Request, res: Response, next: NextFunctio
   }
 }
 
-export async function getEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+export function getEvent(req: Request, res: Response): Response {
   return res.status(HttpStatus.CREATED).send({ event: Events.convertToJson(req.body.event) });        
   }
 
-export async function getListEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+export function getListEvent(req: Request, res: Response, next: NextFunction): Response {
   const eventList: any[] = []
   req.body.event.forEach((element: any) => {
     eventList.push(Events.convertToJson(element));
