@@ -20,7 +20,7 @@
     "migrations-generate": "ts-node-dev ./node_modules/typeorm/cli.js migration:generate --config ./config/typeorm.ts -n",
     "outdated": "npm outdated --depth 0",
     "postinstall": "npm run build",
-    "prestart": "npm run lint",
+    "prestart": "",
     "pretest": "npm run lint",
     "dev": "ts-node-dev --respawn --transpileOnly ./server.ts",
     "start": "npm run build && node ./dist/server.js",

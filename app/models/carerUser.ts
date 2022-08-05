@@ -1,19 +1,11 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Events } from './event';
+import { Reviews } from './review';
 import { Users } from './user';
 
 @Entity({ name: 'Carers' })
 export class Carers {
   @PrimaryGeneratedColumn()
-  @OneToMany(() => Events, event => event.id)
   id: number;
-
-  @Column({
-    type: "int",
-    nullable: true})
-  reviewId?: number;
-
-//  events: Events[]
   
   @Column({
     type: "int",
@@ -40,8 +32,10 @@ export class Carers {
   @JoinColumn({})
   user: Users;
 
-  public modifyData({reviewId, amountCare, price, specialty, experience, user}: any): void{
-    this.reviewId = reviewId === undefined ? this.reviewId : reviewId;
+  @OneToMany(() => Reviews, review => review.id)
+  reviews: Reviews[]
+
+  public modifyData({amountCare, price, specialty, experience, user}: any): void{
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
     this.price = price === undefined ? this.price : price;
     this.specialty = specialty === undefined ? this.specialty : specialty;
@@ -49,9 +43,8 @@ export class Carers {
     this.user = user;
   }
 
-  constructor(amountCare: number, price: number, user: Users, reviewId?: number, experience?: string, specialty?: string ) {
+  constructor(amountCare: number, price: number, user: Users, experience?: string, specialty?: string ) {
     this.user = user;
-    this.reviewId = reviewId;
     this.amountCare = amountCare;
     this.price = price;
     this.specialty = specialty;

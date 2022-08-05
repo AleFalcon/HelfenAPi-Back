@@ -1,3 +1,4 @@
+import { allFieldRequered } from '../errors/constantsErrors';
 import { Response, NextFunction, Request } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 import { HandlerError } from '../errors/handlerError';
@@ -19,7 +20,7 @@ export function validateSchemaEvent (req: Request, res: Response, next: NextFunc
     missingFields = validateGenericParameter(req.body.localAddress, missingFields, 'localAddress');
     if (missingFields.length > 0){
         const missing = missingFields.substring(0, missingFields.length-2);
-        const error = new HandlerError(`All fields are required. Missing fields: ${missing}`, BAD_REQUEST);
+        const error = new HandlerError(allFieldRequered + missing, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();
@@ -31,7 +32,7 @@ export function validateSchemaEventModify (req: Request, res: Response, next: Ne
     missingFields = validateGenericParameter(req.body.id, missingFields, 'id');
     if (missingFields.length > 0){
         const missing = missingFields.substring(0, missingFields.length-2);
-        const error = new HandlerError(`All fields are required. Missing fields: ${missing}`, BAD_REQUEST);
+        const error = new HandlerError(allFieldRequered + missing, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
         next();

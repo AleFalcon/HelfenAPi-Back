@@ -45,10 +45,9 @@ export class Events {
     nullable: true})
     expirationDate?: string;
 
-  @ManyToOne(type => Carers, (carer: Carers) => carer.id)
+  @ManyToOne(() => Carers, (carer: Carers) => carer.id)
   @JoinColumn({name: "carer", referencedColumnName: "id"})
   carer: Carers
-  //   diary: Diaries;
 
   constructor(carer: Carers, day: number, date: string, startEvent: string, endEvent: string, localAddress: string, expirationDate: string, notes: string) {
     this.carer = carer;
