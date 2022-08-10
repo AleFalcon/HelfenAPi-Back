@@ -12,22 +12,29 @@ import { reviewFound, reviewFoundByParam, reviewFoundByParams, reviewList } from
 import { validateClassification, validateSchemaReview, validateSchemaReviewModify } from './middlewares/schemaReview';
 import { userFounds } from './middlewares/usersFounds';
 import { createReview, deleteReview, getListReview, getReview, modifyReview } from './controllers/reviews';
+import { createService, deleteService, getListServices } from './controllers/service';
+import { validateSchemaService } from './middlewares/schemaService';
+import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
 
 export const init = (app: Application): void => {
-  app.put('/users', [userFound], modifyUser);
-  app.post('/users', [validateSchemaUser, userNotFound], createUser);
-  app.get('/users/:dniNumber',  getUserByDni);
-  app.patch('/users', [userFound, validatePasswordMiddleware], modifyPassword);
+  app.put('/user', [userFound], modifyUser);
+  app.post('/user', [validateSchemaUser, userNotFound], createUser);
+  app.get('/user/:dniNumber',  getUserByDni);
+  app.patch('/user', [userFound, validatePasswordMiddleware], modifyPassword);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
-  app.get('/event/list/:userId', [eventList], getListEvent);
+  app.get('/events/:userId', [eventList], getListEvent);
   app.post('/event', [validateSchemaEvent, carerUserFound], createEvent);
   app.put('/event',[validateSchemaEventModify, eventFound, carerUserFound], modifyEvent);
   app.delete('/event/:eventId', deleteEvent);
   //---------------
   app.get('/review/:reviewId', [reviewFoundByParams], getReview);
-  app.get('/review/list/:carerId', [reviewList], getListReview);
+  app.get('/reviews/:carerId', [reviewList], getListReview);
   app.post('/review', [validateSchemaReview, validateClassification, userFounds], createReview);
   app.put('/review',[validateSchemaReviewModify, reviewFound], modifyReview);
   app.delete('/review/:reviewId', [reviewFoundByParam], deleteReview);
+  //---------------
+  app.post('/service', [validateSchemaService],createService);
+  app.get('/services/:carerId', [serviceList], getListServices);
+  app.delete('/service/:serviceId', [serviceFoundByParam], deleteService);
 };
