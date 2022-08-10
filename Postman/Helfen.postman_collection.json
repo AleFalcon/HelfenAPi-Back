@@ -24,12 +24,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/users",
+							"raw": "{{path}}/user",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
-								"users"
+								"user"
 							]
 						}
 					},
@@ -430,12 +430,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/users/11111111",
+							"raw": "{{path}}/user/11111111",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
-								"users",
+								"user",
 								"11111111"
 							]
 						}
@@ -628,7 +628,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"type\": \"2\",\n    \"userId\": \"2\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
+							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"1\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -636,12 +636,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/users",
+							"raw": "{{path}}/user",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
-								"users"
+								"user"
 							]
 						}
 					},
@@ -653,7 +653,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"type\": \"2\",\n    \"userId\": \"10\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
+									"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"10\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -781,7 +781,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"type\": \"1\",\n    \"userId\": \"1\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111113\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"reviews\": 2,\n    \"carer\":1\n}",
+									"raw": "{\n    \"userType\": \"1\",\n    \"userId\": \"1\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111113\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"reviews\": 2,\n    \"carer\":1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -841,7 +841,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"type\": \"2\",\n    \"userId\": \"2\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
+									"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"2\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -903,7 +903,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\":\"1\",\n    \"password\": \"11111111\" ,\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"raw": "{\n    \"userId\":\"1\",\n    \"password\": \"123456789\" ,\n    \"newPassword\": \"11111111\",\n    \"newPasswordConfirmation\": \"11111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -911,12 +911,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/users",
+							"raw": "{{path}}/user",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
-								"users"
+								"user"
 							]
 						}
 					},
@@ -1299,7 +1299,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 1,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+							"raw": "{\n    \"userId\": 2,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1833,18 +1833,843 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/event/list/1",
+							"raw": "{{path}}/events/1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
-								"event",
-								"list",
+								"events",
 								"1"
 							]
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/review",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created Review",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/review",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-DlWqb+sMDWIC4RK7FaGJq9BLU14\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Aug 2022 17:17:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"review\": {\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"classification\": 4,\n        \"comment\": \"Que comentario\",\n        \"id\": 1\n    }\n}"
+						},
+						{
+							"name": "Required Field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/review",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-VAm5OxX9tZLUovqcocyK6mzp/uY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Aug 2022 17:19:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"400 Bad Request Error. All fields are required. Missing fields: carerId\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Review By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/review/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"review",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Review",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/review/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-b5Bc+wZJy8PIazWBbt6z0F4yJr0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Aug 2022 23:18:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"review\": {\n        \"id\": 1,\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"comment\": \"Que comentario\",\n        \"classification\": 4\n    }\n}"
+						},
+						{
+							"name": "Review Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/review/3",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-kuKUikYyQcpFF4crJD6eGRTsHgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Aug 2022 23:20:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"404 Not Found Error. Review not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Put Review",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carerId\": 1,\n    \"comment\": \"Que comentario - 33\",\n    \"classification\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/review",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Modified Review",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario - 33\",\n    \"classification\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/review",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-wYQ77Lm+RLos1kJIg962/HFSyKw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Aug 2022 02:16:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"review\": {\n        \"id\": 1,\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"comment\": \"Que comentario - 33\",\n        \"classification\": 4\n    }\n}"
+						},
+						{
+							"name": "Required Fields",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carerId\": 1,\n    \"comment\": \"Que comentario - 33\",\n    \"classification\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/review",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-Ijg3s6zWiEKUuSGbDxNhz77NrL0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Aug 2022 02:31:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"400 Bad Request Error. All fields are required. Missing fields: id, familiarId\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/review/",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"review",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Deleted Review",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/review/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Aug 2022 02:34:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Delete Review",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/review/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"review",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-kuKUikYyQcpFF4crJD6eGRTsHgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Aug 2022 03:03:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"404 Not Found Error. Review not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get List Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/reviews/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"reviews",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get List Reviews",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/reviews/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"reviews",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-hLiH9X/Drmhc9KHM6uIIO16jNlk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Aug 2022 22:46:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"reviews\": [\n        {\n            \"id\": 1,\n            \"carer\": 1,\n            \"familiar\": 1,\n            \"comment\": \"Que comentario\",\n            \"classification\": 4\n        },\n        {\n            \"id\": 2,\n            \"carer\": 1,\n            \"familiar\": 1,\n            \"comment\": \"Que comentario1\",\n            \"classification\": 3\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Create Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/service",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"service"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created Service",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/service",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"service"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-TAfiBZdJ9hW2Q4iLfI8lRIRMYj0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Aug 2022 22:28:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"service\": {\n        \"id\": 1,\n        \"description\": \"Cuidador de tu vieja\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/services/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"services",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get List Service",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/services/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"services",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e-GYQHZLNPsHSP8I6S7wUVkEtkotU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Aug 2022 23:11:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"services\": [\n        {\n            \"id\": 1,\n            \"description\": \"Cuidador de tu vieja\"\n        },\n        {\n            \"id\": 2,\n            \"description\": \"Cuidador de tu vieja - 1\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Service",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/service/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"service",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Deleted Service",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/service/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"service",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Aug 2022 23:18:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
 				}
 			]
 		}

@@ -39,7 +39,7 @@ export async function reviewList (req: Request, res: Response, next: NextFunctio
             if( reviews === undefined ) {
                 throw new HandlerError(reviewNotFoundError, HttpStatus.NOT_FOUND);
             } else {
-                req.body.review = reviews;
+                req.body.reviews = reviews;
                 return next();
             }
         } else {
@@ -77,8 +77,9 @@ export async function reviewFoundByParam (req: Request, res: Response, next: Nex
         if (await reviewRepository().findOne({id: reviewtId} as FindOneOptions<Reviews>) === undefined) {
             const error: HandlerError = new HandlerError(reviewNotFoundError, HttpStatus.NOT_FOUND);
             res.status(error.getErrorCode()).send( {message: error.getMessage()} );
-        }
-        return next();
+        } else {
+            return next();
+    }
     } else {
         const error: HandlerError = new HandlerError(idRequered, HttpStatus.BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
