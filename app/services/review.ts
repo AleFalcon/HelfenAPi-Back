@@ -18,8 +18,8 @@ export async function createAndSave(review: Reviews): Promise<Reviews> {
         .catch(() => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR); });
 }
 
-export async function deleteReview(eventId: string): Promise<DeleteResult | void> {
-  const reviewIdNumber: number = Number.parseInt(eventId);
+export async function deleteReview(reviewId: string): Promise<DeleteResult | void> {
+  const reviewIdNumber: number = Number.parseInt(reviewId);
   await reviewRepository().delete(reviewIdNumber);
   } 
 

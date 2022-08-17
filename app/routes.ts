@@ -26,13 +26,13 @@ export const init = (app: Application): void => {
   app.get('/users',  getUserByServices);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
-  app.get('/event/list/:userId', [eventList], getListEvent);
+  app.get('/events/:userId', [eventList], getListEvent);
   app.post('/event', [validateSchemaEvent, carerUserFound], createEvent);
   app.put('/event',[validateSchemaEventModify, eventFound, carerUserFound], modifyEvent);
   app.delete('/event/:eventId', deleteEvent);
   //---------------
   app.get('/review/:reviewId', [reviewFoundByParams], getReview);
-  app.get('/review/list/:carerId', [reviewList], getListReview);
+  app.get('/reviews/:carerId', [reviewList], getListReview);
   app.post('/review', [validateSchemaReview, validateClassification, userFounds], createReview);
   app.put('/review',[validateSchemaReviewModify, reviewFound], modifyReview);
   app.delete('/review/:reviewId', [reviewFoundByParam], deleteReview);
