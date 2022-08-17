@@ -22,8 +22,9 @@ export async function serviceList (req: Request, res: Response, next: NextFuncti
         } else {
             throw new HandlerError(idRequered, HttpStatus.BAD_REQUEST);
         }
-    } catch (e: any) {
-        res.status(e.getErrorCode).send( {message: e.getMessage} );
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
 

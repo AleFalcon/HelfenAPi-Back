@@ -1,6 +1,6 @@
 //import { Carers } from '../models/carerUser';
 import { Carers } from '../models/carerUser';
-import { DeleteResult, FindConditions, FindOptionsUtils, getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository } from 'typeorm';
 import { Services } from '../models/service';
 
 const serviceRepository = (): Repository<Services> => getRepository(Services);
