@@ -7,9 +7,8 @@ export class services1660160244364 implements MigrationInterface {
           new Table({
               name: 'Services',
               columns: [
-                { name: 'id', type: 'int', isPrimary: true, generationStrategy: 'increment', isGenerated: true },
-                { name: 'description', type: 'varchar' },
-                { name: 'carer', type: 'int' },
+                { name: 'description', type: 'varchar', isPrimary: true },
+                { name: 'carer', type: 'int', isPrimary: true },
               ]
             })
             );

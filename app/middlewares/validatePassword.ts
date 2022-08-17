@@ -29,3 +29,15 @@ export async function validatePasswordMiddleware (req: Request, res: Response, n
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
+
+export async function passwordConfirm (req: Request, res: Response, next: NextFunction): Promise<void | Response<any>> {
+    try {
+        if ( !await bcrypt.compare(req.body.password, req.body.user.password)) {
+            throw new HandlerError(matchPasswordError, HttpStatus.BAD_REQUEST);
+        }
+        return res.status(HttpStatus.ACCEPTED).send({ login: true })
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    }
+}

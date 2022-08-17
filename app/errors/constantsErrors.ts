@@ -22,3 +22,4 @@ export const classificationGraterThan5 = "The classifications must be less than 
 export const familiarNotHaveReviews = "The family member has not made any reviews";
 export const reviewNotMistmach = "The review does not belong to the familiar";
 export const serviceNotFoundError = "Service not found";
+export const mailNotFound = "Mail not found"

@@ -8,7 +8,7 @@ import { idRequered } from '../errors/constantsErrors';
 import { Carers } from '../models/carerUser';
 
 export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  const event: Events = new Events(req.body.user as Carers, req.body.day, req.body.date, req.body.startEvent, req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes);
+  const event: Events = new Events(req.body.carer as Carers, req.body.day, req.body.date, req.body.startEvent, req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes);
   return await eventService
       .createAndSave(event)
       .then( (newEvent: Events) => {
@@ -22,7 +22,7 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
   }
 
 export async function modifyEvent(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
-  const event: Events = Events.builder(req.body.user as Carers, req.body);
+  const event: Events = Events.builder(req.body.carer as Carers, req.body);
   return await eventService
     .modify(event)
     .then( () => {

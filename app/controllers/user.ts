@@ -49,3 +49,15 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
     next();
   })
 }
+
+export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  return await userService.findUsersByServices(req.body.description, req.body.gender)
+  .then( (carersList: Carers[]) => {
+    res.status(HttpStatus.CREATED).send({ carers: carersList })
+  } )
+  .catch( (error: any) => {
+    const handlerError = new HandlerError(error, error.getErrorCode);
+    res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+    next();
+  })      
+}

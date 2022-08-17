@@ -12,7 +12,7 @@ export async function serviceList (req: Request, res: Response, next: NextFuncti
     try {
         const carerId = Number.parseInt(req.params.carerId); 
         if ( carerId !== undefined ){
-            const services: Services[] | undefined = await serviceRepository().find({ carer: carerId as FindConditions<Services> });
+            const services: Services[] | undefined = await serviceRepository().find({ carer: carerId } as FindConditions<Services> );
             if( services === undefined ) {
                 throw new HandlerError(serviceNotFoundError, HttpStatus.NOT_FOUND);
             } else {
