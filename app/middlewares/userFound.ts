@@ -5,7 +5,7 @@ import HttpStatus from 'http-status-codes';
 
 import { Users } from '../models/user';
 
-import { mailExistsError, phoneExistsError, userExistsError, userIdRequered, userNotFoundError } from '../errors/constantsErrors';
+import { mailExistsError, mailNotFound, phoneExistsError, userExistsError, userIdRequered, userNotFoundError } from '../errors/constantsErrors';
 import { getRepository, Repository } from 'typeorm';
 
 const userRepository = (): Repository<Users> => getRepository(Users);
@@ -46,6 +46,21 @@ export async function userNotFound (req: Request, res: Response, next: NextFunct
             } 
         } else {
             throw new HandlerError(userExistsError, HttpStatus.NOT_ACCEPTABLE);
+        }
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    }
+}
+
+export async function userFoundByEmail (req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        let user: Users | undefined = await userRepository().findOne({ mail: req.body.mail });
+        if( user !== undefined ) {
+            req.body.user = user;
+            return next();
+        } else {
+            throw new HandlerError(mailNotFound, HttpStatus.NOT_ACCEPTABLE);
         }
     } catch (e) {
         const error: HandlerError = e as HandlerError;

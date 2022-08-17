@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Reviews } from './review';
+import { Services } from './service';
 import { Users } from './user';
 
 @Entity({ name: 'Carers' })
@@ -27,13 +28,15 @@ export class Carers {
     nullable: false})
   experience?: string;
 
-  @Column({name: "userId", type: "int", nullable: true})
-  @OneToOne(() => Users)
-  @JoinColumn({})
+  @OneToOne(() => Users, (user: Users) => user.id, {eager: true})
+  @JoinColumn( { name: "userId", referencedColumnName: "id" })
   user: Users;
 
   @OneToMany(() => Reviews, review => review.id)
   reviews: Reviews[]
+
+  @OneToMany(() => Services, service => service.carer)
+  services: Services[]
 
   public modifyData({amountCare, price, specialty, experience, user}: any): void{
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
@@ -49,5 +52,9 @@ export class Carers {
     this.price = price;
     this.specialty = specialty;
     this.experience = experience;
+ }
+
+ public setUser(user: Users): void {
+  this.user = user;
  }
 }

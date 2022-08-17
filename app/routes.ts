@@ -1,10 +1,10 @@
 import { Application } from 'express';
 
-import { createUser, getUserByDni, modifyPassword, modifyUser }  from './controllers/user';
+import { createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser }  from './controllers/user';
 import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent }  from './controllers/event';
-import { userFound, userNotFound } from './middlewares/userFound';
+import { userFound, userFoundByEmail, userNotFound } from './middlewares/userFound';
 import { validateSchemaUser } from './middlewares/schemaUser';
-import { validatePasswordMiddleware } from './middlewares/validatePassword';
+import { passwordConfirm, validatePasswordMiddleware } from './middlewares/validatePassword';
 import { validateSchemaEvent, validateSchemaEventModify } from './middlewares/schemaEvent';
 import { eventFound, eventFoundByParams, eventList } from './middlewares/eventFound';
 import { carerUserFound } from './middlewares/carerUserFound';
@@ -12,12 +12,18 @@ import { reviewFound, reviewFoundByParam, reviewFoundByParams, reviewList } from
 import { validateClassification, validateSchemaReview, validateSchemaReviewModify } from './middlewares/schemaReview';
 import { userFounds } from './middlewares/usersFounds';
 import { createReview, deleteReview, getListReview, getReview, modifyReview } from './controllers/reviews';
+import { createService, deleteService, getListServices } from './controllers/service';
+import { validateSchemaService } from './middlewares/schemaService';
+import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
 
 export const init = (app: Application): void => {
-  app.put('/users', [userFound], modifyUser);
-  app.post('/users', [validateSchemaUser, userNotFound], createUser);
-  app.get('/users/:dniNumber',  getUserByDni);
-  app.patch('/users', [userFound, validatePasswordMiddleware], modifyPassword);
+  app.post('/login', [userFoundByEmail, passwordConfirm]);
+  //---------------
+  app.put('/user', [userFound], modifyUser);
+  app.post('/user', [validateSchemaUser, userNotFound], createUser);
+  app.get('/user/:dniNumber',  getUserByDni);
+  app.patch('/user', [userFound, validatePasswordMiddleware], modifyPassword);
+  app.get('/users',  getUserByServices);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
   app.get('/event/list/:userId', [eventList], getListEvent);
@@ -30,4 +36,8 @@ export const init = (app: Application): void => {
   app.post('/review', [validateSchemaReview, validateClassification, userFounds], createReview);
   app.put('/review',[validateSchemaReviewModify, reviewFound], modifyReview);
   app.delete('/review/:reviewId', [reviewFoundByParam], deleteReview);
+  //---------------
+  app.post('/service', [validateSchemaService, carerUserFound], createService);
+  app.get('/services/:carerId', [serviceList], getListServices);
+  app.delete('/service/:serviceId', [serviceFoundByParam], deleteService);
 };

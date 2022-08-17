@@ -12,9 +12,9 @@ export class Familiars {
     nullable: true})
     carer?: number;
 
-  @OneToOne(() => Users)
+  @OneToOne(() => Users, (user: Users) => user.id, {eager: true})
   @JoinColumn( { name: "userId", referencedColumnName: "id" })
-  user: Users;
+    user: Users;
 
   @OneToMany(() => Reviews, review => review.id)
   reviews: Reviews[]

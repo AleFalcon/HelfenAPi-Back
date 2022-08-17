@@ -14,11 +14,11 @@ export async function userFounds(req: Request, res: Response, next: NextFunction
     try {
         const carerId = req.body.carerId;
         const familiarId = req.body.familiarId;
-        await userService.findUser(carerType, {id: carerId})
+        await userService.findAditionalUser(carerType, carerId)
         .then((carer: Carers) => { req.body.carer = carer; } )
         .catch( () => { throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND) })
         
-        await userService.findUser(familiarType, {id: familiarId})
+        await userService.findAditionalUser(familiarType, familiarId)
         .then((familiar: Familiars) => { req.body.familiar = familiar; } )
         .catch( () => { throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND) })
             
