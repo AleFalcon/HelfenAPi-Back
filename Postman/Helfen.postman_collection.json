@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": 2,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"alex1@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\",\n    \"price\": 200\n}",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111114\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112224\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,7 +297,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userType\": 2,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"alex1@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\",\n    \"price\": 200\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
+									"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\",\n    \"price\": 200\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -357,7 +357,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userType\": 1,\n    \"name\": \"u3\" ,\n    \"lastName\": \"u3\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"alex2@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\"\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
+									"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\"\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -430,13 +430,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/user/11111111",
+							"raw": "{{path}}/user/11111113",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"user",
-								"11111111"
+								"11111113"
 							]
 						}
 					},
@@ -628,7 +628,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"1\",\n    \"name\": \"Alex2\" ,\n    \"lastName\": \"Falcon2\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
+							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"5\",\n    \"name\": \"Carer1\" ,\n    \"lastName\": \"Carer1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -903,7 +903,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\":\"1\",\n    \"password\": \"123456789\" ,\n    \"newPassword\": \"11111111\",\n    \"newPasswordConfirmation\": \"11111111\"\n}",
+							"raw": "{\n    \"userId\":\"5\",\n    \"password\": \"123456789\" ,\n    \"newPassword\": \"11111111\",\n    \"newPasswordConfirmation\": \"11111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1286,6 +1286,122 @@
 							"body": "{\n    \"message\": \"400 Bad Request Error. userId is required.\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Get Carers by Services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": [\n        \"Cuidador de tu abuela\",\n        \"Cuidador de tu vieja\"\n    ],\n    \"gender\": \"M\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/users",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Carers by Services",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": [\n        \"Cuidador de tu abuela\",\n        \"Cuidador de tu vieja\"\n    ],\n    \"gender\": \"M\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/users",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "460"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1cc-Ok3n4IgESeP+bLttl1Yv/6W1rUg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Aug 2022 18:21:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"carers\": [\n        {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112221\",\n                \"password\": \"$2b$10$U7uMhj3ndzlLvrTf64wU5ug/7gDmrhlwLyQKPyPlRfUakQbPYvA/u\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"id\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\": \"alex@alex.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/login",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1299,7 +1415,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 2,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1324,7 +1440,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 1,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\", //Optional, if this is null, the event will not expired\n    \"notes\": \"LALALA\" //Optional\n}",
+									"raw": "{\n    \"carer\": 1,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\", //Optional, if this is null, the event will not expired\n    \"notes\": \"LALALA\" //Optional\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1384,7 +1500,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 1,\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+									"raw": "{\n    \"carer\": 1,\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1444,7 +1560,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 4,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+									"raw": "{\n    \"carer\": 4,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1506,7 +1622,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 1,\n    \"id\": 1,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\"\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"id\": 1,\n    \"day\": 3,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1531,7 +1647,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userId\": 1,\n    \"id\": 1,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}\n\n// TODOS LOS CAMPOS SON OPCIONALES MENOS EL ID Y EL USERID. SI UN CAMPO NO SE ENVÍA DESDE EL FRONT, SE MANTIENE LA INFORMACION",
+									"raw": "{\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}\n\n// TODOS LOS CAMPOS SON OPCIONALES MENOS EL ID Y EL USERID. SI UN CAMPO NO SE ENVÍA DESDE EL FRONT, SE MANTIENE LA INFORMACION",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1833,13 +1949,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/events/1",
+							"raw": "{{path}}/events/5",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"events",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -1857,7 +1973,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 4\n}",
+							"raw": "{\n    \"carerId\": 5,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2127,7 +2243,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carerId\": 1,\n    \"comment\": \"Que comentario - 33\",\n    \"classification\": 4\n}",
+							"raw": "{\n    \"id\": 1,\n    \"carerId\": 5,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario - 33\",\n    \"classification\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2273,13 +2389,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/review/",
+							"raw": "{{path}}/review/1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"review",
-								""
+								"1"
 							]
 						}
 					},
@@ -2384,13 +2500,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/reviews/1",
+							"raw": "{{path}}/reviews/5",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"reviews",
-								"1"
+								"5"
 							]
 						}
 					},
