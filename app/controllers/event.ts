@@ -28,7 +28,6 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
 
 export async function modifyEvent(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
   const event: Events = Events.builder(req.body.carer as Carers, req.body);
-  console.log(event)
   return await eventService
     .modify(event)
     .then( () => {
