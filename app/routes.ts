@@ -2,9 +2,9 @@ import { Application } from 'express';
 
 import { createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser }  from './controllers/user';
 import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent }  from './controllers/event';
-import { userFound, userFoundByEmail, userNotFound } from './middlewares/userFound';
+import { userFound, userFoundByEmail, userFoundByEmailForgetPassword, userNotFound } from './middlewares/userFound';
 import { validateSchemaUser } from './middlewares/schemaUser';
-import { passwordConfirm, validatePasswordMiddleware } from './middlewares/validatePassword';
+import { passwordConfirm, passwordConfirmMiddleware, validatePasswordMiddleware } from './middlewares/validatePassword';
 import { validateSchemaEvent, validateSchemaEventModify } from './middlewares/schemaEvent';
 import { eventFound, eventFoundByParams, eventList } from './middlewares/eventFound';
 import { carerUserFound } from './middlewares/carerUserFound';
@@ -20,6 +20,7 @@ import { relationFound } from './middlewares/relationFound';
 
 export const init = (app: Application): void => {
   app.post('/login', [userFoundByEmail, passwordConfirm]);
+  app.patch('/forgetPassword', [userFoundByEmailForgetPassword, passwordConfirmMiddleware], modifyPassword);
   //---------------
   app.put('/user', [userFound], modifyUser);
   app.post('/user', [validateSchemaUser, userNotFound], createUser);

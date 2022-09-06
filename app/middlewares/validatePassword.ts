@@ -20,6 +20,15 @@ async function validatePassword(req: Request): Promise<void> {
     }
 }
 
+export async function passwordConfirmMiddleware (req: Request, res: Response, next: NextFunction): Promise<void> {
+    if (req.body.newPassword !== req.body.newPasswordConfirmation){
+        const error: HandlerError = new HandlerError(newPasswordError, HttpStatus.NOT_ACCEPTABLE);
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    } else {
+        next()
+    }
+}
+
 export async function validatePasswordMiddleware (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         await validatePassword(req);

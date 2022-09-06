@@ -67,3 +67,18 @@ export async function userFoundByEmail (req: Request, res: Response, next: NextF
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
 }
+
+export async function userFoundByEmailForgetPassword (req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        let user: Users | undefined = await userRepository().findOne({ mail: req.body.mail });
+        if( user !== undefined ) {
+            req.body.userId = user.id;
+            return next();
+        } else {
+            throw new HandlerError(mailNotFound, HttpStatus.NOT_ACCEPTABLE);
+        }
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    }
+}

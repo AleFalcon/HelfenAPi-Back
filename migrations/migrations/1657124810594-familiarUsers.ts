@@ -9,7 +9,6 @@ export class FamiliarUsers1657124810594 implements MigrationInterface {
             columns: [
               { name: 'id', type: 'int', isPrimary: true, generationStrategy: 'increment', isGenerated: true },
               { name: 'userId', type: 'int'},
-              { name: 'carer', type: 'int', isNullable: true},
             ]
           })
         );

@@ -628,7 +628,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"5\",\n    \"name\": \"Carer1\" ,\n    \"lastName\": \"Carer1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"experience\": \"años\"\n}",
+							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"2\",\n    \"name\": \"Carer1\" ,\n    \"lastName\": \"Carer1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111113\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"price\": 10000,\n    \"experience\": \"años\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1398,6 +1398,32 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mail\":\"Carer@alex.com\",\n    \"newPassword\": \"123456789\",\n    \"newPasswordConfirmation\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/forgetPassword",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"forgetPassword"
 							]
 						}
 					},
@@ -2786,6 +2812,230 @@
 							"body": null
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Relations",
+			"item": [
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": false,\n    \"relationConfirmated\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/contact",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"contact"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created Contact",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/contact",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"contact"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-KBJegn7RWcvV9LD389hd4tDNeVs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 01 Sep 2022 00:23:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"possibleContacts\": {\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"available\": false\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true,\n    \"relationConfirmated\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/contact/confirm",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"contact",
+								"confirm"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Updated Contact",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true, //Este campo es true cuando el cuidador acepta el contacto por parte del familiar\n    \"relationConfirmated\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/contact",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"contact"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-ms+lGoQVXYpFS4WPC5s+aQPmfJQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 01 Sep 2022 00:26:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"possibleContacts\": {\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"available\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Relation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true,\n    \"relationConfirmated\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/relation",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"relation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list Contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/contacts/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
