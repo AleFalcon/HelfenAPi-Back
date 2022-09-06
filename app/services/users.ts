@@ -89,6 +89,7 @@ export async function modify(type: number, params: any): Promise<any> {
   } else {
     aditionalInformation.modifyData(params)
     await actionUpdate.get(type)({id: aditionalInformation.id}, aditionalInformation );
+    aditionalInformation.user = user
     return aditionalInformation;
   }
 }

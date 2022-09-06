@@ -23,3 +23,4 @@ export const familiarNotHaveReviews = "The family member has not made any review
 export const reviewNotMistmach = "The review does not belong to the familiar";
 export const serviceNotFoundError = "Service not found";
 export const mailNotFound = "Mail not found"
+export const relationNotExist = "The relation not exist"

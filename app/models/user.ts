@@ -119,8 +119,8 @@ export class Users {
       this.floor = floor === undefined ? this.floor : floor;
   }
 
-  static convertToJson({name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor}: Users): any{
-    return {name: name, lastName: lastName, dateOfBirth: dateOfBirth, localAddress: localAddress, otherMail: otherMail, 
+  static convertToJson({name, lastName, dateOfBirth, localAddress, mail, otherMail, phoneNumber, postalCode, province, apartment, gender, floor}: Users): any{
+    return {name: name, lastName: lastName, dateOfBirth: dateOfBirth, localAddress: localAddress, mail: mail, otherMail: otherMail, 
       phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, floor: floor}
    }
 }

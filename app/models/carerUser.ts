@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { PossibleContacts } from './possibleContact';
 import { Reviews } from './review';
 import { Services } from './service';
 import { Users } from './user';
@@ -35,6 +36,9 @@ export class Carers {
   services: Services[]
 
   reviews: Reviews[]
+
+  @OneToMany(() => PossibleContacts, possibleContacts => possibleContacts.carer)
+  possibleContacts: PossibleContacts[]
 
   public modifyData({amountCare, price, specialty, experience, user}: any): void{
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;

@@ -14,9 +14,9 @@ export async function deleteService(serviceId: string): Promise<DeleteResult | v
   await serviceRepository().delete(serviceIdNumber);
   } 
 
-function filterByGender(elem: Services, gender?: String): boolean{
+function filterByGender(elem: Carers, gender?: String): boolean{
   if(gender !== undefined) {
-    if(gender === elem.carer.user.gender){
+    if(gender === elem.user.gender){
       return true;
     } else {
       return false
@@ -26,17 +26,24 @@ function filterByGender(elem: Services, gender?: String): boolean{
   }
 }
 
-// function filterByServices(elem: Services, options?: String[]): boolean{
-//   if(options !== undefined) {
-//     if(elem.description.toString().includes(options.toString())){
-//       return true;
-//     } else {
-//       return false
-//     }
-//   } else {
-//     return true;
-//   }
-// }
+function filterByServices(elem: Carers, options?: String[]): boolean{
+  if(options !== undefined) {
+    const optionsFiltered = options.map(function(option) {
+      if (elem.services.find((service: Services) => service.description === option) === undefined){
+        return false;
+      } else {
+        return true;
+      }
+    });
+    if(optionsFiltered.find((elem: boolean) => elem === false) === undefined){
+      return true;
+    } else {
+      return false
+    }
+  } else {
+    return true;
+  }
+}
 
 function generateUserList(servicesList: Services[]): Carers[] {
   const aux: Carers[] = []
@@ -55,14 +62,13 @@ function generateUserList(servicesList: Services[]): Carers[] {
     }
   })
   return aux;
-
 }
 
 
 export async function findAllUserList(options?: String[], gender?: String): Promise<Carers[]> {
     const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
-    const listFiltered = userServicesList.filter(( elem: Services )=> filterByGender(elem, gender))
-    return generateUserList(listFiltered)
+    const listWithoutDuplicates = generateUserList(userServicesList); 
+    return listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) && filterByServices(elem, options))
   }
 
 export async function findBy(options?: FindConditions<Services>): Promise<any> {

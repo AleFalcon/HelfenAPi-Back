@@ -15,6 +15,8 @@ import { createReview, deleteReview, getListReview, getReview, modifyReview } fr
 import { createService, deleteService, getListServices } from './controllers/service';
 import { validateSchemaService } from './middlewares/schemaService';
 import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
+import { confirmateContact, createPossibleContact, createRelation, getPossibleContacts } from './controllers/relation';
+import { relationFound } from './middlewares/relationFound';
 
 export const init = (app: Application): void => {
   app.post('/login', [userFoundByEmail, passwordConfirm]);
@@ -33,11 +35,16 @@ export const init = (app: Application): void => {
   //---------------
   app.get('/review/:reviewId', [reviewFoundByParams], getReview);
   app.get('/reviews/:carerId', [reviewList], getListReview);
-  app.post('/review', [validateSchemaReview, validateClassification, userFounds], createReview);
+  app.post('/review', [validateSchemaReview, validateClassification, userFounds, relationFound], createReview);
   app.put('/review',[validateSchemaReviewModify, reviewFound], modifyReview);
   app.delete('/review/:reviewId', [reviewFoundByParam], deleteReview);
   //---------------
   app.post('/service', [validateSchemaService, carerUserFound], createService);
   app.get('/services/:carerId', [serviceList], getListServices);
   app.delete('/service/:serviceId', [serviceFoundByParam], deleteService);
+  //---------------
+  app.post('/contact', createPossibleContact);
+  app.get('/contacts/:familiarId', getPossibleContacts);
+  app.put('/contact/confirm', confirmateContact);
+  app.put('/relation', createRelation);
 };
