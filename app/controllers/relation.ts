@@ -24,8 +24,8 @@ export async function createPossibleContact(req: Request, res: Response, next: N
     }
 
 export async function confirmateContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars,
-        req.body.contactConfirmated, req.body.relationConfirmated);
+    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, req.body.contactConfirmated, req.body.relationConfirmated)
+    possibleContacts.id = req.body.id
     return await relationService
         .updateRelation(possibleContacts)
         .then( (possibleContacts: PossibleContacts) => {
@@ -38,7 +38,8 @@ export async function confirmateContact(req: Request, res: Response, next: NextF
     }
 
 export async function createRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, true, true);
+    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, req.body.contactConfirmated, req.body.relationConfirmated);
+    possibleContacts.id = req.body.id
     return await relationService
         .updateRelation(possibleContacts)
         .then( (possibleContacts: PossibleContacts) => {
@@ -63,3 +64,41 @@ export async function getPossibleContacts(req: Request, res: Response, next: Nex
         });        
     }
     
+export async function getNotificationContacts(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const carerId = Number.parseInt(req.params.carerId); 
+    return await relationService
+        .findNotificationContacts({ carer: carerId } as FindConditions<PossibleContacts>)
+        .then( (possibleContactsList: PossibleContacts[]) => {
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContactsList })
+        } )
+        .catch( (handlerError: any) => {
+            res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+            next();
+        });        
+    }
+
+export async function getNotificationRelations(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const carerId = Number.parseInt(req.params.carerId); 
+    return await relationService
+        .findNotificationRelations({ carer: carerId } as FindConditions<PossibleContacts>)
+        .then( (possibleContactsList: PossibleContacts[]) => {
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContactsList })
+        } )
+        .catch( (handlerError: any) => {
+            res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+            next();
+        });        
+    }
+
+export async function deleteContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const relationId = Number.parseInt(req.params.relationId); 
+    return await relationService
+        .deleteRelation(relationId)
+        .then( () => {
+            res.status(HttpStatus.NO_CONTENT).send()
+        } )
+        .catch( (error: HandlerError) => {
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+            next();
+        })
+}

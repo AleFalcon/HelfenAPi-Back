@@ -16,6 +16,7 @@ export class Events1657582357496 implements MigrationInterface {
                 { name: 'expirationDate', type: 'Date', isNullable: true },
                 { name: 'notes', type: 'varchar', isNullable: true  },
                 { name: 'localAddress', type: 'varchar' },
+                { name: 'status', type: 'boolean' }
               ]
             })
           );

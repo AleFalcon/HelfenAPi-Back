@@ -1441,7 +1441,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"day\": [2],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1648,7 +1648,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"id\": 1,\n    \"day\": 3,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\"\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\",\n    \"status\": \"false\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1982,6 +1982,24 @@
 							"path": [
 								"events",
 								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Event",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/event/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"event",
+								"1"
 							]
 						}
 					},
@@ -2603,7 +2621,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja\"\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja - 1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2912,7 +2930,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true,\n    \"relationConfirmated\": false\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3031,6 +3049,60 @@
 							],
 							"path": [
 								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Notification Contacts Pendings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/contact/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"contact",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Notifications Relations Pending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/relation/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"relation",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Relation - Contact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/contact/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"contact",
 								"1"
 							]
 						}

@@ -1,7 +1,7 @@
 import { Application } from 'express';
 
 import { createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser }  from './controllers/user';
-import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent }  from './controllers/event';
+import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent, acceptEvent }  from './controllers/event';
 import { userFound, userFoundByEmail, userFoundByEmailForgetPassword, userNotFound } from './middlewares/userFound';
 import { validateSchemaUser } from './middlewares/schemaUser';
 import { passwordConfirm, passwordConfirmMiddleware, validatePasswordMiddleware } from './middlewares/validatePassword';
@@ -15,7 +15,7 @@ import { createReview, deleteReview, getListReview, getReview, modifyReview } fr
 import { createService, deleteService, getListServices } from './controllers/service';
 import { validateSchemaService } from './middlewares/schemaService';
 import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
-import { confirmateContact, createPossibleContact, createRelation, getPossibleContacts } from './controllers/relation';
+import { confirmateContact, createPossibleContact, createRelation, deleteContact, getNotificationContacts, getNotificationRelations, getPossibleContacts } from './controllers/relation';
 import { relationFound } from './middlewares/relationFound';
 
 export const init = (app: Application): void => {
@@ -29,6 +29,7 @@ export const init = (app: Application): void => {
   app.get('/users',  getUserByServices);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
+  app.patch('/event/:eventId', [eventFoundByParams], acceptEvent);
   app.get('/events/:userId', [eventList], getListEvent);
   app.post('/event', [validateSchemaEvent, carerUserFound], createEvent);
   app.put('/event',[validateSchemaEventModify, eventFound, carerUserFound], modifyEvent);
@@ -45,7 +46,10 @@ export const init = (app: Application): void => {
   app.delete('/service/:serviceId', [serviceFoundByParam], deleteService);
   //---------------
   app.post('/contact', createPossibleContact);
+  app.get('/contact/:carerId', getNotificationContacts);
   app.get('/contacts/:familiarId', getPossibleContacts);
   app.put('/contact/confirm', confirmateContact);
+  app.delete('/contact/:relationId', deleteContact);
+  app.get('/relation/:carerId', getNotificationRelations);
   app.put('/relation', createRelation);
 };

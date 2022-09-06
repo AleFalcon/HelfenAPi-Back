@@ -37,7 +37,7 @@ export class PossibleContacts {
   }
 
     convertToJson(): any{
-      return { carer: this.carer, familiar: this.familiar, contactConfirmated: this.convertAvailable(this.contactConfirmated),
+      return { id: this.id, carer: this.carer, familiar: this.familiar, contactConfirmated: this.convertAvailable(this.contactConfirmated),
         relationConfirmated: this.convertAvailable(this.relationConfirmated)}
     }
 

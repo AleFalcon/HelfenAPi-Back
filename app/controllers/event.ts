@@ -12,7 +12,7 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
   const eventList: Events[] = []
   daysList.forEach((elem: number) => {
     eventList.push(new Events(req.body.carer as Carers, elem, req.body.date, req.body.startEvent,
-      req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes))
+      req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes, req.body.status === undefined ? false : req.body.status))
   })
   return await eventService
       .createAndSave(eventList)
@@ -28,6 +28,7 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
 
 export async function modifyEvent(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
   const event: Events = Events.builder(req.body.carer as Carers, req.body);
+  console.log(event)
   return await eventService
     .modify(event)
     .then( () => {
@@ -66,3 +67,18 @@ export function getListEvent(req: Request, res: Response, next: NextFunction): R
   });
   return res.status(HttpStatus.CREATED).send({ events: eventList });        
   }
+
+export async function acceptEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  const event: Events = req.body.event as Events
+  event.setStatus(true)
+  return await eventService
+    .modify(event)
+    .then( () => {
+      res.status(HttpStatus.OK).send({ event: event.convertToJson() }) 
+    })
+    .catch( (error: HandlerError) => {
+      res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+      next();
+    })
+}
+  
