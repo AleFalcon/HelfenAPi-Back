@@ -7,10 +7,16 @@ import { internalError, reviewNotFoundError } from '../errors/constantsErrors';
 const reviewRepository = (): Repository<Reviews> => getRepository(Reviews);
 
 export async function findReview(options?: FindConditions<Reviews>): Promise<any> {
-    await reviewRepository().findOne(options)
+    return await reviewRepository().findOne(options)
     .then( (review: Reviews) => { return review })
     .catch( () => { throw new HandlerError(reviewNotFoundError, HttpStatus.NOT_FOUND) } )
   }
+
+export async function findAllReviews(options?: FindConditions<Reviews>): Promise<any> {
+  return await reviewRepository().find(options)
+  .then( (review: Reviews[]) => { return review })
+  .catch( () => { throw new HandlerError(reviewNotFoundError, HttpStatus.NOT_FOUND) } )
+}
 
 export async function createAndSave(review: Reviews): Promise<Reviews> {
     return await reviewRepository().save(review)
@@ -33,5 +39,6 @@ export default {
     findReview,
     createAndSave,
     deleteReview,
+    findAllReviews,
     modify
   };

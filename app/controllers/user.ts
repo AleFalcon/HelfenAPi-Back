@@ -53,7 +53,11 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
 export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService.findUsersByServices(req.body.description, req.body.gender)
   .then( (carersList: Carers[]) => {
-    res.status(HttpStatus.CREATED).send({ carers: carersList })
+    const jsonList: any[] = []
+    carersList.forEach((element: Carers) => {
+      jsonList.push(Carers.convertToJson(element));
+    });
+    res.status(HttpStatus.OK).send({carers: jsonList})
   } )
   .catch( (error: any) => {
     const handlerError = new HandlerError(error, error.getErrorCode);

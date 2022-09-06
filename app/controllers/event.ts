@@ -8,11 +8,16 @@ import { idRequered } from '../errors/constantsErrors';
 import { Carers } from '../models/carerUser';
 
 export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  const event: Events = new Events(req.body.carer as Carers, req.body.day, req.body.date, req.body.startEvent, req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes);
+  const daysList: number[] = req.body.day as []
+  const eventList: Events[] = []
+  daysList.forEach((elem: number) => {
+    eventList.push(new Events(req.body.carer as Carers, elem, req.body.date, req.body.startEvent,
+      req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes))
+  })
   return await eventService
-      .createAndSave(event)
-      .then( (newEvent: Events) => {
-        res.status(HttpStatus.CREATED).send({ event: newEvent.convertToJson() })
+      .createAndSave(eventList)
+      .then( (newEvents: Events[]) => {
+        res.status(HttpStatus.CREATED).send({ event: newEvents })
       } )
       .catch( (error: any) => {
         const handlerError = new HandlerError(error, error.getErrorCode);

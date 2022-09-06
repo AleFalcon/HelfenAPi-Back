@@ -118,4 +118,9 @@ export class Users {
       this.gender  = gender === undefined ? this.gender : gender;
       this.floor = floor === undefined ? this.floor : floor;
   }
+
+  static convertToJson({name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor}: Users): any{
+    return {name: name, lastName: lastName, dateOfBirth: dateOfBirth, localAddress: localAddress, otherMail: otherMail, 
+      phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, floor: floor}
+   }
 }

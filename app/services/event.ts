@@ -3,15 +3,15 @@ import { HandlerError } from '../errors/handlerError';
 import { DeleteResult, getRepository, Repository } from 'typeorm';
 import { Events } from '../models/event';
 import HttpStatus from 'http-status-codes';
-import userService from '../services/users';
-import { carerType } from '../constants/globalConstants';
 
 const eventRepository = (): Repository<Events> => getRepository(Events);
 
-export async function createAndSave(event: Events): Promise<Events> {
-  const newEvent: Events = await eventRepository().save(event);
-  userService.modifyAditionalInformation(carerType, event.carer)
-  return newEvent;
+export async function createAndSave(events: Events[]): Promise<Events[]> {
+  const newEvents: Events[] = []
+  for(let count = 0; count < events.length ; count++){
+    newEvents.push(await eventRepository().save(events[count]))
+  }
+  return newEvents;
 }
 
 export async function modify(event: Events): Promise<Events | void> {
