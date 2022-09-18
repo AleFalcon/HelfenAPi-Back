@@ -35,11 +35,11 @@ const config: Iconfig = {
   environment: ENVIRONMENT,
   common: {
     database: {
-      host: process.env.DB_HOST || 'db-mysql-nyc1-44576-do-user-12362655-0.b.db.ondigitalocean.com',
-      port: Number(process.env.DB_PORT) || 25060,
-      database: process.env.DB_NAME || 'defaultdb',
-      username: process.env.DB_USERNAME || 'doadmin',
-      password: process.env.DB_PASSWORD || 'AVNS_ogGIzejprMEjSkZ370h',
+      host: process.env.DB_HOST || 'localhost',
+      port: Number(process.env.DB_PORT) || 5432,
+      database: process.env.DB_NAME || 'database',
+      username: process.env.DB_USERNAME || 'username',
+      password: process.env.DB_PASSWORD || 'password',
       type: 'mysql',
       logging: logger.info
     },
