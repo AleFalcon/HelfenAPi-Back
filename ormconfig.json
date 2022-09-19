@@ -1,8 +1,0 @@
-{ 
-   "type": "mysql", 
-   "host": "db-mysql-nyc1-44576-do-user-12362655-0.b.db.ondigitalocean.com", 
-   "port": 25060, 
-   "username": "doadmin", 
-   "password": "AVNS_ogGIzejprMEjSkZ370h", 
-   "database": "defaultdb"
-}
