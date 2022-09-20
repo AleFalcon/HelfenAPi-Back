@@ -21,7 +21,9 @@ export class User1657134874908 implements MigrationInterface {
               { name: 'province', type: 'varchar'},
               { name: 'apartment', type: 'varchar', isNullable: true},
               { name: 'gender', type: 'char'},
-              { name: 'floor', type: 'varchar', isNullable: true}
+              { name: 'floor', type: 'varchar', isNullable: true},
+              { name: 'latitude', type: 'varchar' },
+              { name: 'longitude', type: 'varchar' }
             ]
           })
         );

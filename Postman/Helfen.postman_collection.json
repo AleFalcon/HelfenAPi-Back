@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111114\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112224\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\"\n}",
+							"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"latitude\": \"1\",\n    \"longitude\": \"1\",\n    \"gender\": \"M\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,7 +297,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\",\n    \"price\": 200\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
+									"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"latitude\": \"2\",\n    \"longitude\": \"2\",\n    \"gender\": \"M\",\n    \"price\": 200\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -348,7 +348,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"user\": {\n        \"name\": \"u3\",\n        \"lastName\": \"u3\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"11111111\",\n        \"localAddress\": \"calle falsa 123\",\n        \"mail\": \"alex1@alex.com\",\n        \"otherMail\": null,\n        \"phoneNumber\": \"1111112221\",\n        \"password\": \"$2b$10$BBhriRnXpS016kY2MUpB3e/qhWOs7TbtrCDz0VPUVSVQoizGe7Mhy\",\n        \"postalCode\": \"1234\",\n        \"province\": \"Springfield\",\n        \"apartment\": null,\n        \"floor\": null,\n        \"id\": 2\n    }\n}"
+							"body": "{\n    \"user\": {\n        \"name\": \"u3\",\n        \"lastName\": \"u3\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"11111111\",\n        \"localAddress\": \"calle falsa 123\",\n        \"mail\": \"alex1@alex.com\",\n        \"otherMail\": null,\n        \"phoneNumber\": \"1111112221\",\n        \"password\": \"$2b$10$BBhriRnXpS016kY2MUpB3e/qhWOs7TbtrCDz0VPUVSVQoizGe7Mhy\",\n        \"postalCode\": \"1234\",\n        \"province\": \"Springfield\",\n        \"apartment\": null,\n        \"floor\": null,\n        \"latitude\": \"2\",\n        \"longitude\": \"2\",\n        \"id\": 2\n    }\n}"
 						},
 						{
 							"name": "Created Familiar User",
@@ -357,7 +357,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"gender\": \"M\"\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
+									"raw": "{\n    \"userType\": 1,\n    \"name\": \"Familiar\" ,\n    \"lastName\": \"Familiar\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Familiar@alex.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"latitude\": \"1\",\n    \"longitude\": \"1\",\n    \"gender\": \"M\"\n    //-------------------------------\n    /*\n    \"floor\": \"1\",\n    \"apartment\":\"2\",\n    \"otherMail\":\"asdasd@asd.com\"\n    */\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -408,7 +408,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"user\": {\n        \"name\": \"u3\",\n        \"lastName\": \"u3\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"11111111\",\n        \"localAddress\": \"calle falsa 123\",\n        \"mail\": \"alex1@alex.com\",\n        \"otherMail\": null,\n        \"phoneNumber\": \"1111112221\",\n        \"password\": \"$2b$10$BBhriRnXpS016kY2MUpB3e/qhWOs7TbtrCDz0VPUVSVQoizGe7Mhy\",\n        \"postalCode\": \"1234\",\n        \"province\": \"Springfield\",\n        \"apartment\": null,\n        \"floor\": null,\n        \"id\": 2\n    }\n}"
+							"body": "{\n    \"user\": {\n        \"name\": \"u3\",\n        \"lastName\": \"u3\",\n        \"dateOfBirth\": \"1994-10-25\",\n        \"dniNumber\": \"11111111\",\n        \"localAddress\": \"calle falsa 123\",\n        \"mail\": \"alex1@alex.com\",\n        \"otherMail\": null,\n        \"phoneNumber\": \"1111112221\",\n        \"password\": \"$2b$10$BBhriRnXpS016kY2MUpB3e/qhWOs7TbtrCDz0VPUVSVQoizGe7Mhy\",\n        \"postalCode\": \"1234\",\n        \"province\": \"Springfield\",\n        \"apartment\": null,\n        \"floor\": null,\n        \"latitude\": \"1\",\n        \"longitude\": \"1\",\n        \"id\": 2\n    }\n}"
 						}
 					]
 				},
@@ -430,13 +430,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/user/11111113",
+							"raw": "{{path}}/user/11111111",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"user",
-								"11111113"
+								"11111111"
 							]
 						}
 					},
@@ -628,7 +628,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"2\",\n    \"name\": \"Carer1\" ,\n    \"lastName\": \"Carer1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111113\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"price\": 10000,\n    \"experience\": \"años\"\n}",
+							"raw": "{\n    \"userType\": \"2\",\n    \"userId\": \"3\",\n    \"name\": \"Carer1\" ,\n    \"lastName\": \"Carer1\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"Liniers\",\n    \"postalCode\": \"1235\",\n    \"province\": \"Springfield1\",\n    \"otherMail\": \"alex1@alex.com\",\n    \"floor\": \"1\",\n    \"latitude\": \"3\",\n    \"longitude\": \"3\",\n    \"amountCare\": 1,\n    \"specialty\": \"mancos\",\n    \"price\": 10000,\n    \"experience\": \"años\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1297,7 +1297,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"description\": [\n        \"Cuidador de tu abuela\",\n        \"Cuidador de tu vieja\"\n    ],\n    \"gender\": \"M\"\n}",
+							"raw": "{\n    \"description\": [\n        \"Cuidador de tu vieja - 1\"\n    ],\n    \"gender\": \"M\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1428,6 +1428,129 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"3\",\n    \"latitudeCurrent\": \"4\",\n    \"longitudeCurrent\": \"4\"\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/location",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Location Carer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/location?familiarId=1&carerId=1&eventDay=2",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"location"
+							],
+							"query": [
+								{
+									"key": "familiarId",
+									"value": "1"
+								},
+								{
+									"key": "carerId",
+									"value": "1"
+								},
+								{
+									"key": "eventDay",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Location Carer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/location?familiarId=1&carerId=1&eventDay=2",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"location"
+									],
+									"query": [
+										{
+											"key": "familiarId",
+											"value": "1"
+										},
+										{
+											"key": "carerId",
+											"value": "1"
+										},
+										{
+											"key": "eventDay",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-BAOlfyYA+NchpSZtgDYq1gwbbus\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Sep 2022 19:31:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"latitude\": null,\n    \"longitude\": null\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1441,7 +1564,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"day\": [2],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+							"raw": "{\n    \"familiar\": 1,\n    \"carer\": 1,\n    \"day\": [2],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1466,7 +1589,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"carer\": 1,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\", //Optional, if this is null, the event will not expired\n    \"notes\": \"LALALA\" //Optional\n}",
+									"raw": "{\n    \"familiar\": 2,\n    \"carer\": 1,\n    \"day\": 1,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\", //Optional, if this is null, the event will not expired\n    \"notes\": \"LALALA\" //Optional\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1517,7 +1640,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"event\": {\n        \"day\": 1,\n        \"notes\": null,\n        \"startTime\": \"22/07/2022\",\n        \"endTime\": \"22/10/2022\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"expirationDate\": null,\n        \"id\": 10\n    }\n}"
+							"body": "{\n    \"event\": {\n        \"familiar\": 2,\n        \"day\": 1,\n        \"notes\": null,\n        \"startTime\": \"22/07/2022\",\n        \"endTime\": \"22/10/2022\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"expirationDate\": null,\n        \"id\": 10\n    }\n}"
 						},
 						{
 							"name": "Required Fields",
@@ -1648,7 +1771,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\",\n    \"status\": \"false\"\n}",
+							"raw": "{\n    \"familiar\": 2,\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\",\n    \"status\": \"false\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1673,7 +1796,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": 2,\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}\n\n// TODOS LOS CAMPOS SON OPCIONALES MENOS EL ID Y EL USERID. SI UN CAMPO NO SE ENVÍA DESDE EL FRONT, SE MANTIENE LA INFORMACION",
+									"raw": "{\n    \"familiar\": 2,\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\",\n    \"status\": \"false\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1724,7 +1847,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"event\": {\n        \"day\": 1,\n        \"startTime\": \"25/07/2022\",\n        \"endTime\": \"22/10/2022\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"id\": 10\n    }\n}"
+							"body": "{\n    \"event\": {\n        \"id\": 1,\n        \"carer\": {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112221\",\n                \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"2\",\n                \"longitude\": \"2\",\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"latitudeCurrent\": null,\n            \"longitudeCurrent\": null,\n            \"id\": 1\n        },\n        \"date\": \"2022-07-22\",\n        \"day\": [\n            3\n        ],\n        \"endEvent\": \"11:00\",\n        \"expirationDate\": \"2022-07-25\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"notes\": \"MAMM\",\n        \"startEvent\": \"10:00\",\n        \"status\": false\n    }\n}"
 						},
 						{
 							"name": "Required Id",
@@ -1965,7 +2088,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"event\": {\n        \"date\": \"2022-07-22T03:00:00.000Z\",\n        \"day\": 2,\n        \"endEvent\": \"11:00\",\n        \"expirationDate\": \"2022-07-24T03:00:00.000Z\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"notes\": \"MAMM\",\n        \"startEvent\": \"10:00\"\n    }\n}"
+							"body": "{\n    \"event\": {\n        \"id\": 1,\n        \"carer\": {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112221\",\n                \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"2\",\n                \"longitude\": \"2\",\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"latitudeCurrent\": null,\n            \"longitudeCurrent\": null,\n            \"id\": 1\n        },\n        \"date\": \"2022-07-22T03:00:00.000Z\",\n        \"day\": 3,\n        \"endEvent\": \"11:00\",\n        \"expirationDate\": \"2022-07-24T03:00:00.000Z\",\n        \"localAddress\": \"Calle falsa 123\",\n        \"notes\": \"MAMM\",\n        \"startEvent\": \"10:00\",\n        \"status\": false,\n        \"familiar\": 2\n    }\n}"
 						}
 					]
 				},
@@ -1975,17 +2098,70 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/events/5",
+							"raw": "{{path}}/events/1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"events",
-								"5"
+								"1"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get List Event",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/events/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"events",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "757"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f5-1TPXBALUCIBjg2Ld1iETlMvKDvM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Sep 2022 17:34:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"events\": [\n        {\n            \"id\": 1,\n            \"carer\": {\n                \"user\": {\n                    \"name\": \"Carer\",\n                    \"lastName\": \"Carer\",\n                    \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                    \"dniNumber\": \"11111111\",\n                    \"localAddress\": \"calle falsa 123\",\n                    \"mail\": \"Carer@alex.com\",\n                    \"otherMail\": null,\n                    \"phoneNumber\": \"1111112221\",\n                    \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                    \"postalCode\": \"1234\",\n                    \"province\": \"Springfield\",\n                    \"gender\": \"M\",\n                    \"apartment\": null,\n                    \"floor\": null,\n                    \"latitude\": \"2\",\n                    \"longitude\": \"2\",\n                    \"id\": 1\n                },\n                \"amountCare\": 0,\n                \"price\": 200,\n                \"specialty\": null,\n                \"experience\": null,\n                \"latitudeCurrent\": null,\n                \"longitudeCurrent\": null,\n                \"id\": 1\n            },\n            \"date\": \"2022-07-22T03:00:00.000Z\",\n            \"day\": 3,\n            \"endEvent\": \"11:00\",\n            \"expirationDate\": \"2022-07-24T03:00:00.000Z\",\n            \"localAddress\": \"Calle falsa 123\",\n            \"notes\": \"MAMM\",\n            \"startEvent\": \"10:00\",\n            \"status\": false,\n            \"familiar\": 2\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Accept Event",
@@ -2017,7 +2193,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carerId\": 5,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 3\n}",
+							"raw": "{\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2621,7 +2797,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja - 1\"\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"description\": \"Cuidador de tu vieja - 2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2843,7 +3019,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": false,\n    \"relationConfirmated\": false\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3007,7 +3183,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"possibleContacts\": {\n        \"carer\": 1,\n        \"familiar\": 1,\n        \"available\": true\n    }\n}"
+							"body": "{\n    \"possibleContacts\": {\n        \"id\": 2,\n        \"carer\": {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"XXXX\",\n                \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"2\",\n                \"longitude\": \"2\",\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"latitudeCurrent\": null,\n            \"longitudeCurrent\": null,\n            \"id\": 1\n        },\n        \"familiar\": {\n            \"user\": {\n                \"name\": \"Familiar\",\n                \"lastName\": \"Familiar\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111112\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Familiar@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112222\",\n                \"password\": \"$2b$10$i/.Eesf2wmS86H2rVEf.Y.jyRHJwAHoPGs8Uur1L7PIW7mD3m3Jei\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"1\",\n                \"longitude\": \"1\",\n                \"id\": 2\n            },\n            \"id\": 1\n        },\n        \"contactConfirmated\": true,\n        \"relationConfirmated\": false\n    }\n}"
 						}
 					]
 				},
@@ -3018,7 +3194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true,\n    \"relationConfirmated\": false\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3035,7 +3211,157 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create Relation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/relation",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"relation"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1054"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41e-xMa+C3x9c4G9Q4jpvsDfOtYc5Ac\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Sep 2022 17:19:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"possibleContacts\": {\n        \"id\": 2,\n        \"carer\": {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112221\",\n                \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"2\",\n                \"longitude\": \"2\",\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"latitudeCurrent\": null,\n            \"longitudeCurrent\": null,\n            \"id\": 1\n        },\n        \"familiar\": {\n            \"user\": {\n                \"name\": \"Familiar\",\n                \"lastName\": \"Familiar\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111112\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Familiar@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112222\",\n                \"password\": \"$2b$10$i/.Eesf2wmS86H2rVEf.Y.jyRHJwAHoPGs8Uur1L7PIW7mD3m3Jei\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"1\",\n                \"longitude\": \"1\",\n                \"id\": 2\n            },\n            \"id\": 1\n        },\n        \"contactConfirmated\": true,\n        \"relationConfirmated\": false\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Relation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{path}}/relation/confirm",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"relation",
+								"confirm"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Relation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{path}}/relation/confirm",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"relation",
+										"confirm"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1053"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41d-y1nxME+535rkf/QVcfuJll2qHx4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Sep 2022 17:20:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"possibleContacts\": {\n        \"id\": 2,\n        \"carer\": {\n            \"user\": {\n                \"name\": \"Carer\",\n                \"lastName\": \"Carer\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111111\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Carer@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112221\",\n                \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"2\",\n                \"longitude\": \"2\",\n                \"id\": 1\n            },\n            \"amountCare\": 0,\n            \"price\": 200,\n            \"specialty\": null,\n            \"experience\": null,\n            \"latitudeCurrent\": null,\n            \"longitudeCurrent\": null,\n            \"id\": 1\n        },\n        \"familiar\": {\n            \"user\": {\n                \"name\": \"Familiar\",\n                \"lastName\": \"Familiar\",\n                \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                \"dniNumber\": \"11111112\",\n                \"localAddress\": \"calle falsa 123\",\n                \"mail\": \"Familiar@alex.com\",\n                \"otherMail\": null,\n                \"phoneNumber\": \"1111112222\",\n                \"password\": \"$2b$10$i/.Eesf2wmS86H2rVEf.Y.jyRHJwAHoPGs8Uur1L7PIW7mD3m3Jei\",\n                \"postalCode\": \"1234\",\n                \"province\": \"Springfield\",\n                \"gender\": \"M\",\n                \"apartment\": null,\n                \"floor\": null,\n                \"latitude\": \"1\",\n                \"longitude\": \"1\",\n                \"id\": 2\n            },\n            \"id\": 1\n        },\n        \"contactConfirmated\": true,\n        \"relationConfirmated\": true\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get list Contacts",
@@ -3053,7 +3379,60 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get list Contacts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path}}/contacts/1",
+									"host": [
+										"{{path}}"
+									],
+									"path": [
+										"contacts",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1055"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41f-nnu+1rz+temgSVxa8E1MnRY0A70\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 20 Sep 2022 17:24:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"possibleContacts\": [\n        {\n            \"id\": 2,\n            \"carer\": {\n                \"user\": {\n                    \"name\": \"Carer\",\n                    \"lastName\": \"Carer\",\n                    \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                    \"dniNumber\": \"11111111\",\n                    \"localAddress\": \"calle falsa 123\",\n                    \"mail\": \"Carer@alex.com\",\n                    \"otherMail\": null,\n                    \"phoneNumber\": \"1111112221\",\n                    \"password\": \"$2b$10$6SiNscZY6DXH8ONdIvvf/eMM.FT3vKK4NWanR4VplCscwp5bl7.fK\",\n                    \"postalCode\": \"1234\",\n                    \"province\": \"Springfield\",\n                    \"gender\": \"M\",\n                    \"apartment\": null,\n                    \"floor\": null,\n                    \"latitude\": \"2\",\n                    \"longitude\": \"2\",\n                    \"id\": 1\n                },\n                \"amountCare\": 0,\n                \"price\": 200,\n                \"specialty\": null,\n                \"experience\": null,\n                \"latitudeCurrent\": null,\n                \"longitudeCurrent\": null,\n                \"id\": 1\n            },\n            \"familiar\": {\n                \"user\": {\n                    \"name\": \"Familiar\",\n                    \"lastName\": \"Familiar\",\n                    \"dateOfBirth\": \"1994-10-24T03:00:00.000Z\",\n                    \"dniNumber\": \"11111112\",\n                    \"localAddress\": \"calle falsa 123\",\n                    \"mail\": \"Familiar@alex.com\",\n                    \"otherMail\": null,\n                    \"phoneNumber\": \"1111112222\",\n                    \"password\": \"$2b$10$i/.Eesf2wmS86H2rVEf.Y.jyRHJwAHoPGs8Uur1L7PIW7mD3m3Jei\",\n                    \"postalCode\": \"1234\",\n                    \"province\": \"Springfield\",\n                    \"gender\": \"M\",\n                    \"apartment\": null,\n                    \"floor\": null,\n                    \"latitude\": \"1\",\n                    \"longitude\": \"1\",\n                    \"id\": 2\n                },\n                \"id\": 1\n            },\n            \"contactConfirmated\": true,\n            \"relationConfirmated\": true\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Find Notification Contacts Pendings",

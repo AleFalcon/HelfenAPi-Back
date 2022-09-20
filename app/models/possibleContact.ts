@@ -36,10 +36,18 @@ export class PossibleContacts {
     this.carer = carer
   }
 
-    convertToJson(): any{
-      return { id: this.id, carer: this.carer, familiar: this.familiar, contactConfirmated: this.convertAvailable(this.contactConfirmated),
-        relationConfirmated: this.convertAvailable(this.relationConfirmated)}
-    }
+  setContactConfirmated(contact: boolean){
+    this.contactConfirmated = this.convertBoolean(contact)
+  }
+
+  setRelationConfirmated(relation: boolean){
+    this.relationConfirmated = this.convertBoolean(relation)
+  }
+
+  convertToJson(): any{
+    return { id: this.id, carer: this.carer, familiar: this.familiar, contactConfirmated: this.convertAvailable(this.contactConfirmated),
+      relationConfirmated: this.convertAvailable(this.relationConfirmated)}
+  }
 
     static convertToJson({carer, familiar}: any): any{
       return { carer: carer.id, familiar: familiar.id }

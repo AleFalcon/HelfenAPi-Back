@@ -66,10 +66,10 @@ export async function findUser(type: number, options?: FindConditions<Users>): P
 }
 
 export async function createAndSave({userType: type, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-  postalCode, province, apartment, gender, floor, price, specialty, experience }: any): Promise<any> {
+  postalCode, province, apartment, gender, latitude, longitude, floor, price, specialty, experience }: any): Promise<any> {
   const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress,
-    mail, phoneNumber, bcrypt.hashSync(password, bcrypt.genSaltSync(10)), postalCode, province, gender, apartment,
-    floor);
+    mail, phoneNumber, bcrypt.hashSync(password, bcrypt.genSaltSync(10)), postalCode, province, gender, latitude, longitude,
+    apartment, floor);
   const userCreated = await userRepository().save(user)
   const userTypeCreated: Familiars | Carers = await actionSave.get(type)({amountCare: 0 , price, specialty, experience, userCreated});
   return userTypeCreated;

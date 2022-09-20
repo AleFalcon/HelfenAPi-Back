@@ -66,6 +66,16 @@ export class Users {
   @Column({
     type: "varchar",
     nullable: true})
+  latitude: string;
+
+  @Column({
+    type: "varchar",
+    nullable: true})
+  longitude: string;
+
+  @Column({
+    type: "varchar",
+    nullable: true})
   apartment?: string;
 
   @Column({
@@ -79,8 +89,8 @@ export class Users {
   gender: string;
   
   constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string,
-    mail: string, phoneNumber: string, password: string, postalCode: string, province: string, gender: string, otherMail?: string,
-    apartment?: string, floor?: string) {
+    mail: string, phoneNumber: string, password: string, postalCode: string, province: string, gender: string, 
+    latitude: string, longitude: string, otherMail?: string, apartment?: string, floor?: string) {
       this.name = name;
       this.lastName = lastName;
       this.dateOfBirth = dateOfBirth;
@@ -95,17 +105,20 @@ export class Users {
       this.gender = gender;
       this.apartment  = apartment;
       this.floor = floor;
+      this.latitude = latitude;
+      this.longitude = longitude;
+
     }
 
   static builder({id, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-    postalCode, province, gender, otherMail, apartment, floor}: any ): Users {
+    postalCode, province, gender, latitude, longitude, otherMail, apartment, floor}: any ): Users {
     const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-        postalCode, province, gender, otherMail, apartment, floor )
+        postalCode, province, gender, latitude, longitude, otherMail, apartment, floor )
     user.id = id;
     return user;
     }
 
-  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, floor }: any): void{
+  modifyData({ name, lastName, dateOfBirth, localAddress, otherMail, phoneNumber, postalCode, province, apartment, gender, latitude, longitude, floor }: any): void{
       this.name = name === undefined ? this.name : name;
       this.lastName = lastName === undefined ? this.lastName : lastName;
       this.dateOfBirth = dateOfBirth === undefined ? this.dateOfBirth : dateOfBirth;
@@ -115,12 +128,15 @@ export class Users {
       this.postalCode = postalCode === undefined ? this.postalCode : postalCode;
       this.province = province === undefined ? this.province : province;
       this.apartment  = apartment === undefined ? this.apartment : apartment;
+      this.latitude = latitude === undefined ? this.latitude : latitude;
+      this.longitude = longitude === undefined ? this.longitude : longitude;
       this.gender  = gender === undefined ? this.gender : gender;
       this.floor = floor === undefined ? this.floor : floor;
   }
 
-  static convertToJson({name, lastName, dateOfBirth, localAddress, mail, otherMail, phoneNumber, postalCode, province, apartment, gender, floor}: Users): any{
+  static convertToJson({name, lastName, dateOfBirth, localAddress, mail, otherMail, phoneNumber, postalCode, province, apartment, gender, latitude, longitude, floor}: Users): any{
     return {name: name, lastName: lastName, dateOfBirth: dateOfBirth, localAddress: localAddress, mail: mail, otherMail: otherMail, 
-      phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, floor: floor}
+      phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, latitude: latitude,
+      longitude: longitude, floor: floor}
    }
 }

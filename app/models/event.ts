@@ -50,11 +50,16 @@ export class Events {
     nullable: false})
     status: number;
 
+  @Column({
+    type: 'int',
+    nullable: false})
+    familiar: number;
+
   @ManyToOne(() => Carers, (carer: Carers) => carer.id, {eager: true})
   @JoinColumn({name: "carer", referencedColumnName: "id"})
   carer: Carers
 
-  constructor(carer: Carers, day: number, date: string, startEvent: string, endEvent: string, localAddress: string, expirationDate: string, notes: string, status: boolean) {
+  constructor(carer: Carers, day: number, date: string, startEvent: string, endEvent: string, localAddress: string, expirationDate: string, notes: string, status: boolean, familiar: number) {
     this.carer = carer;
     this.day = day;
     this.notes = notes;
@@ -63,7 +68,8 @@ export class Events {
     this.endEvent = endEvent;
     this.localAddress = localAddress;
     this.expirationDate = expirationDate;
-      this.status = this.convertBoolean(status);
+    this.status = this.convertBoolean(status);
+    this.familiar = familiar;
   }
 
   convertToJson(): any{
@@ -71,7 +77,7 @@ export class Events {
       expirationDate: this.expirationDate, localAddress: this.localAddress, notes: this.notes, startEvent: this.startEvent, status: Events.convertAvailable(this.status) }
   }
 
-  static builder(user: Carers, {event: eventSaved, id, day, date, startEvent, endEvent, localAddress, expirationDate, notes, status}: any ): Events {
+  static builder(user: Carers, {event: eventSaved, id, day, date, startEvent, endEvent, localAddress, expirationDate, notes, status, familiar}: any ): Events {
     const event: Events = new Events( user,
       day === undefined ? eventSaved.day : day,
       date === undefined ? eventSaved.date : date,
@@ -80,13 +86,14 @@ export class Events {
       localAddress === undefined ? eventSaved.localAddress : localAddress,
       expirationDate === undefined ? eventSaved.expirationDate : expirationDate,
       notes === undefined ? eventSaved.notes : notes,
-      status === undefined ? Events.convertAvailable(eventSaved.status) : Events.convertAvailable(status));
+      status === undefined ? Events.convertAvailable(eventSaved.status) : Events.convertAvailable(status),
+      familiar === undefined ? eventSaved.familiar : familiar);
     event.id = id;
     return event;
     }
 
-    static convertToJson({id, carer, date, day, endEvent, expirationDate, localAddress, notes, startEvent, status}: any): any{
-      return { id: id, carer: carer, date: date, day: day, endEvent: endEvent,expirationDate: expirationDate, localAddress: localAddress, notes: notes, startEvent: startEvent, status: this.convertAvailable(status) }
+    static convertToJson({id, carer, date, day, endEvent, expirationDate, localAddress, notes, startEvent, status, familiar}: any): any{
+      return { id: id, carer: carer, date: date, day: day, endEvent: endEvent,expirationDate: expirationDate, localAddress: localAddress, notes: notes, startEvent: startEvent, status: this.convertAvailable(status), familiar: familiar }
     }
 
     setStatus(value: Boolean): void {

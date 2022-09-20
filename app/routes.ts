@@ -15,8 +15,10 @@ import { createReview, deleteReview, getListReview, getReview, modifyReview } fr
 import { createService, deleteService, getListServices } from './controllers/service';
 import { validateSchemaService } from './middlewares/schemaService';
 import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
-import { confirmateContact, createPossibleContact, createRelation, deleteContact, getNotificationContacts, getNotificationRelations, getPossibleContacts } from './controllers/relation';
+import { confirmateContact, confirmateRelation, createPossibleContact, createRelation, deleteContact, getNotificationContacts, getNotificationRelations, getPossibleContacts } from './controllers/relation';
 import { relationFound } from './middlewares/relationFound';
+import { updateLocation } from './middlewares/carerUserLocation';
+import { contactFound } from './middlewares/possibleContactFound';
 
 export const init = (app: Application): void => {
   app.post('/login', [userFoundByEmail, passwordConfirm]);
@@ -27,6 +29,8 @@ export const init = (app: Application): void => {
   app.get('/user/:dniNumber',  getUserByDni);
   app.patch('/user', [userFound, validatePasswordMiddleware], modifyPassword);
   app.get('/users',  getUserByServices);
+  app.put('/location', [userFound, updateLocation]);
+  app.get('/location', [contactFound]);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
   app.patch('/event/:eventId', [eventFoundByParams], acceptEvent);
@@ -52,4 +56,5 @@ export const init = (app: Application): void => {
   app.delete('/contact/:relationId', deleteContact);
   app.get('/relation/:carerId', getNotificationRelations);
   app.put('/relation', createRelation);
+  app.put('/relation/confirm', confirmateRelation);
 };
