@@ -3,5 +3,6 @@
     "DB_PORT": 25060,
     "DB_USERNAME": "doadmin",
     "DB_PASSWORD": "AVNS_ogGIzejprMEjSkZ370h",
-    "DB_NAME": "defaultdb"
+    "DB_NAME": "defaultdb",
+    "database": "defaultdb"
 }
