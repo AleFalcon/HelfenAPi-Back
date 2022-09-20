@@ -8,10 +8,10 @@ import { Carers } from '../models/carerUser';
 import { PossibleContacts } from "../models/possibleContact";
 import { Familiars } from '../models/familiarUser';
 import { FindConditions } from 'typeorm';
+import { relationNotExist } from '../errors/constantsErrors';
 
 export async function createPossibleContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, 
-        req.body.contactConfirmated, req.body.relationConfirmated);
+    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, false, false);
     return await relationService
         .savePossibleContact(possibleContacts)
         .then( (possibleContacts: PossibleContacts) => {
@@ -24,31 +24,36 @@ export async function createPossibleContact(req: Request, res: Response, next: N
     }
 
 export async function confirmateContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, req.body.contactConfirmated, req.body.relationConfirmated)
-    possibleContacts.id = req.body.id
-    return await relationService
-        .updateRelation(possibleContacts)
-        .then( (possibleContacts: PossibleContacts) => {
-            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
-        } )
-        .catch( (handlerError: HandlerError) => {
-            res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+    const list: PossibleContacts[] = await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars})
+    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.contactConfirmated === 1)
+    if (possibleContacts !== undefined){
+        possibleContacts.setContactConfirmated(req.body.contactConfirmated);
+        return await relationService
+            .updateRelation(possibleContacts)
+            .then( (possibleContacts: PossibleContacts) => {
+                res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
+            } )
+            .catch( (handlerError: HandlerError) => {
+                res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+                next();
+            });        
+        } else{
+            const error = new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
             next();
-        });        
+        }
     }
 
 export async function createRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, req.body.contactConfirmated, req.body.relationConfirmated);
-    possibleContacts.id = req.body.id
-    return await relationService
-        .updateRelation(possibleContacts)
-        .then( (possibleContacts: PossibleContacts) => {
+    const list: PossibleContacts[] =await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars})
+    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === 1)
+    if (possibleContacts !== undefined){
             res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
-        } )
-        .catch( (handlerError: HandlerError) => {
-            res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+        } else {
+            const error = new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
             next();
-        });        
+        }
     }
 
 export async function getPossibleContacts(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
@@ -56,7 +61,9 @@ export async function getPossibleContacts(req: Request, res: Response, next: Nex
     return await relationService
         .findContacts({ familiar: familiarId } as FindConditions<PossibleContacts>)
         .then( (possibleContactsList: PossibleContacts[]) => {
-            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContactsList })
+            const possibleContacts: PossibleContacts[] = [];
+            possibleContactsList.forEach(elem => possibleContacts.push(elem.convertToJson()))
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts })
         } )
         .catch( (handlerError: any) => {
             res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -69,7 +76,9 @@ export async function getNotificationContacts(req: Request, res: Response, next:
     return await relationService
         .findNotificationContacts({ carer: carerId } as FindConditions<PossibleContacts>)
         .then( (possibleContactsList: PossibleContacts[]) => {
-            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContactsList })
+            const possibleContacts: PossibleContacts[] = [];
+            possibleContactsList.forEach(elem => possibleContacts.push(elem.convertToJson()))
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts })
         } )
         .catch( (handlerError: any) => {
             res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -82,7 +91,9 @@ export async function getNotificationRelations(req: Request, res: Response, next
     return await relationService
         .findNotificationRelations({ carer: carerId } as FindConditions<PossibleContacts>)
         .then( (possibleContactsList: PossibleContacts[]) => {
-            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContactsList })
+            const possibleContacts: PossibleContacts[] = [];
+            possibleContactsList.forEach(elem => possibleContacts.push(elem.convertToJson()))
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts })
         } )
         .catch( (handlerError: any) => {
             res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -102,3 +113,24 @@ export async function deleteContact(req: Request, res: Response, next: NextFunct
             next();
         })
 }
+
+export async function confirmateRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const list: PossibleContacts[] =await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars})
+    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === 1)
+    if (possibleContacts !== undefined){
+        possibleContacts.setRelationConfirmated(req.body.relationConfirmated);
+        return await relationService
+            .updateRelation(possibleContacts)
+            .then( (possibleContacts: PossibleContacts) => {
+                res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
+            } )
+            .catch( (handlerError: HandlerError) => {
+                res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+                next();
+            });
+        } else {
+            const error = new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+            next();
+        }        
+    }

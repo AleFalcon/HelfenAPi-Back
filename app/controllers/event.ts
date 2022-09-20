@@ -12,12 +12,15 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
   const eventList: Events[] = []
   daysList.forEach((elem: number) => {
     eventList.push(new Events(req.body.carer as Carers, elem, req.body.date, req.body.startEvent,
-      req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes, req.body.status === undefined ? false : req.body.status))
+      req.body.endEvent, req.body.localAddress, req.body.expirationDate, req.body.notes,
+      req.body.status === undefined ? false : req.body.status, req.body.familiar))
   })
   return await eventService
       .createAndSave(eventList)
       .then( (newEvents: Events[]) => {
-        res.status(HttpStatus.CREATED).send({ event: newEvents })
+        const list: Events[] = []
+        newEvents.forEach(elem => {list.push(elem.convertToJson())})
+        res.status(HttpStatus.CREATED).send({ event: list })
       } )
       .catch( (error: any) => {
         const handlerError = new HandlerError(error, error.getErrorCode);

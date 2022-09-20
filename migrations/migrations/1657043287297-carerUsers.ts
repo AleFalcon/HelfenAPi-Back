@@ -13,6 +13,8 @@ export class CarerUsers1657043287297 implements MigrationInterface {
               { name: 'price', type: 'int'},
               { name: 'specialty', type: 'varchar', isNullable: true},
               { name: 'experience', type: 'varchar', isNullable: true},
+              { name: 'latitudeCurrent', type: 'varchar', isNullable: true },
+              { name: 'longitudeCurrent', type: 'varchar', isNullable: true }
             ]
           })
         );
