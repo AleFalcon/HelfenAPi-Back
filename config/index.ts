@@ -7,8 +7,8 @@ import { DeepPartial } from '../types/utils';
 const ENVIRONMENT: string = process.env.NODE_ENV || 'development';
 
 if (ENVIRONMENT !== 'production') {
+  require('dotenv').config(); // eslint-disable-line global-require
 }
-require('dotenv').config(); // eslint-disable-line global-require
 
 const configFile = `./${ENVIRONMENT}`;
 const environmentConfig = require(configFile).config;
