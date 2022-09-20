@@ -1,8 +1,0 @@
-{
-    "DB_HOST": "db-mysql-nyc1-44576-do-user-12362655-0.b.db.ondigitalocean.com",
-    "DB_PORT": 25060,
-    "DB_USERNAME": "doadmin",
-    "DB_PASSWORD": "AVNS_ogGIzejprMEjSkZ370h",
-    "DB_NAME": "defaultdb",
-    "database": "defaultdb"
-}
