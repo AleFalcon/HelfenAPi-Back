@@ -50,6 +50,8 @@ export class Carers {
   @OneToMany(() => PossibleContacts, possibleContacts => possibleContacts.carer)
   possibleContacts: PossibleContacts[]
 
+  distance: number
+
   public modifyData({amountCare, price, specialty, experience, latitudeCurrent, longitudeCurrent, user}: any): void{
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
     this.price = price === undefined ? this.price : price;
@@ -78,12 +80,32 @@ export class Carers {
   this.user = user;
  }
 
+ public setDistance(distance: number): void {
+  this.distance = distance;
+ }
+
  public setLongitudeCurrent(longitudeCurrent: string): void {
   this.longitudeCurrent = longitudeCurrent;
  }
 
  public setLatitudeCurrent(latitudeCurrent: string): void {
   this.latitudeCurrent = latitudeCurrent;
+ }
+
+ public getLongitudeCurrent(): string {
+  if(this.longitudeCurrent === undefined){
+    return ""
+  } else {
+    return this.longitudeCurrent
+  }
+}
+
+ public getLatitudeCurrent(): string {
+  if (this.latitudeCurrent === undefined){
+    return ""
+  } else {
+    return this.latitudeCurrent
+  }
  }
 
 }

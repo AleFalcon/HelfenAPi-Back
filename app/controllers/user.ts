@@ -51,11 +51,11 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
 }
 
 export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  return await userService.findUsersByServices(req.body.description, req.body.gender)
+  return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.description, req.body.gender)
   .then( (carersList: Carers[]) => {
     const jsonList: any[] = []
     carersList.forEach((element: Carers) => {
-      jsonList.push(Carers.convertToJson(element));
+      jsonList.push({...Carers.convertToJson(element), distance: element.distance});
     });
     res.status(HttpStatus.OK).send({carers: jsonList})
   } )
