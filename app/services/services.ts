@@ -65,12 +65,27 @@ function generateUserList(servicesList: Services[]): Carers[] {
 }
 
 
-export async function findAllUserList(options?: String[], gender?: String): Promise<Carers[]> {
+export async function findAllUserList(latitude: string, longitude: string, options?: String[], gender?: String): Promise<any[]> {
     const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
     const listWithoutDuplicates = generateUserList(userServicesList); 
-    return listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) && filterByServices(elem, options))
+    const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) && filterByServices(elem, options))
+    listFiltered.forEach((elem: Carers) => {
+      elem.setDistance(getDistanciaKm(Number.parseFloat(latitude), Number.parseFloat(longitude), elem))
+    })
+    return listFiltered.sort((elem1, elem2) => elem1.distance - elem2.distance);
   }
 
+  function getDistanciaKm(latitude: number, longitude: number, carer: Carers){
+    const latitudeUser = Number.parseFloat(carer.user.getLatitude())
+    const rad = function(x: number) {return x*Math.PI/180;}
+    const earthRadius = 6378.137;
+    var dLat = rad( latitudeUser - latitude );
+    var dLong = rad( Number.parseFloat(carer.user.getLongitude()) - longitude );
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(rad(latitude)) * 
+    Math.cos(rad(latitudeUser)) * Math.sin(dLong/2) * Math.sin(dLong/2)
+    return earthRadius * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)))
+  }
+  
 export async function findBy(options?: FindConditions<Services>): Promise<any> {
     return await serviceRepository().find(options)
     .then((servicesList: Services[]) => { return servicesList})

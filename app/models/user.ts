@@ -139,4 +139,12 @@ export class Users {
       phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, latitude: latitude,
       longitude: longitude, floor: floor}
    }
+
+   public getLongitude(): string {
+      return this.longitude
+    }
+  
+   public getLatitude(): string {
+      return this.latitude
+   }
 }
