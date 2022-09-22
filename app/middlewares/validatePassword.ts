@@ -44,7 +44,7 @@ export async function passwordConfirm (req: Request, res: Response, next: NextFu
         if ( !await bcrypt.compare(req.body.password, req.body.user.password)) {
             throw new HandlerError(matchPasswordError, HttpStatus.BAD_REQUEST);
         }
-        return res.status(HttpStatus.ACCEPTED).send({ login: true })
+        next();
     } catch (e) {
         const error: HandlerError = e as HandlerError;
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );

@@ -10,6 +10,7 @@ import { aditionalUserNotFoundError, userNotFoundError } from '../errors/constan
 import HttpStatus from 'http-status-codes';
 
 import bcrypt from 'bcrypt';
+import { carerType, familiarType } from '../constants/globalConstants';
 
 const familiarUserRepository = (): Repository<Familiars> => getRepository(Familiars);
 const carerUserRepository = (): Repository<Carers> => getRepository(Carers);
@@ -112,6 +113,20 @@ export async function findAditionalUser(type: number, idUser: number): Promise<a
   }
 }
 
+export async function findUserComplete(user: Users): Promise<Familiars | Carers>{
+  let aditionaUser = await actionFindUser.get(carerType)({ user: user } as FindConditions<Carers>);
+  if (aditionaUser === undefined) {
+    aditionaUser = await actionFindUser.get(familiarType)({ user: user } as FindConditions<Carers>);
+    if (aditionaUser !== undefined) {
+      return aditionaUser
+    } else {
+      throw new HandlerError(aditionalUserNotFoundError, HttpStatus.NOT_FOUND)
+    }
+  } else {
+    return aditionaUser
+  }
+}
+
 
 export default {
   modify,
@@ -120,5 +135,6 @@ export default {
   findAditionalUser,
   modifyAditionalInformation,
   createAndSave,
-  findUsersByServices
+  findUsersByServices,
+  findUserComplete
 };

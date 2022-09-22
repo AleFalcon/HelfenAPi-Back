@@ -19,9 +19,10 @@ import { confirmateContact, confirmateRelation, createPossibleContact, createRel
 import { relationFound } from './middlewares/relationFound';
 import { updateLocation } from './middlewares/carerUserLocation';
 import { contactFound } from './middlewares/possibleContactFound';
+import { addInformationUser } from './middlewares/addInformationUser';
 
 export const init = (app: Application): void => {
-  app.post('/login', [userFoundByEmail, passwordConfirm]);
+  app.post('/login', [userFoundByEmail, passwordConfirm, addInformationUser]);
   app.patch('/forgetPassword', [userFoundByEmailForgetPassword, passwordConfirmMiddleware], modifyPassword);
   //---------------
   app.put('/user', [userFound], modifyUser);
