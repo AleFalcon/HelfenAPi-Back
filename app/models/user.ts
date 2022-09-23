@@ -88,6 +88,8 @@ export class Users {
     nullable: true})
   gender: string;
   
+  userType: number
+
   constructor(name: string, lastName: string, dateOfBirth: string, dniNumber: string, localAddress: string,
     mail: string, phoneNumber: string, password: string, postalCode: string, province: string, gender: string, 
     latitude: string, longitude: string, otherMail?: string, apartment?: string, floor?: string) {

@@ -118,11 +118,15 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
   if (aditionaUser === undefined) {
     aditionaUser = await actionFindUser.get(familiarType)({ user: user } as FindConditions<Carers>);
     if (aditionaUser !== undefined) {
+      user.userType = familiarType
+      aditionaUser.user = user
       return aditionaUser
     } else {
       throw new HandlerError(aditionalUserNotFoundError, HttpStatus.NOT_FOUND)
     }
   } else {
+    user.userType = carerType
+    aditionaUser.user = user
     return aditionaUser
   }
 }
