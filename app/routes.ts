@@ -1,6 +1,5 @@
 import { Application } from 'express';
-
-import { createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser }  from './controllers/user';
+import { createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser, saveImage }  from './controllers/user';
 import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent, acceptEvent }  from './controllers/event';
 import { userFound, userFoundByEmail, userFoundByEmailForgetPassword, userNotFound } from './middlewares/userFound';
 import { validateSchemaUser } from './middlewares/schemaUser';
@@ -21,6 +20,8 @@ import { updateLocation } from './middlewares/carerUserLocation';
 import { contactFound } from './middlewares/possibleContactFound';
 import { addInformationUser } from './middlewares/addInformationUser';
 
+
+
 export const init = (app: Application): void => {
   app.post('/login', [userFoundByEmail, passwordConfirm, addInformationUser]);
   app.patch('/forgetPassword', [userFoundByEmailForgetPassword, passwordConfirmMiddleware], modifyPassword);
@@ -32,6 +33,7 @@ export const init = (app: Application): void => {
   app.get('/users',  getUserByServices);
   app.put('/location', [userFound, updateLocation]);
   app.get('/location', [contactFound]);
+  app.post("/saveimage", saveImage);
   //---------------
   app.get('/event/:eventId', [eventFoundByParams], getEvent);
   app.patch('/event/:eventId', [eventFoundByParams], acceptEvent);

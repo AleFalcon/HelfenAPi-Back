@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import HttpStatus from 'http-status-codes';
-
 import userService from '../services/users';
-
 import { Familiars } from '../models/familiarUser';
 import { Carers } from '../models/carerUser';
 import { HandlerError } from '../errors/handlerError';
+import { UploadedFile } from 'express-fileupload';
 
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
@@ -64,4 +63,15 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
   })      
+}
+
+export function saveImage(req: Request, res: Response): Response | void {
+  if (req.files != undefined) {
+    const EDFile = req.files.file as UploadedFile
+    EDFile.mv(`../python/${EDFile.name}`,err => {
+      if(err) return res.status(500).send({ message : err })
+      return res.status(200).send({ message : 'File upload' })
+  })
+  }
+  return res.status(500).send({ message : 'Need image :)' })
 }
