@@ -5,6 +5,7 @@ import { Familiars } from '../models/familiarUser';
 import { Carers } from '../models/carerUser';
 import { HandlerError } from '../errors/handlerError';
 import { UploadedFile } from 'express-fileupload';
+import path from 'path';
 
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
@@ -65,13 +66,27 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
   })      
 }
 
-export function saveImage(req: Request, res: Response): Response | void {
-  if (req.files != undefined) {
-    const EDFile = req.files.file as UploadedFile
-    EDFile.mv(`../python/${EDFile.name}`,err => {
-      if(err) return res.status(500).send({ message : err })
-      return res.status(200).send({ message : 'File upload' })
-  })
+export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  try{
+    if (req.files != undefined) {
+      for(let count = 0; count < 2 ; count++){
+        if(count === 0) {
+          uploadFiles(req.files.file as UploadedFile)
+        } else {
+          uploadFiles(req.files.file1 as UploadedFile)
+        }
+      }
+      res.status(HttpStatus.OK).send()
+    }
+  } catch (e) {
+    res.status(500).send({ message : 'Need image :)' })
+    next();
   }
-  return res.status(500).send({ message : 'Need image :)' })
+}
+
+function uploadFiles(EDFile: UploadedFile) {
+      const pathAbsolute = path.resolve(`./python/${EDFile.name}`)
+      EDFile.mv(pathAbsolute,err => {
+          if(err) throw new HandlerError(err.getMessage, HttpStatus.BAD_REQUEST);
+      })
 }
