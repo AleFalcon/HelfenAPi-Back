@@ -26,4 +26,11 @@ export class Familiars {
     this.user = user;
   }
 
+  static convertToJson({user}: Familiars): any{
+    return {user: Users.convertToJson(user)}
+   }
+
+   convertToJson(): any{
+    return {user: Users.convertToJson(this.user)}
+   }
 }

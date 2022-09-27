@@ -24,3 +24,4 @@ export const reviewNotMistmach = "The review does not belong to the familiar";
 export const serviceNotFoundError = "Service not found";
 export const mailNotFound = "Mail not found"
 export const relationNotExist = "The relation not exist"
+export const invalidSpeciality = "invalid specialty."

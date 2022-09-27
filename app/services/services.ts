@@ -5,8 +5,14 @@ import { Carers } from '../models/carerUser';
 
 const serviceRepository = (): Repository<Services> => getRepository(Services);
 
-export async function createAndSave(service: Services): Promise<Services> {
-  return await serviceRepository().save(service);
+export async function createAndSave(carer: Carers, descriptions: string[]): Promise<Services[]> {
+  const serviceList: Services[] = [];
+  for(let description of descriptions){
+    let service: Services = new Services(carer, description);
+    await serviceRepository().save(service);
+    serviceList.push(service)
+  }
+  return serviceList;
 }
 
 export async function deleteService(serviceId: string): Promise<DeleteResult | void> {
@@ -45,6 +51,18 @@ function filterByServices(elem: Carers, options?: String[]): boolean{
   }
 }
 
+function filterBySpecialty(elem: Carers, specialty: String): boolean{
+    if(specialty !== "Ambos") {
+      if(specialty === elem.convertSpeciality(elem.specialty)){
+        return true;
+      } else {
+        return false
+      }
+    } else {
+      return true;
+    }
+  }
+
 function generateUserList(servicesList: Services[]): Carers[] {
   const aux: Carers[] = []
   servicesList.forEach((elem: Services) => {
@@ -64,11 +82,11 @@ function generateUserList(servicesList: Services[]): Carers[] {
   return aux;
 }
 
-
-export async function findAllUserList(latitude: string, longitude: string, options?: String[], gender?: String): Promise<any[]> {
+export async function findAllUserList(latitude: string, longitude: string, specialty: string, options?: String[], gender?: String): Promise<any[]> {
     const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
     const listWithoutDuplicates = generateUserList(userServicesList); 
-    const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) && filterByServices(elem, options))
+    const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) 
+      && filterByServices(elem, options) && filterBySpecialty(elem, specialty))
     listFiltered.forEach((elem: Carers) => {
       elem.setDistance(getDistanciaKm(Number.parseFloat(latitude), Number.parseFloat(longitude), elem))
     })

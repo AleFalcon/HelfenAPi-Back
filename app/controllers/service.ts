@@ -3,17 +3,20 @@ import { NextFunction, Request, Response } from 'express';
 import HttpStatus from 'http-status-codes';
 
 import { HandlerError } from '../errors/handlerError';
-import { Carers } from '../models/carerUser';
 import { Services } from '../models/service';
 
 import serviceService from '../services/services';
+import { Carers } from '../models/carerUser';
 
 export async function createService(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  const service: Services = new Services(req.body.carer as Carers, req.body.description);
   return await serviceService
-      .createAndSave(service)
-      .then( (newService: Services) => {
-        res.status(HttpStatus.CREATED).send({ service: newService.convertToJson() })
+      .createAndSave(req.body.carer as Carers, req.body.description)
+      .then( (services: Services[]) => {
+        const list = []
+        for(let service of services){
+          list.push(service.convertToJson())
+        }
+        res.status(HttpStatus.CREATED).send({ service: list })
       } )
       .catch( (error: any) => {
         const handlerError = new HandlerError(error, error.getErrorCode);

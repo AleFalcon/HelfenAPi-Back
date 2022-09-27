@@ -11,7 +11,8 @@ export class CarerUsers1657043287297 implements MigrationInterface {
               { name: 'userId', type: 'int'},
               { name: 'amountCare', type: 'int'},
               { name: 'price', type: 'int'},
-              { name: 'specialty', type: 'varchar', isNullable: true},
+              { name: 'specialty', type: 'int'},
+              { name: 'isNurse', type: 'int'}, 
               { name: 'experience', type: 'varchar', isNullable: true},
               { name: 'latitudeCurrent', type: 'varchar', isNullable: true },
               { name: 'longitudeCurrent', type: 'varchar', isNullable: true }
