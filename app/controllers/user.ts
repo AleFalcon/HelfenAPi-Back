@@ -66,6 +66,14 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
   })      
 }
 
+function uploadFiles(EDFile: UploadedFile) {
+  const pathAbsolute = path.resolve(`./python/${EDFile.name}`)
+  EDFile.mv(pathAbsolute,err => {
+      if(err) throw new HandlerError(err.getMessage, HttpStatus.BAD_REQUEST);
+  })
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
     if (req.files != undefined) {
@@ -84,9 +92,13 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
   }
 }
 
-function uploadFiles(EDFile: UploadedFile) {
-      const pathAbsolute = path.resolve(`./python/${EDFile.name}`)
-      EDFile.mv(pathAbsolute,err => {
-          if(err) throw new HandlerError(err.getMessage, HttpStatus.BAD_REQUEST);
-      })
+export function checkUserId(req: Request, res: Response): Promise<Response | void> {
+  console.log("controller");
+  return userService.checkPythonScript(req.params.dniNumber)
+  .then(result => {
+    return res.status(HttpStatus.OK).send({ result })
+  }) 
+  .catch((error: HandlerError) => {
+    return res.status(error.getErrorCode()).send( {message: error.getMessage()} )
+  })
 }

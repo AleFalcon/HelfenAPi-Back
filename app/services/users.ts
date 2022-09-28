@@ -2,7 +2,7 @@ import { getRepository, FindConditions, Repository } from 'typeorm';
 import { Familiars } from '../models/familiarUser';
 import { Carers } from '../models/carerUser';
 import { Users } from '../models/user';
-
+import { PythonShell } from 'python-shell';
 import serviceService from '../services/services';
 import reviewService from '../services/review';
 import { HandlerError } from '../errors/handlerError';
@@ -100,7 +100,7 @@ export async function modifyAditionalInformation(type: number, aditionalInformat
 }
 
 
-export async function findUsersByServices(latitude: string, longitude: string, services?: String[], gender?: String): Promise<any> {
+export async function findUsersByServices(latitude: string, longitude: string, services?: string[], gender?: string): Promise<any> {
   return await serviceService.findAllUserList(latitude, longitude, services, gender)
 }
 
@@ -131,6 +131,33 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
   }
 }
 
+export async function checkPythonScript(dni: string): Promise<boolean>{
+  try{
+  console.log("holi");
+  const image1 = dni + '1.jpg'
+  const image2 = dni + '2.jpg'
+  const options = {
+    args: [image1, image2]
+  }
+  
+  console.log("holi2");
+  const a = new Promise<boolean> (function(){
+    console.log("promise")
+    return Boolean(PythonShell.run('face_recognition1.py', options, function (err, result) {
+    if (err) throw err;
+    console.log(result?.toString().toLowerCase())
+    return result?.toString().toLowerCase()
+    }))
+  })
+  console.log(a)
+  return a
+  }
+catch(err){
+  throw new HandlerError("PATATA", HttpStatus.BAD_REQUEST);
+}
+}
+
+
 
 export default {
   modify,
@@ -140,5 +167,6 @@ export default {
   modifyAditionalInformation,
   createAndSave,
   findUsersByServices,
-  findUserComplete
+  findUserComplete,
+  checkPythonScript
 };
