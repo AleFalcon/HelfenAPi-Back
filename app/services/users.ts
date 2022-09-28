@@ -10,7 +10,7 @@ import { aditionalUserNotFoundError, userNotFoundError } from '../errors/constan
 import HttpStatus from 'http-status-codes';
 
 import bcrypt from 'bcrypt';
-import { carerType, familiarType } from '../constants/globalConstants';
+import { carerType, familiarType, pythonPath, pythonScript } from '../constants/globalConstants';
 
 const familiarUserRepository = (): Repository<Familiars> => getRepository(Familiars);
 const carerUserRepository = (): Repository<Carers> => getRepository(Carers);
@@ -131,33 +131,28 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
   }
 }
 
-export async function checkPythonScript(dni: string): Promise<boolean>{
-  try{
-  console.log("holi");
-  const image1 = dni + '1.jpg'
-  const image2 = dni + '2.jpg'
-  const options = {
-    args: [image1, image2]
-  }
-  
-  console.log("holi2");
-  const a = new Promise<boolean> (function(){
-    console.log("promise")
-    return Boolean(PythonShell.run('face_recognition1.py', options, function (err, result) {
-    if (err) throw err;
-    console.log(result?.toString().toLowerCase())
-    return result?.toString().toLowerCase()
-    }))
-  })
-  console.log(a)
-  return a
-  }
-catch(err){
-  throw new HandlerError("PATATA", HttpStatus.BAD_REQUEST);
+export async function checkPythonScript(dni: string): Promise<boolean> {
+    const image1 = pythonPath + dni + '1.jpg'
+    const image2 = pythonPath + dni + '2.jpg'
+    
+    const options = { 
+      scriptPath: pythonPath,
+      args: [image1, image2]
+    }
+    
+    const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
+        {
+          PythonShell.run(pythonScript, options, function (err, result) {
+            if (err) { reject({ success: false, err }) }
+            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
+          })
+        })
+    if (!success) {
+      throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
+    } else {
+      return results
+    }
 }
-}
-
-
 
 export default {
   modify,

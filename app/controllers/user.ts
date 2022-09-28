@@ -6,6 +6,8 @@ import { Carers } from '../models/carerUser';
 import { HandlerError } from '../errors/handlerError';
 import { UploadedFile } from 'express-fileupload';
 import path from 'path';
+import { pythonPath } from '../constants/globalConstants';
+import { needImages } from '../errors/constantsErrors';
 
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
@@ -67,7 +69,7 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
 }
 
 function uploadFiles(EDFile: UploadedFile) {
-  const pathAbsolute = path.resolve(`./python/${EDFile.name}`)
+  const pathAbsolute = path.resolve(`./${pythonPath}${EDFile.name}`)
   EDFile.mv(pathAbsolute,err => {
       if(err) throw new HandlerError(err.getMessage, HttpStatus.BAD_REQUEST);
   })
@@ -87,18 +89,13 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
       res.status(HttpStatus.OK).send()
     }
   } catch (e) {
-    res.status(500).send({ message : 'Need image :)' })
+    res.status(HttpStatus.BAD_REQUEST).send({ message : needImages })
     next();
   }
 }
 
-export function checkUserId(req: Request, res: Response): Promise<Response | void> {
-  console.log("controller");
-  return userService.checkPythonScript(req.params.dniNumber)
-  .then(result => {
-    return res.status(HttpStatus.OK).send({ result })
-  }) 
-  .catch((error: HandlerError) => {
-    return res.status(error.getErrorCode()).send( {message: error.getMessage()} )
-  })
+export async function checkUserId(req: Request, res: Response): Promise<Response | void> {
+  return await userService.checkPythonScript(req.params.dniNumber)
+    .then((result: boolean) => res.status(HttpStatus.OK).send({ result }) )
+    .catch((error: HandlerError) => { return res.status(error.getErrorCode()).send({ message: error.getMessage() }) } )
 }
