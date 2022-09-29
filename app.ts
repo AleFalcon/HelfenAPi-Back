@@ -8,6 +8,7 @@ import logger from './app/logger';
 import config from './config';
 import * as routes from './app/routes';
 import { errorHandlerMiddleware } from './app/middlewares/error-handler';
+import fileUpload from 'express-fileupload';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { expressMiddleware, expressRequestIdMiddleware } = require('express-wolox-logger');
@@ -26,6 +27,7 @@ const bodyParserUrlencodedConfig: OptionsUrlencoded = {
 
 const app = express();
 
+app.use(fileUpload());
 app.use(cors());
 
 app.use('/docs', express.static(path.join(__dirname, 'docs')));

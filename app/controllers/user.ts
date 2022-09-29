@@ -1,11 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import HttpStatus from 'http-status-codes';
-
 import userService from '../services/users';
-
 import { Familiars } from '../models/familiarUser';
 import { Carers } from '../models/carerUser';
 import { HandlerError } from '../errors/handlerError';
+import { UploadedFile } from 'express-fileupload';
+import path from 'path';
+import { pythonPath } from '../constants/globalConstants';
+import { needImages } from '../errors/constantsErrors';
 
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
@@ -69,4 +71,36 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
   })      
+}
+
+function uploadFiles(EDFile: UploadedFile) {
+  const pathAbsolute = path.resolve(`./${pythonPath}${EDFile.name}`)
+  EDFile.mv(pathAbsolute,err => {
+      if(err) throw new HandlerError(err.getMessage, HttpStatus.BAD_REQUEST);
+  })
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  try{
+    if (req.files != undefined) {
+      for(let count = 0; count < 2 ; count++){
+        if(count === 0) {
+          uploadFiles(req.files.file as UploadedFile)
+        } else {
+          uploadFiles(req.files.file1 as UploadedFile)
+        }
+      }
+      res.status(HttpStatus.OK).send()
+    }
+  } catch (e) {
+    res.status(HttpStatus.BAD_REQUEST).send({ message : needImages })
+    next();
+  }
+}
+
+export async function checkUserId(req: Request, res: Response): Promise<Response | void> {
+  return await userService.checkPythonScript(req.params.dniNumber)
+    .then((result: boolean) => res.status(HttpStatus.OK).send({ result }) )
+    .catch((error: HandlerError) => { return res.status(error.getErrorCode()).send({ message: error.getMessage() }) } )
 }

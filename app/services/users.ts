@@ -2,15 +2,16 @@ import { getRepository, FindConditions, Repository } from 'typeorm';
 import { Familiars } from '../models/familiarUser';
 import { Carers } from '../models/carerUser';
 import { Users } from '../models/user';
-
+import { PythonShell } from 'python-shell';
 import serviceService from '../services/services';
 import reviewService from '../services/review';
 import { HandlerError } from '../errors/handlerError';
 import { aditionalUserNotFoundError, userNotFoundError } from '../errors/constantsErrors';
 import HttpStatus from 'http-status-codes';
+import fs from 'fs';
 
 import bcrypt from 'bcrypt';
-import { carerType, familiarType } from '../constants/globalConstants';
+import { carerType, familiarType, pythonPath, pythonScript } from '../constants/globalConstants';
 
 const familiarUserRepository = (): Repository<Familiars> => getRepository(Familiars);
 const carerUserRepository = (): Repository<Carers> => getRepository(Carers);
@@ -131,6 +132,41 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
   }
 }
 
+export async function checkPythonScript(dni: string): Promise<boolean> {
+    const image1 = pythonPath + dni + '1.jpg'
+    const image2 = pythonPath + dni + '2.jpg'
+    
+    const options = { 
+      scriptPath: pythonPath,
+      args: [image1, image2]
+    }
+    
+    const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
+        {
+          PythonShell.run(pythonScript, options, function (err, result) {
+            if (err) { reject({ success: false, err }) }
+            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
+          })
+        })
+    
+    deleteImage(image1)
+    deleteImage(image2)
+
+    if (!success) {
+      throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
+    } else {
+      return results
+    }
+}
+
+function deleteImage(image: string) {
+  try {
+    fs.unlinkSync(image)
+    console.log('File removed')
+  } catch(err) {
+    console.error('Something wrong happened removing the file', err)
+  }
+}
 
 export default {
   modify,
@@ -140,5 +176,6 @@ export default {
   modifyAditionalInformation,
   createAndSave,
   findUsersByServices,
-  findUserComplete
+  findUserComplete,
+  checkPythonScript
 };
