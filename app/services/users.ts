@@ -8,6 +8,7 @@ import reviewService from '../services/review';
 import { HandlerError } from '../errors/handlerError';
 import { aditionalUserNotFoundError, userNotFoundError } from '../errors/constantsErrors';
 import HttpStatus from 'http-status-codes';
+import fs from 'fs';
 
 import bcrypt from 'bcrypt';
 import { carerType, familiarType, pythonPath, pythonScript } from '../constants/globalConstants';
@@ -147,11 +148,24 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
             resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
           })
         })
+    
+    deleteImage(image1)
+    deleteImage(image2)
+
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
       return results
     }
+}
+
+function deleteImage(image: string) {
+  try {
+    fs.unlinkSync(image)
+    console.log('File removed')
+  } catch(err) {
+    console.error('Something wrong happened removing the file', err)
+  }
 }
 
 export default {
