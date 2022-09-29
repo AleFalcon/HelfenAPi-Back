@@ -13,7 +13,7 @@ export async function getUserByDni(req: Request, res: Response, next: NextFuncti
   return await userService
   .findUser(Number.parseInt(req.body.userType), { dniNumber: req.params.dniNumber })
   .then((user: Familiars | Carers ) => { 
-    return res.send(user) })
+    return res.send(user.convertToJson()) })
   .catch( (error: HandlerError) => {
     res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     next();
@@ -23,7 +23,10 @@ export async function getUserByDni(req: Request, res: Response, next: NextFuncti
 export async function createUser(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
       .createAndSave(req.body)
-      .then( (user: Familiars | Carers) => res.status(HttpStatus.CREATED).send({ user }))
+      .then( (user: Familiars | Carers) => {
+        const json = user.convertToJson()
+        res.status(HttpStatus.CREATED).send({ json })
+      })
       .catch( (error: any) => {
         const handlerError = new HandlerError(error, error.getErrorCode);
         res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -44,7 +47,9 @@ export async function modifyPassword(req: Request, res: Response, next: NextFunc
 export async function modifyUser(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
   return await userService
   .modify(Number.parseInt(req.body.userType), req.body)
-  .then( (user: any) => res.status(HttpStatus.OK).send({ user }))
+  .then( (user: Familiars | Carers) => {
+    const json = user.convertToJson()
+    res.status(HttpStatus.OK).send({ json })})
   .catch( (error: any) => {
     const handlerError = new HandlerError(error, error.getErrorCode);
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -53,7 +58,7 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
 }
 
 export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.description, req.body.gender)
+  return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.specialty ,req.body.description, req.body.gender)
   .then( (carersList: Carers[]) => {
     const jsonList: any[] = []
     carersList.forEach((element: Carers) => {

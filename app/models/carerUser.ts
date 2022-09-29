@@ -1,8 +1,23 @@
+import { invalidSpeciality } from '../errors/constantsErrors';
+import { HandlerError } from '../errors/handlerError';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PossibleContacts } from './possibleContact';
 import { Reviews } from './review';
 import { Services } from './service';
 import { Users } from './user';
+import HttpStatus from 'http-status-codes';
+
+const specialityString = new Map<string, number>([
+  ["Cuidador", 1],
+  ["Acompaniante", 2],
+  ["Ambas", 3]
+]);
+
+const specialityNumber = new Map<number, string>([
+  [1, "Cuidador"],
+  [2, "Acompaniante"],
+  [3, "Ambas"]
+]);
 
 @Entity({ name: 'Carers' })
 export class Carers {
@@ -30,9 +45,14 @@ export class Carers {
   longitudeCurrent?: string;
 
   @Column({
-    type: "varchar",
+    type: "int",
     nullable: false})
-  specialty?: string;
+  specialty: number;
+
+  @Column({
+    type: "int",
+    nullable: false})
+  isNurse: number;
 
   @Column({
     type: "varchar",
@@ -52,29 +72,56 @@ export class Carers {
 
   distance: number
 
-  public modifyData({amountCare, price, specialty, experience, latitudeCurrent, longitudeCurrent, user}: any): void{
+  public modifyData({amountCare, price, specialty, experience, latitudeCurrent, longitudeCurrent, user, isNurse}: any): void{
     this.amountCare = amountCare === undefined ? this.amountCare : amountCare;
     this.price = price === undefined ? this.price : price;
-    this.specialty = specialty === undefined ? this.specialty : specialty;
+    this.specialty = specialty === undefined ? this.specialty : this.definedSpeciality(specialty);
     this.experience = experience === undefined ? this.experience : experience;
     this.latitudeCurrent = latitudeCurrent === undefined ? this.latitudeCurrent : latitudeCurrent;
     this.longitudeCurrent = longitudeCurrent === undefined ? this.longitudeCurrent : longitudeCurrent;
+    this.isNurse = isNurse === undefined ? this.isNurse : this.convertBoolean(isNurse);
     this.user = user;
   }
 
-  constructor(amountCare: number, price: number, user: Users, latitudeCurrent?: string, longitudeCurrent?: string, experience?: string, specialty?: string ) {
+  constructor(amountCare: number, price: number, user: Users, specialty: string, isNurse: boolean, latitudeCurrent?: string, longitudeCurrent?: string, experience?: string) {
     this.user = user;
     this.amountCare = amountCare;
     this.price = price;
-    this.specialty = specialty;
+    this.specialty = this.definedSpeciality(specialty);
+    this.isNurse = this.convertBoolean(isNurse)
     this.experience = experience;
     this.latitudeCurrent = latitudeCurrent;
     this.longitudeCurrent = longitudeCurrent;
  }
 
- static convertToJson({user, amountCare, price, specialty, experience, latitudeCurrent, longitudeCurrent}: Carers): any{
-  return {user: Users.convertToJson(user), amountCare: amountCare, price: price, latitudeCurrent: latitudeCurrent, longitudeCurrent: longitudeCurrent, specialty: specialty, experience: experience}
+ static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent}: Carers): any{
+  return {user: Users.convertToJson(user), amountCare: amountCare, price: price, latitudeCurrent: latitudeCurrent, 
+    longitudeCurrent: longitudeCurrent, specialty: this.convertSpeciality(specialty), isNurse: this.convertAvailable(isNurse), experience: experience}
  }
+
+ convertToJson(): any{
+  return {user: Users.convertToJson(this.user), amountCare: this.amountCare, price: this.price, latitudeCurrent: this.latitudeCurrent, 
+    longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(this.specialty), isNurse: this.convertAvailable(this.isNurse), experience: this.experience}
+ }
+
+  static convertSpeciality(specialty: number) {
+    const speciality = specialityNumber.get(specialty)
+    if (speciality === undefined) {
+      throw new HandlerError(invalidSpeciality, HttpStatus.BAD_REQUEST)
+    }
+  return speciality
+  }
+  static convertAvailable(isNurse: number) {
+    return isNurse == 0 ? true : false
+  }
+
+ public definedSpeciality(specialty: string): number{
+  const specialityNumber = specialityString.get(specialty)
+  if (specialityNumber === undefined) {
+    return 4
+  }
+  return specialityNumber
+ } 
 
  public setUser(user: Users): void {
   this.user = user;
@@ -108,4 +155,19 @@ export class Carers {
   }
  }
 
+ public convertBoolean(value: Boolean): number {
+  return value ? 0 : 1
+ }
+
+ public convertAvailable(value: number): Boolean {
+  return value == 0 ? true : false
+ }
+
+ public convertSpeciality(specialty: number): string {
+  const speciality = specialityNumber.get(specialty)
+  if (speciality === undefined) {
+    throw new HandlerError(invalidSpeciality, HttpStatus.BAD_REQUEST)
+  }
+  return speciality
+ }
 }

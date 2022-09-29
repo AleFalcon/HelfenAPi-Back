@@ -19,7 +19,7 @@ const userRepository = (): Repository<Users> => getRepository(Users);
 
 const actionSave = new Map<number, any>([
   [1, async ({userCreated}: any) => await familiarUserRepository().save(new Familiars(userCreated))],
-  [2, async ({amountCare, price, specialty, experience, userCreated}: any)=> await carerUserRepository().save(new Carers(amountCare, price, userCreated, experience, specialty))]
+  [2, async ({amountCare, price, specialty, isNurse, experience, userCreated}: any)=> await carerUserRepository().save(new Carers(amountCare, price, userCreated, specialty, isNurse, experience))]
 ]);
 
 const actionFindUser = new Map<number, any>([
@@ -68,12 +68,12 @@ export async function findUser(type: number, options?: FindConditions<Users>): P
 }
 
 export async function createAndSave({userType: type, name, lastName, dateOfBirth, dniNumber, localAddress, mail, phoneNumber, password,
-  postalCode, province, apartment, gender, latitude, longitude, floor, price, specialty, experience }: any): Promise<any> {
+  postalCode, province, apartment, gender, latitude, longitude, floor, price, specialty, isNurse, experience }: any): Promise<any> {
   const user: Users = new Users(name, lastName, dateOfBirth, dniNumber, localAddress,
     mail, phoneNumber, bcrypt.hashSync(password, bcrypt.genSaltSync(10)), postalCode, province, gender, latitude, longitude,
     apartment, floor);
   const userCreated = await userRepository().save(user)
-  const userTypeCreated: Familiars | Carers = await actionSave.get(type)({amountCare: 0 , price, specialty, experience, userCreated});
+  const userTypeCreated: Familiars | Carers = await actionSave.get(type)({amountCare: 0 , price, specialty, isNurse, experience, userCreated});
   return userTypeCreated;
 }
 
@@ -101,8 +101,8 @@ export async function modifyAditionalInformation(type: number, aditionalInformat
 }
 
 
-export async function findUsersByServices(latitude: string, longitude: string, services?: string[], gender?: string): Promise<any> {
-  return await serviceService.findAllUserList(latitude, longitude, services, gender)
+export async function findUsersByServices(latitude: string, longitude: string, specialty: string, services?: String[], gender?: String): Promise<any> {
+  return await serviceService.findAllUserList(latitude, longitude, specialty, services, gender)
 }
 
 export async function findAditionalUser(type: number, idUser: number): Promise<any> {
