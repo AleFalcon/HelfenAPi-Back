@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "description": "Example base for typescript projects",
   "engines": {
-    "node": "10.14.1",
-    "npm": "6.4.1"
+    "node": "16.17.1",
+    "npm": "8.19.2"
   },
   "volta": {
-    "node": "10.14.1",
-    "npm": "6.4.1"
+    "node": "16.17.1",
+    "npm": "8.19.2"
   },
   "scripts": {
     "build": "tsc",
