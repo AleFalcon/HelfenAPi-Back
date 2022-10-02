@@ -2,6 +2,10 @@
   "name": "typescript-base",
   "version": "0.1.0",
   "description": "Example base for typescript projects",
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.4.1"
+  },
   "volta": {
     "node": "10.14.1",
     "npm": "6.4.1"
@@ -84,8 +88,7 @@
     "rollbar": "^2.3.9",
     "typeorm": "^0.2.45",
     "umzug": "^2.1.0",
-    "util": "^0.12.4",
-    "yargs": "^17.6.0"
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
