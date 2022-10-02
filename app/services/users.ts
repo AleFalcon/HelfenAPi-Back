@@ -133,8 +133,8 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
 }
 
 export async function checkPythonScript(dni: string): Promise<boolean> {
-    const image1 = pythonPath + dni + '1.jpg'
-    const image2 = pythonPath + dni + '2.jpg'
+    const image1 = pythonPath + dni + '-1.jpg'
+    const image2 = pythonPath + dni + '-2.jpg'
     
     const options = { 
       scriptPath: pythonPath,
