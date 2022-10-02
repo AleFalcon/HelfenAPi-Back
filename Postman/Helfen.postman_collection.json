@@ -3550,6 +3550,64 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "FaceId",
+			"item": [
+				{
+					"name": "Save Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "El nombre del archivo es 'DNI'+'-1.jpg'",
+									"type": "file",
+									"src": "/home/alex/Descargas/1234-1.jpg"
+								},
+								{
+									"key": "file1",
+									"description": "El nombre del archivo es 'DNI'+'-2.jpg'",
+									"type": "file",
+									"src": "/home/alex/Descargas/1234-2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{path}}/saveimage",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"saveimage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/user/checkid/{{dni}}",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"user",
+								"checkid",
+								"{{dni}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
