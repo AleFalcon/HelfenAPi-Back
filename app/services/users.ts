@@ -147,11 +147,13 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
           console.log("Inicio Script Python")
           PythonShell.run(pythonScript, options, function (err, result) {
             if (err) {
+              console.log(err)
               console.log("Fallo script Python")
               reject({ success: false, err })
+            } else {
+              console.log("Cheto script Python")
+              resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
             }
-            console.log("Cheto script Python")
-            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
           })
         })
     
