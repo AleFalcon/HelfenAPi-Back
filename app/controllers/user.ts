@@ -86,9 +86,13 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
     if (req.files != undefined) {
       for(let count = 0; count < 2 ; count++){
         if(count === 0) {
+          console.log("Inicio guardado 1da imagen")
           uploadFiles(req.files.file as UploadedFile)
+          console.log("Se guardo 1ra imagen")
         } else {
+          console.log("Inicio guardado 2da imagen")
           uploadFiles(req.files.file1 as UploadedFile)
+          console.log("Se guardo 2ra imagen")
         }
       }
       res.status(HttpStatus.OK).send()

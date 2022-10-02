@@ -141,10 +141,16 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
       args: [image1, image2]
     }
     
+    console.log("Creacion de promesa")
     const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
         {
+          console.log("Inicio Script Python")
           PythonShell.run(pythonScript, options, function (err, result) {
-            if (err) { reject({ success: false, err }) }
+            if (err) {
+              console.log("Fallo script Python")
+              reject({ success: false, err })
+            }
+            console.log("Cheto script Python")
             resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
           })
         })
