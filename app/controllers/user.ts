@@ -96,6 +96,9 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
         }
       }
       res.status(HttpStatus.OK).send()
+    } else {
+      res.status(HttpStatus.BAD_REQUEST).send({ message : needImages })
+      next();  
     }
   } catch (e) {
     res.status(HttpStatus.BAD_REQUEST).send({ message : needImages })
