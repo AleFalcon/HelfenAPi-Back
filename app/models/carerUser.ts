@@ -94,14 +94,16 @@ export class Carers {
     this.longitudeCurrent = longitudeCurrent;
  }
 
- static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent}: Carers): any{
+ static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent, id}: Carers): any{
   return {user: Users.convertToJson(user), amountCare: amountCare, price: price, latitudeCurrent: latitudeCurrent, 
-    longitudeCurrent: longitudeCurrent, specialty: this.convertSpeciality(specialty), isNurse: this.convertAvailable(isNurse), experience: experience}
+    longitudeCurrent: longitudeCurrent, specialty: this.convertSpeciality(specialty), isNurse: this.convertAvailable(isNurse),
+    experience: experience, carerId: id}
  }
 
  convertToJson(): any{
   return {user: Users.convertToJson(this.user), amountCare: this.amountCare, price: this.price, latitudeCurrent: this.latitudeCurrent, 
-    longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(this.specialty), isNurse: this.convertAvailable(this.isNurse), experience: this.experience}
+    longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(this.specialty), isNurse: this.convertAvailable(this.isNurse),
+    experience: this.experience, carerId: this.id}
  }
 
   static convertSpeciality(specialty: number) {

@@ -25,7 +25,7 @@ export async function createUser(req: Request, res: Response, next: NextFunction
       .createAndSave(req.body)
       .then( (user: Familiars | Carers) => {
         const json = user.convertToJson()
-        res.status(HttpStatus.CREATED).send({ json })
+        res.status(HttpStatus.CREATED).send({ user: json })
       })
       .catch( (error: any) => {
         const handlerError = new HandlerError(error, error.getErrorCode);

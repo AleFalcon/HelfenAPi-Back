@@ -136,10 +136,10 @@ export class Users {
       this.floor = floor === undefined ? this.floor : floor;
   }
 
-  static convertToJson({name, lastName, dateOfBirth, localAddress, mail, otherMail, phoneNumber, postalCode, province, apartment, gender, latitude, longitude, floor}: Users): any{
+  static convertToJson({name, lastName, dateOfBirth, localAddress, mail, otherMail, phoneNumber, postalCode, province, apartment, gender, latitude, longitude, floor, id}: Users): any{
     return {name: name, lastName: lastName, dateOfBirth: dateOfBirth, localAddress: localAddress, mail: mail, otherMail: otherMail, 
       phoneNumber: phoneNumber, postalCode: postalCode, province: province, apartment: apartment, gender: gender, latitude: latitude,
-      longitude: longitude, floor: floor}
+      longitude: longitude, floor: floor, id: id}
    }
 
    public getLongitude(): string {

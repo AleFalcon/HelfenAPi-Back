@@ -31,6 +31,6 @@ export class Familiars {
    }
 
    convertToJson(): any{
-    return {user: Users.convertToJson(this.user)}
+    return {user: Users.convertToJson(this.user), familiarId: this.id}
    }
 }

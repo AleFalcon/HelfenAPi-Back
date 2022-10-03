@@ -26,10 +26,10 @@ export function validateSchemaUser (req: Request, res: Response, next: NextFunct
     missingFields = validateGenericParameter(req.body.gender, missingFields, 'gender');
     missingFields = validateGenericParameter(req.body.phoneNumber, missingFields, 'phoneNumber');
     missingFields = validateGenericParameter(req.body.password, missingFields, 'password');
-    missingFields = validateGenericParameter(req.body.isNurse, missingFields, 'isNurse');
-    missingFields = validateGenericParameter(req.body.specialty, missingFields, 'specialty');
-
+    
     if (req.body.userType === carerType) {
+        missingFields = validateGenericParameter(req.body.isNurse, missingFields, 'isNurse');
+        missingFields = validateGenericParameter(req.body.specialty, missingFields, 'specialty');
         missingFields = validateGenericParameter(req.body.price, missingFields, 'price');
     }
     
