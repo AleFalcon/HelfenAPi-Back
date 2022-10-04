@@ -83,6 +83,7 @@ function uploadFiles(EDFile: UploadedFile) {
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
+    console.log(req.files)
     if (req.files != undefined) {
       for(let count = 0; count < 2 ; count++){
         console.log(req.files)
