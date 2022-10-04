@@ -85,6 +85,7 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
   try{
     if (req.files != undefined) {
       for(let count = 0; count < 2 ; count++){
+        console.log(req.files)
         if(count === 0) {
           console.log("Inicio guardado 1da imagen")
           uploadFiles(req.files.file as UploadedFile)
