@@ -86,9 +86,10 @@ function uploadFiles(EDFile: UploadedFile) {
 }
 
 const fileMap = new Map<number, any>([
-  [0, (file: UploadedFile) => uploadFiles(file)],
-  [1, (file: UploadedFile) => uploadFiles(file)],
-  [2, (file: UploadedFile) => uploadFiles(file)]
+  [0, (files: any) => uploadFiles(files.file as UploadedFile)],
+  [1, (files: any) => uploadFiles(files.file1 as UploadedFile)],
+  [2, (files: any) => uploadFiles(files.file2 as UploadedFile)],
+  [3, (files: any) => uploadFiles(files.file3 as UploadedFile)]
 ]);
 
 
@@ -97,9 +98,9 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
   try{
     console.log(req)
     if (req.files != undefined) {
-      for(let count = 0; count < 3 ; count++){
+      for(let count = 0; count < 4 ; count++){
         console.log("Inicio guardado " + count +"da imagen")
-        fileMap.get(count)
+        fileMap.get(count)(req.files)
         console.log("Se guardo la " + count +"da imagen")
       }
       res.status(HttpStatus.OK).send()
