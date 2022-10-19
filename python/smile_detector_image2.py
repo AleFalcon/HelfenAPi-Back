@@ -1,8 +1,6 @@
 import cv2
 import sys
-import gc
 
-gc.collect()
 width = 600
 height = 800
 white = [255,255,255]
