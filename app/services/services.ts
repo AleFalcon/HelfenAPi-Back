@@ -53,7 +53,7 @@ function filterByServices(elem: Carers, options?: String[]): boolean{
 
 function filterBySpecialty(elem: Carers, specialty: String): boolean{
     if(specialty !== "Ambos") {
-      if(specialty === elem.convertSpeciality(elem.specialty)){
+      if(specialty === elem.convertSpeciality()){
         return true;
       } else {
         return false

@@ -51,4 +51,13 @@ export class Reviews {
     return review;
     }
 
+  static calculateQualification(reviews: Reviews[]): number {
+    let qualification: number = 0;
+    let count: number = 0;
+    reviews.forEach((review: Reviews) => {
+      qualification += review.classification
+      count ++
+    })
+    return qualification/count
+    }
 }

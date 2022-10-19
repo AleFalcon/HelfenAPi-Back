@@ -102,7 +102,7 @@ export class Carers {
 
  convertToJson(): any{
   return {user: Users.convertToJson(this.user), amountCare: this.amountCare, price: this.price, latitudeCurrent: this.latitudeCurrent, 
-    longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(this.specialty), isNurse: this.convertAvailable(this.isNurse),
+    longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(), isNurse: this.convertAvailable(this.isNurse),
     experience: this.experience, carerId: this.id}
  }
 
@@ -165,8 +165,8 @@ export class Carers {
   return value == 0 ? true : false
  }
 
- public convertSpeciality(specialty: number): string {
-  const speciality = specialityNumber.get(specialty)
+ public convertSpeciality(): string {
+  const speciality = specialityNumber.get(this.specialty)
   if (speciality === undefined) {
     throw new HandlerError(invalidSpeciality, HttpStatus.BAD_REQUEST)
   }

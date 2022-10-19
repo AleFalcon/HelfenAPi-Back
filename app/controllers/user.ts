@@ -8,6 +8,9 @@ import { UploadedFile } from 'express-fileupload';
 import path from 'path';
 import { pythonPath } from '../constants/globalConstants';
 import { needImages } from '../errors/constantsErrors';
+import reviewService from '../services/review';
+import { FindCondition } from 'typeorm';
+import { Reviews } from '../models/review';
 
 export async function getUserByDni(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService
@@ -59,13 +62,15 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
 
 export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.specialty ,req.body.description, req.body.gender)
-  .then( (carersList: Carers[]) => {
+  .then( async (carersList: Carers[]) => {
     const jsonList: any[] = []
-    carersList.forEach((element: Carers) => {
-      jsonList.push({...Carers.convertToJson(element), distance: element.distance});
-    });
+    for(let element of carersList) {
+      const reviews: Reviews[] = await reviewService.findAllReviews({ carer: element.id as FindCondition<Carers> })
+      let qualification = reviews.length === 0 ? 3 : Reviews.calculateQualification(reviews);
+      jsonList.push({ ...Carers.convertToJson(element), distance: element.distance, qualification: qualification })
+    }
     res.status(HttpStatus.OK).send({carers: jsonList})
-  } )
+  })
   .catch( (error: any) => {
     const handlerError = new HandlerError(error, error.getErrorCode);
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
@@ -80,22 +85,22 @@ function uploadFiles(EDFile: UploadedFile) {
   })
 }
 
+const fileMap = new Map<number, any>([
+  [0, (file: UploadedFile) => uploadFiles(file)],
+  [1, (file: UploadedFile) => uploadFiles(file)],
+  [2, (file: UploadedFile) => uploadFiles(file)]
+]);
+
+
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
     console.log(req)
     if (req.files != undefined) {
-      for(let count = 0; count < 2 ; count++){
-        console.log(req.files)
-        if(count === 0) {
-          console.log("Inicio guardado 1da imagen")
-          uploadFiles(req.files.file as UploadedFile)
-          console.log("Se guardo 1ra imagen")
-        } else {
-          console.log("Inicio guardado 2da imagen")
-          uploadFiles(req.files.file1 as UploadedFile)
-          console.log("Se guardo 2ra imagen")
-        }
+      for(let count = 0; count < 3 ; count++){
+        console.log("Inicio guardado " + count +"da imagen")
+        fileMap.get(count)
+        console.log("Se guardo la " + count +"da imagen")
       }
       res.status(HttpStatus.OK).send()
     } else {
