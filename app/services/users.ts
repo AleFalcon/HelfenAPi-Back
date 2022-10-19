@@ -11,7 +11,7 @@ import HttpStatus from 'http-status-codes';
 import fs from 'fs';
 
 import bcrypt from 'bcrypt';
-import { carerType, familiarType, pythonPath, pythonScript } from '../constants/globalConstants';
+import { carerType, familiarType, pythonEyesScript, pythonPath, pythonScript, pythonSmileScript } from '../constants/globalConstants';
 
 const familiarUserRepository = (): Repository<Familiars> => getRepository(Familiars);
 const carerUserRepository = (): Repository<Carers> => getRepository(Carers);
@@ -132,7 +132,7 @@ export async function findUserComplete(user: Users): Promise<Familiars | Carers>
   }
 }
 
-export async function checkPythonScript(dni: string): Promise<boolean> {
+async function checkFacePythonScript(dni: string): Promise<boolean> {
     const image1 = pythonPath + dni + '-1.jpg'
     const image2 = pythonPath + dni + '-2.jpg'
     
@@ -141,17 +141,16 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
       args: [image1, image2]
     }
     
-    console.log("Creacion de promesa")
     const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
         {
-          console.log("Inicio Script Python")
+          console.log("Start Face Script")
           PythonShell.run(pythonScript, options, function (err, result) {
             if (err) {
               console.log(err)
-              console.log("Fallo script Python")
+              console.log("Face script Failed")
               reject({ success: false, err })
             } else {
-              console.log("Cheto script Python")
+              console.log("Face script Success")
               resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
             }
           })
@@ -166,6 +165,85 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
       return results
     }
 }
+
+async function checkSmilePythonScript(dni: string): Promise<boolean> {
+  const image = pythonPath + dni + '-3.jpg'
+  
+  const options = { 
+    scriptPath: pythonPath,
+    args: [image]
+  }
+  
+  console.log("Creacion de promesa")
+  const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
+      {
+        console.log("Start Smile Script")
+        PythonShell.run(pythonSmileScript, options, function (err, result) {
+          if (err) {
+            console.log(err)
+            console.log("Smile script Failed")
+            reject({ success: false, err })
+          } else {
+            console.log("Smile script Success")
+            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
+          }
+        })
+      })
+  
+  deleteImage(image)
+
+  if (!success) {
+    throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
+  } else {
+    return results
+  }
+}
+
+async function checkEyesPythonScript(dni: string): Promise<boolean> {
+  const image = pythonPath + dni + '-4.jpg'
+  
+  const options = { 
+    scriptPath: pythonPath,
+    args: [image]
+  }
+  
+  console.log("Creacion de promesa")
+  const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
+      {
+        console.log("Start Eyes Script")
+        PythonShell.run(pythonEyesScript, options, function (err, result) {
+          if (err) {
+            console.log(err)
+            console.log("Eyes script Failed")
+            reject({ success: false, err })
+          } else {
+            console.log("Eyes script Success")
+            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
+          }
+        })
+      })
+  
+  deleteImage(image)
+
+  if (!success) {
+    throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
+  } else {
+    return results
+  }
+}
+
+export async function checkPythonScript(dni: string): Promise<boolean> {
+  try{
+    if(!await checkFacePythonScript(dni)) return false
+    if(!await checkSmilePythonScript(dni)) return false
+    if(!await checkEyesPythonScript(dni)) return false
+    return true
+  }catch(err){
+    const error = err as HandlerError
+    throw new HandlerError(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+  }
+}
+
 
 function deleteImage(image: string) {
   try {

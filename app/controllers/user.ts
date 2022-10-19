@@ -96,7 +96,6 @@ const fileMap = new Map<number, any>([
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
-    console.log(req)
     if (req.files != undefined) {
       for(let count = 0; count < 4 ; count++){
         console.log("Inicio guardado " + count +"da imagen")
@@ -117,5 +116,5 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
 export async function checkUserId(req: Request, res: Response): Promise<Response | void> {
   return await userService.checkPythonScript(req.params.dniNumber)
     .then((result: boolean) => res.status(HttpStatus.OK).send({ result }) )
-    .catch((error: HandlerError) => { return res.status(error.getErrorCode()).send({ message: error.getMessage() }) } )
+    .catch((error: HandlerError) => { return res.status(400).send({ message: error.getMessage() }) } )
 }
