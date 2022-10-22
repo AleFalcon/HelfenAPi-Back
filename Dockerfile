@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update -y && apt update -y && apt-get install -y curl && apt install python3.8 python3-dev python3-pip -y && alias python=python3.8
+RUN apt-get update -y && apt update -y && apt-get install -y curl && apt-get update && apt-get install libgl1 && apt install python3.8 python3-dev python3-pip -y && alias python=python3.8
 # bash will load volta() function via .bashrc 
 # using $VOLTA_HOME/load.sh
 SHELL ["/bin/bash", "-c"]
