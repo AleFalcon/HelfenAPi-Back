@@ -24,6 +24,6 @@ ENV NODE_ENV development
 
 RUN volta install node && volta install npm && npm i --save-dev @types/bcrypt
 RUN python3.8 -m pip install --upgrade pip
-# RUN python3.8 -m pip install "cmake" && python3.8 -m pip install -r requirements.txt
+RUN python3.8 -m pip install "cmake" && python3.8 -m pip install -r requirements.txt
 RUN chmod 777 /usr/helfen_app/*
 CMD ./start.sh
