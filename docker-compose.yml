@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  helfen-back:
+    image: utn/helfen:1.0.0
+    build: .
+    environment:
+      - DB_PORT=25060
+      - DB_USERNAME=doadmin
+      - DB_PASSWORD=AVNS_d-x8YDW-jYIS3cnlc5S
+      - DB_NAME=helfenapi-db
+      - NODE_ENV=development
   db:
     image: mysql:8.0
     container_name: mysql_helfen_api
