@@ -16,6 +16,12 @@ RUN curl https://get.volta.sh | bash
 COPY . /usr/helfen_app/
 WORKDIR /usr/helfen_app
 
+ENV DB_PORT 25060
+ENV DB_USERNAME doadmin
+ENV DB_PASSWORD AVNS_d-x8YDW-jYIS3cnlc5S
+ENV DB_NAME helfenapi-db
+ENV NODE_ENV development
+
 RUN volta install node && volta install npm && npm i --save-dev @types/bcrypt
 RUN python3.8 -m pip install --upgrade pip
 # RUN python3.8 -m pip install "cmake" && python3.8 -m pip install -r requirements.txt
