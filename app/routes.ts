@@ -30,7 +30,7 @@ export const init = (app: Application): void => {
   app.post('/user', [validateSchemaUser, userNotFound], createUser);
   app.get('/user/:dniNumber',  getUserByDni);
   app.patch('/user', [userFound, validatePasswordMiddleware], modifyPassword);
-  app.get('/users',  getUserByServices);
+  app.post('/users',  getUserByServices);
   app.put('/location', [userFound, updateLocation]);
   app.get('/location', [contactFound]);
   app.post("/saveimage", saveImage);
