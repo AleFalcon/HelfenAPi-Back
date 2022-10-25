@@ -94,16 +94,32 @@ export class Carers {
     this.longitudeCurrent = longitudeCurrent;
  }
 
- static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent, id}: Carers): any{
+ private convertServicesToString(services: Services[]): String[]{
+  const list: String[] = []
+  for(let service of services){
+    list.push(service.description)
+  }
+  return list
+ }
+
+ static convertServicesToString(services: Services[]): String[]{
+  const list: String[] = []
+  for(let service of services){
+    list.push(service.description)
+  }
+  return list
+ }
+
+ static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent, id, services}: Carers): any{
   return {user: Users.convertToJson(user), amountCare: amountCare, price: price, latitudeCurrent: latitudeCurrent, 
     longitudeCurrent: longitudeCurrent, specialty: this.convertSpeciality(specialty), isNurse: this.convertAvailable(isNurse),
-    experience: experience, carerId: id}
+    experience: experience, carerId: id, services: this.convertServicesToString(services)}
  }
 
  convertToJson(): any{
   return {user: Users.convertToJson(this.user), amountCare: this.amountCare, price: this.price, latitudeCurrent: this.latitudeCurrent, 
     longitudeCurrent: this.longitudeCurrent, specialty: this.convertSpeciality(), isNurse: this.convertAvailable(this.isNurse),
-    experience: this.experience, carerId: this.id}
+    experience: this.experience, carerId: this.id, services: this.convertServicesToString(this.services)}
  }
 
   static convertSpeciality(specialty: number) {
@@ -174,4 +190,5 @@ export class Carers {
   }
   return speciality
  }
+
 }
