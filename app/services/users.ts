@@ -150,14 +150,11 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
               console.log("Face script Failed")
               reject({ success: false, err })
             } else {
-              console.log("Face script Success")
+              console.log("Face script Finished")
               resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
             }
           })
         })
-    
-    deleteImage(image1)
-    deleteImage(image2)
 
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
@@ -184,13 +181,11 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
             console.log("Smile script Failed")
             reject({ success: false, err })
           } else {
-            console.log("Smile script Success")
+            console.log("Smile script Finished")
             resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
           }
         })
       })
-  
-  deleteImage(image)
 
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
@@ -217,13 +212,11 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
             console.log("Eyes script Failed")
             reject({ success: false, err })
           } else {
-            console.log("Eyes script Success")
+            console.log("Eyes script Finished")
             resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
           }
         })
       })
-  
-  deleteImage(image)
 
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
@@ -234,10 +227,16 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
 
 export async function checkPythonScript(dni: string): Promise<boolean> {
   try{
-    if(!await checkFacePythonScript(dni)) return false
-    if(!await checkSmilePythonScript(dni)) return false
-    if(!await checkEyesPythonScript(dni)) return false
-    return true
+    let flag = true
+    if(!await checkFacePythonScript(dni)) flag = false
+    if(flag && !await checkSmilePythonScript(dni)) flag = false
+    if(flag && !await checkEyesPythonScript(dni)) flag = false
+
+    for(let count = 1; count < 5; count++){
+      deleteImage(pythonPath + dni + '-' + count +'.jpg')
+    }
+
+    return flag
   }catch(err){
     const error = err as HandlerError
     throw new HandlerError(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
