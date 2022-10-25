@@ -1,4 +1,4 @@
-import { carerType } from '../constants/globalConstants';
+import { accompanistSpecialty, bothSpecialty, carerSpecialty, carerType } from '../constants/globalConstants';
 import { Response, NextFunction, Request } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 
@@ -53,7 +53,7 @@ export function validateDni (req: Request, res: Response, next: NextFunction): v
 
 export function validateSpeciality(req: Request, res: Response, next: NextFunction): void {
     if (req.body.userType === carerType) {
-        if (req.body.speciality === 1 || req.body.speciality === 2 || req.body.speciality === 3) {
+        if (req.body.specialty === carerSpecialty || req.body.specialty === accompanistSpecialty || req.body.specialty === bothSpecialty) {
             next()
         } else {
             const error = new HandlerError("Invalid speciality", BAD_REQUEST);
