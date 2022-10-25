@@ -72,6 +72,7 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
     res.status(HttpStatus.OK).send({carers: jsonList})
   })
   .catch( (error: any) => {
+    console.log(error)
     const handlerError = new HandlerError(error, error.getErrorCode);
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
