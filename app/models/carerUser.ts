@@ -113,6 +113,7 @@ export class Carers {
     }
   return speciality
   }
+
   static convertAvailable(isNurse: number) {
     return isNurse == 0 ? true : false
   }
@@ -120,7 +121,8 @@ export class Carers {
  public definedSpeciality(specialty: string): number{
   const specialityNumber = specialityString.get(specialty)
   if (specialityNumber === undefined) {
-    throw new HandlerError(invalidSpeciality, HttpStatus.BAD_REQUEST)
+    // NUNCA DEBERIA PASAR
+    return 4
   }
   return specialityNumber
  } 

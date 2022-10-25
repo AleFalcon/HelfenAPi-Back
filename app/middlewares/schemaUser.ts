@@ -50,3 +50,16 @@ export function validateDni (req: Request, res: Response, next: NextFunction): v
         next();
     }
 }
+
+export function validateSpeciality(req: Request, res: Response, next: NextFunction): void {
+    if (req.body.userType === carerType) {
+        if (req.body.speciality === 1 || req.body.speciality === 2 || req.body.speciality === 3) {
+            next()
+        } else {
+            const error = new HandlerError("Invalid speciality", BAD_REQUEST);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+        }
+    } else {
+        next();
+    }
+}

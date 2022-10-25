@@ -2,7 +2,7 @@ import { Application } from 'express';
 import { checkUserId, createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser, saveImage }  from './controllers/user';
 import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent, acceptEvent }  from './controllers/event';
 import { userFound, userFoundByEmail, userFoundByEmailForgetPassword, userNotFound } from './middlewares/userFound';
-import { validateSchemaUser } from './middlewares/schemaUser';
+import { validateSchemaUser, validateSpeciality } from './middlewares/schemaUser';
 import { passwordConfirm, passwordConfirmMiddleware, validatePasswordMiddleware } from './middlewares/validatePassword';
 import { validateSchemaEvent, validateSchemaEventModify } from './middlewares/schemaEvent';
 import { eventFound, eventFoundByParams, eventList } from './middlewares/eventFound';
@@ -27,10 +27,10 @@ export const init = (app: Application): void => {
   app.patch('/forgetPassword', [userFoundByEmailForgetPassword, passwordConfirmMiddleware], modifyPassword);
   //---------------
   app.put('/user', [userFound], modifyUser);
-  app.post('/user', [validateSchemaUser, userNotFound], createUser);
+  app.post('/user', [validateSchemaUser, validateSpeciality, userNotFound], createUser);
   app.get('/user/:dniNumber',  getUserByDni);
   app.patch('/user', [userFound, validatePasswordMiddleware], modifyPassword);
-  app.post('/users',  getUserByServices);
+  app.post('/users', getUserByServices);
   app.put('/location', [userFound, updateLocation]);
   app.get('/location', [contactFound]);
   app.post("/saveimage", saveImage);
