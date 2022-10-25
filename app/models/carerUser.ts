@@ -94,20 +94,28 @@ export class Carers {
     this.longitudeCurrent = longitudeCurrent;
  }
 
- private convertServicesToString(services: Services[]): String[]{
+ private convertServicesToString(services: Services[]): String[] | null{
   const list: String[] = []
-  for(let service of services){
-    list.push(service.description)
+  if (services !== undefined) {
+    for(let service of services){
+      list.push(service.description)
+    }
+    return list
+  } else {
+    return null
   }
-  return list
  }
 
- static convertServicesToString(services: Services[]): String[]{
+ static convertServicesToString(services: Services[]): String[] | null{
   const list: String[] = []
-  for(let service of services){
-    list.push(service.description)
+  if (services !== undefined) {
+    for(let service of services){
+      list.push(service.description)
+    }
+    return list
+  } else {
+    return null
   }
-  return list
  }
 
  static convertToJson({user, amountCare, price, specialty, isNurse, experience, latitudeCurrent, longitudeCurrent, id, services}: Carers): any{
