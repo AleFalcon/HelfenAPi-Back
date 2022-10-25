@@ -12,8 +12,8 @@ newimage= cv2.copyMakeBorder(image,0,0,60,60,cv2.BORDER_CONSTANT,value=white)
 gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
 gray = cv2.bilateralFilter(gray,5,1,1)
 # load the haar cascades face and smile detectors
-face_detector = cv2.CascadeClassifier("haar_cascade/haarcascade_frontalface_default.xml")
-smile_detector = cv2.CascadeClassifier("haar_cascade/haarcascade_smile.xml")
+face_detector = cv2.CascadeClassifier("python/haar_cascade/haarcascade_frontalface_default.xml")
+smile_detector = cv2.CascadeClassifier("python/haar_cascade/haarcascade_smile.xml")
 
 # detect faces in the grayscale image
 face_rects = face_detector.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
