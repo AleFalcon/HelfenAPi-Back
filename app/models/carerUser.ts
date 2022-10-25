@@ -120,7 +120,7 @@ export class Carers {
  public definedSpeciality(specialty: string): number{
   const specialityNumber = specialityString.get(specialty)
   if (specialityNumber === undefined) {
-    return 4
+    throw new HandlerError(invalidSpeciality, HttpStatus.BAD_REQUEST)
   }
   return specialityNumber
  } 
