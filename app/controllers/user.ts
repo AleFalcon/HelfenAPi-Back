@@ -115,6 +115,6 @@ export async function saveImage(req: Request, res: Response, next: NextFunction)
 
 export async function checkUserId(req: Request, res: Response): Promise<Response | void> {
   return await userService.checkPythonScript(req.params.dniNumber)
-    .then((result: boolean) => res.status(HttpStatus.OK).send({ result }) )
+    .then((result: boolean) => res.status(HttpStatus.OK).send({ result: result }) )
     .catch((error: HandlerError) => { return res.status(400).send({ message: error.getMessage() }) } )
 }
