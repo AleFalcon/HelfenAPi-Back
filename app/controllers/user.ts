@@ -72,7 +72,6 @@ export async function getUserByServices(req: Request, res: Response, next: NextF
     res.status(HttpStatus.OK).send({carers: jsonList})
   })
   .catch( (error: any) => {
-    //TODO OJOTA
     const handlerError = new HandlerError(error, 400);
     res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
     next();
