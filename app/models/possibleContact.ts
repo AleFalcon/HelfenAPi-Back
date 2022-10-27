@@ -25,6 +25,11 @@ export class PossibleContacts {
     nullable: false})
   relationConfirmated: number;
 
+  @Column({
+    type: 'varchar',
+    nullable: false})
+  resume: string;
+
   constructor(carer: Carers, familiar: Familiars, contactConfirmated: Boolean, relationConfirmated: Boolean){
     this.carer = carer;
     this.familiar = familiar
@@ -34,6 +39,10 @@ export class PossibleContacts {
 
   setCarer(carer?: Carers){
     this.carer = carer
+  }
+
+  setResume(resume: string){
+    this.resume = resume
   }
 
   setContactConfirmated(contact: boolean){
@@ -46,7 +55,7 @@ export class PossibleContacts {
 
   convertToJson(): any{
     return { id: this.id, carer: this.carer, familiar: this.familiar, contactConfirmated: this.convertAvailable(this.contactConfirmated),
-      relationConfirmated: this.convertAvailable(this.relationConfirmated)}
+      relationConfirmated: this.convertAvailable(this.relationConfirmated), resume: this.resume}
   }
 
     static convertToJson({carer, familiar}: any): any{
