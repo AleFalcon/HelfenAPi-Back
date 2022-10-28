@@ -7,7 +7,7 @@ export class Events {
   id: number;
 
   /*
-   * Los días van del 1 al 7, siendo 1 para el Domingo y 7 para el Sabado 
+   * Los días van del 0 al 6, siendo 0 para el Domingo y 6 para el Sabado 
    */
   @Column({
     type: "int",
@@ -54,6 +54,9 @@ export class Events {
     type: 'int',
     nullable: false})
     familiar: number;
+
+  days: number[] = []
+  stringDays: string[] = []
 
   @ManyToOne(() => Carers, (carer: Carers) => carer.id, {eager: true})
   @JoinColumn({name: "carer", referencedColumnName: "id"})

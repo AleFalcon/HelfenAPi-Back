@@ -62,10 +62,17 @@ export function getEvent(req: Request, res: Response): Response {
   return res.status(HttpStatus.CREATED).send({ event: Events.convertToJson(req.body.event) });        
   }
 
+export function getCalendar(req: Request, res: Response, next: NextFunction): Response {
+  const eventList: Events[] = (req.body.event as Events[]).filter((element: Events) => Events.convertAvailable(element.status) === true)
+  return res.status(HttpStatus.CREATED).send({ events: eventService.generateDates(eventList)})
+  }
+
 export function getListEvent(req: Request, res: Response, next: NextFunction): Response {
   const eventList: any[] = []
-  req.body.event.forEach((element: any) => {
-    eventList.push(Events.convertToJson(element));
+  req.body.event.forEach((element: Events) => {
+    if(!Events.convertAvailable(element.status)) {
+      eventList.push(Events.convertToJson(element));
+    }
   });
   return res.status(HttpStatus.CREATED).send({ events: eventList });        
   }
