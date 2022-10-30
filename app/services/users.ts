@@ -231,16 +231,19 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
   try{
     let flag = true
     if(!await checkFacePythonScript(dni)) flag = false
+    console.log(flag)
     console.log("if de smile")
     if(flag && !await checkSmilePythonScript(dni)) flag = false
+    console.log(flag)
     console.log("if de eyes")
     if(flag && !await checkEyesPythonScript(dni)) flag = false
-
+    console.log(flag)
+    
     console.log("borrado de imagenes")
     for(let count = 1; count < 5; count++){
       deleteImage(pythonPath + dni + '-' + count +'.jpg')
     }
-
+    console.log(flag)
     return flag
   }catch(err){
     const error = err as HandlerError
