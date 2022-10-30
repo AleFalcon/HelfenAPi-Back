@@ -155,7 +155,7 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
             }
           })
         })
-
+    console.log(success)
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
