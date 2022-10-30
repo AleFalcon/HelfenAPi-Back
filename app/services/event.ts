@@ -65,8 +65,8 @@ function generateDatesString(list: Events[]): Events[]{
 function generateListDays(initialDay: Date, expirationDate?: string): string[]{
   const listDays: string[] = []
   const expiration = (expirationDate !== undefined) ? new Date(expirationDate) : undefined
+  var nextDay = new Date();
   for(let count = 0 ; count < 10 ; count++){
-    var nextDay = new Date();
     nextDay.setDate(initialDay.getDate() + (count * 7));
     if ( expiration === undefined || nextDay < expiration ){
       let stringDay: string = nextDay.toISOString().split('T')[0]
