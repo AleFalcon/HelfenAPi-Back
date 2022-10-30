@@ -156,6 +156,7 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
           })
         })
 
+    console.log("resultado faceId:" + success)
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
@@ -188,6 +189,7 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
         })
       })
 
+  console.log("resultado smile:" + success)
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
@@ -220,6 +222,7 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
         })
       })
 
+  console.log("resultado eyes:" + success)
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
