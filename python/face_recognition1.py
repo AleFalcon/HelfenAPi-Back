@@ -2,8 +2,8 @@ import face_recognition
 import sys
 
     # Load the jpg files into numpy arrays
-camera_image = face_recognition.load_image_file(sys.argv[1])
-dni_image = face_recognition.load_image_file(sys.argv[2])
+camera_image = face_recognition.load_image_file(sys.argv[2])
+dni_image = face_recognition.load_image_file(sys.argv[1])
 # Get the face encodings for each face in each image file
 # Since there could be more than one face in each image, it returns a list of encodings.
 # But since I know each image only has one face, I only care about the first encoding in each image, so I grab index 0.
