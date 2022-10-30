@@ -49,27 +49,32 @@ function generateDatesString(list: Events[]): Events[]{
   const listDays: string[] = []
   list.forEach((elem: Events) => {
     elem.days.forEach((numberDay: number) => {
-      const day = new Date()
-      let desplazamiento: number = 0
-      if (day.getDay() !== numberDay) {
-        desplazamiento= numberDay - day.getDay()
-      }
+        const day = new Date()
+        let desplazamiento: number = 0
+        if (day.getDay() !== numberDay) {
+          desplazamiento = numberDay - day.getDay()
+        }
         day.setDate(day.getDate() + desplazamiento)
-        generateListDays(day).forEach((day: string) => listDays.push(day))
+        generateListDays(day, elem.expirationDate).forEach((day: string) => listDays.push(day))
       })
-      elem.stringDays  = listDays.sort()
+      elem.stringDays = listDays.sort()
     })
   return list
 }
 
-function generateListDays(initialDay: Date): string[]{
+function generateListDays(initialDay: Date, expirationDate?: string): string[]{
   const listDays: string[] = []
+  const expiration = (expirationDate !== undefined) ? new Date(expirationDate) : undefined
   for(let count = 0 ; count < 10 ; count++){
     var nextDay = new Date();
     nextDay.setDate(initialDay.getDate() + (count * 7));
+    if ( expiration === undefined || nextDay < expiration ){
+      let stringDay: string = nextDay.toISOString().split('T')[0]
+      listDays.push(stringDay)
+    } else {
+      count = 10
+    }
     
-    let stringDay: string = nextDay.toISOString().split('T')[0]
-    listDays.push(stringDay)
   }
   return listDays
 }
