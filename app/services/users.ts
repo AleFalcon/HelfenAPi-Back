@@ -164,6 +164,7 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
 }
 
 async function checkSmilePythonScript(dni: string): Promise<boolean> {
+  console.log("Primera linea, script Smile")
   const image = pythonPath + dni + '-3.jpg'
   
   const options = { 
@@ -195,6 +196,7 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
 }
 
 async function checkEyesPythonScript(dni: string): Promise<boolean> {
+  console.log("Primera linea, script Eyes")
   const image = pythonPath + dni + '-4.jpg'
   
   const options = { 
@@ -229,9 +231,12 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
   try{
     let flag = true
     if(!await checkFacePythonScript(dni)) flag = false
+    console.log("if de smile")
     if(flag && !await checkSmilePythonScript(dni)) flag = false
+    console.log("if de eyes")
     if(flag && !await checkEyesPythonScript(dni)) flag = false
 
+    console.log("borrado de imagenes")
     for(let count = 1; count < 5; count++){
       deleteImage(pythonPath + dni + '-' + count +'.jpg')
     }
