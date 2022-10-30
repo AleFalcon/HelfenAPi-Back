@@ -26,8 +26,57 @@ export async function deleteEvent(eventId: string): Promise<DeleteResult | void>
   await eventRepository().delete(eventIdNumber);
   } 
 
+export function generateDates(events: Events[]): Events[] {
+  const newList: Events[] = []
+  events.forEach((elem: Events) => {
+    if(newList.length === 0) {
+      elem.days.push(elem.day)
+      newList.push(elem)
+    } else {
+      const event = newList.find((elemt: Events) => elemt.familiar === elem.familiar)
+      if ( event !== undefined) {
+        event.days.push(elem.day)
+      } else {
+        elem.days.push(elem.day)
+        newList.push(elem)
+      }
+    }
+  })
+  return generateDatesString(newList)
+}
+
+function generateDatesString(list: Events[]): Events[]{
+  const listDays: string[] = []
+  list.forEach((elem: Events) => {
+    elem.days.forEach((numberDay: number) => {
+      const day = new Date()
+      let desplazamiento: number = 0
+      if (day.getDay() !== numberDay) {
+        desplazamiento= numberDay - day.getDay()
+      }
+        day.setDate(day.getDate() + desplazamiento)
+        generateListDays(day).forEach((day: string) => listDays.push(day))
+      })
+      elem.stringDays  = listDays.sort()
+    })
+  return list
+}
+
+function generateListDays(initialDay: Date): string[]{
+  const listDays: string[] = []
+  for(let count = 0 ; count < 10 ; count++){
+    var nextDay = new Date();
+    nextDay.setDate(initialDay.getDate() + (count * 7));
+    
+    let stringDay: string = nextDay.toISOString().split('T')[0]
+    listDays.push(stringDay)
+  }
+  return listDays
+}
+
 export default {
     createAndSave,
     modify,
-    deleteEvent
+    deleteEvent,
+    generateDates
   };

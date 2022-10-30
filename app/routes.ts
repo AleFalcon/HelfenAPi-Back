@@ -1,11 +1,11 @@
 import { Application } from 'express';
 import { checkUserId, createUser, getUserByDni, getUserByServices, modifyPassword, modifyUser, saveImage }  from './controllers/user';
-import { createEvent, modifyEvent, deleteEvent, getEvent, getListEvent, acceptEvent }  from './controllers/event';
+import { createEvent, modifyEvent, deleteEvent, getListEvent, acceptEvent, getCalendar }  from './controllers/event';
 import { userFound, userFoundByEmail, userFoundByEmailForgetPassword, userNotFound } from './middlewares/userFound';
 import { validateSchemaUser, validateSpeciality } from './middlewares/schemaUser';
 import { passwordConfirm, passwordConfirmMiddleware, validatePasswordMiddleware } from './middlewares/validatePassword';
 import { validateSchemaEvent, validateSchemaEventModify } from './middlewares/schemaEvent';
-import { eventFound, eventFoundByParams, eventList } from './middlewares/eventFound';
+import { eventFound, eventFoundByParams, eventList, eventListQueryParams } from './middlewares/eventFound';
 import { carerUserFound } from './middlewares/carerUserFound';
 import { reviewFound, reviewFoundByParam, reviewFoundByParams, reviewList } from './middlewares/reviewFound';
 import { validateClassification, validateSchemaReview, validateSchemaReviewModify } from './middlewares/schemaReview';
@@ -36,9 +36,9 @@ export const init = (app: Application): void => {
   app.post("/saveimage", saveImage);
   app.get('/user/checkid/:dniNumber', checkUserId);
   //---------------
-  app.get('/event/:eventId', [eventFoundByParams], getEvent);
+  app.get('/calendar/:userId', [eventList], getCalendar);
   app.patch('/event/:eventId', [eventFoundByParams], acceptEvent);
-  app.get('/events/:userId', [eventList], getListEvent);
+  app.get('/events/', [eventListQueryParams], getListEvent);
   app.post('/event', [validateSchemaEvent, carerUserFound], createEvent);
   app.put('/event',[validateSchemaEventModify, eventFound, carerUserFound], modifyEvent);
   app.delete('/event/:eventId', deleteEvent);

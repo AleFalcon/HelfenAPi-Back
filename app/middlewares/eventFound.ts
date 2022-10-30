@@ -48,6 +48,27 @@ export async function eventList (req: Request, res: Response, next: NextFunction
     }
 }
 
+export async function eventListQueryParams (req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const careId = Number.parseInt(req.query.careId);
+        const familiarId = Number.parseInt(req.query.familiarId); 
+        if ( careId !== undefined && familiarId !== undefined  ){
+            const event: Events[] | undefined = await eventRepository().find({ carer: careId, familiar: familiarId} as FindConditions<Events>);
+            if( event === undefined ) {
+                throw new HandlerError(eventNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.event = event;
+                return next();
+            }
+        } else {
+            throw new HandlerError("careId and familiarId is requered", HttpStatus.BAD_REQUEST);
+        }
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    }
+}
+
 export async function eventFoundByParams (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const eventId = Number.parseInt(req.params.eventId); 

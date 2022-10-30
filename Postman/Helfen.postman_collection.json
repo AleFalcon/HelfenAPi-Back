@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111112\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex1.com\",\n    \"phoneNumber\": \"1111112222\",\n    \"password\": \"123456789\",\n    \"latitude\": \"2\",\n    \"longitude\": \"2\",\n    \"gender\": \"M\",\n    \"specialty\": \"Cuidador\",\n    \"isNurse\": false,\n    \"price\": 200\n}",
+							"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"latitude\": \"2\",\n    \"longitude\": \"2\",\n    \"gender\": \"M\",\n    \"price\": 200,\n    \"isNurse\": false,\n    \"specialty\": \"Acompaniante\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1289,15 +1289,12 @@
 				},
 				{
 					"name": "Get Carers by Services",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": \"-34.642620\",\n    \"longitude\": \"-58.522116\",\n    \"description\": [\n        \"Cuidador de tu vieja - 2\"\n    ],\n    \"specialty\": \"Cuidador\",\n    \"gender\": \"M\"\n}",
+							"raw": "{\n    \"latitude\": \"-34.642620\",\n    \"longitude\": \"-58.522116\",\n    \"description\": [\n        \"Aseo del espacio\"\n    ],\n    \"specialty\": \"Cuidador\",\n    \"gender\": \"M\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1384,7 +1381,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mail\": \"Carer3@alex.com\",\n    \"password\": \"123456789\"\n}",
+							"raw": "{\n    \"mail\": \"Carer@alex.com\",\n    \"password\": \"123456789\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1625,7 +1622,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"familiar\": 1,\n    \"carer\": 1,\n    \"day\": [2],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"LALALA\"\n}",
+							"raw": "{\n    \"familiar\": 1,\n    \"carer\": 5,\n    \"day\": [2],\n    \"date\": \"2022-10-25\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-12-25\",\n    \"notes\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1832,7 +1829,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"familiar\": 2,\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\",\n    \"status\": \"false\"\n}",
+							"raw": "{\n    \"familiar\": 2,\n    \"carer\": 1,\n    \"id\": 1,\n    \"day\": [3],\n    \"date\": \"2022-07-22\",\n    \"startEvent\": \"10:00\",\n    \"endEvent\": \"11:00\",\n    \"localAddress\": \"Calle falsa 123\",\n    \"expirationDate\": \"2022-07-25\",\n    \"notes\": \"MAMM\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2088,13 +2085,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/event/1",
+							"raw": "{{path}}/event/5",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"event",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -2154,18 +2151,28 @@
 					]
 				},
 				{
-					"name": "Get List Event",
+					"name": "Get List Events Pendings",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/events/1",
+							"raw": "{{path}}/events/?careId=5&familiarId=1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"events",
-								"1"
+								""
+							],
+							"query": [
+								{
+									"key": "careId",
+									"value": "5"
+								},
+								{
+									"key": "familiarId",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -2237,6 +2244,24 @@
 							"path": [
 								"event",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Calendar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/calendar/5",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"calendar",
+								"5"
 							]
 						}
 					},
@@ -3080,7 +3105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3167,7 +3192,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1,\n    \"contactConfirmated\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3255,7 +3280,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": false\n}",
+							"raw": "{\n    \"carer\": 4,\n    \"familiar\": 1,\n    \"relationConfirmated\": false,\n    \"resume\": \"Tenes que hacer todas estas tareas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3342,7 +3367,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
+							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3501,13 +3526,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/contact/1",
+							"raw": "{{path}}/contact/5",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"contact",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -3519,13 +3544,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/relation/1",
+							"raw": "{{path}}/relation/4",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"relation",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -3566,13 +3591,23 @@
 									"key": "file",
 									"description": "El nombre del archivo es 'DNI'+'-1.jpg'",
 									"type": "file",
-									"src": "/home/alex/Descargas/1234-1.jpg"
+									"src": "/home/alex/Descargas/123-1.jpg"
 								},
 								{
 									"key": "file1",
 									"description": "El nombre del archivo es 'DNI'+'-2.jpg'",
 									"type": "file",
-									"src": "/home/alex/Descargas/1234-2.jpg"
+									"src": "/home/alex/Descargas/123-2.jpg"
+								},
+								{
+									"key": "file2",
+									"type": "file",
+									"src": "/home/alex/Descargas/Postman/123-3.jpg"
+								},
+								{
+									"key": "file3",
+									"type": "file",
+									"src": "/home/alex/Descargas/123-4.jpg"
 								}
 							]
 						},
@@ -3594,14 +3629,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/user/checkid/{{dni}}",
+							"raw": "{{path}}/user/checkid/123",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"user",
 								"checkid",
-								"{{dni}}"
+								"123"
 							]
 						}
 					},
