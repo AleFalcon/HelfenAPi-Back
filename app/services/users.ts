@@ -157,6 +157,9 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
         })
 
     console.log("resultado faceId:" + success)
+    console.log(results)
+    console.log(results.toString().toLowerCase() === 'true')
+    console.log("--------------------------")
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
