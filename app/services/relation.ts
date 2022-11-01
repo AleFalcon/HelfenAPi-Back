@@ -33,7 +33,7 @@ export async function findContacts(options?: FindConditions<PossibleContacts>): 
 export async function findNotificationContacts(options?: FindConditions<PossibleContacts>): Promise<PossibleContacts[]> {
     return await possibleContactsRepository().find(options)
     .then((possibleContactsList: PossibleContacts[]) => { 
-        return possibleContactsList.filter((elem: PossibleContacts) => elem.contactConfirmated === 1)
+        return possibleContactsList
     })
     .catch(() => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR)})
 }
@@ -41,7 +41,7 @@ export async function findNotificationContacts(options?: FindConditions<Possible
 export async function findNotificationRelations(options?: FindConditions<PossibleContacts>): Promise<PossibleContacts[]> {
     return await possibleContactsRepository().find(options)
     .then((possibleContactsList: PossibleContacts[]) => { 
-        return possibleContactsList.filter((elem: PossibleContacts) => elem.relationConfirmated === 1)
+        return possibleContactsList
     })
     .catch(() => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR)})
 }
