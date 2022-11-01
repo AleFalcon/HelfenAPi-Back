@@ -65,7 +65,7 @@ export function getEvent(req: Request, res: Response): Response {
 export function getCalendar(req: Request, res: Response, next: NextFunction): Response {
   const eventList: Events[] = (req.body.event as Events[]).filter((element: Events) => Events.convertAvailable(element.status) === true)
   const list: any = []
-  eventService.generateDates(eventList).forEach((elem: Events) => list.push(elem.convertToJson()) )
+  eventService.generateDates(eventList).forEach((elem: Events) => list.push({...elem.convertToJson(), stringDays: elem.stringDays}) )
   return res.status(HttpStatus.CREATED).send({ events: list})
   }
 

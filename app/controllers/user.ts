@@ -96,7 +96,6 @@ const fileMap = new Map<number, any>([
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
-    console.log(req)
     if (req.files != undefined) {
       for(let count = 0; count < 4 ; count++){
         console.log("Inicio guardado " + count +"da imagen")
