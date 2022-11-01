@@ -77,7 +77,8 @@ export class Events {
 
   convertToJson(): any{
     return { id: this.id, carer: this.carer, date: this.date, day: this.day, endEvent: this.endEvent,
-      expirationDate: this.expirationDate, localAddress: this.localAddress, notes: this.notes, startEvent: this.startEvent, status: Events.convertAvailable(this.status) }
+      expirationDate: this.expirationDate, localAddress: this.localAddress, notes: this.notes, startEvent: this.startEvent,
+      status: Events.convertAvailable(this.status) }
   }
 
   static builder(user: Carers, {event: eventSaved, id, day, date, startEvent, endEvent, localAddress, expirationDate, notes, status, familiar}: any ): Events {

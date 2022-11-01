@@ -2,10 +2,12 @@ import { NextFunction, Request, Response } from 'express';
 import HttpStatus from 'http-status-codes';
 
 import eventService from '../services/event';
+import userService from '../services/users';
 import { HandlerError } from '../errors/handlerError';
 import { Events } from '../models/event';
 import { idRequered } from '../errors/constantsErrors';
 import { Carers } from '../models/carerUser';
+import { familiarType } from '../constants/globalConstants';
 
 export async function createEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   const daysList: number[] = req.body.day as []
@@ -62,10 +64,13 @@ export function getEvent(req: Request, res: Response): Response {
   return res.status(HttpStatus.CREATED).send({ event: Events.convertToJson(req.body.event) });        
   }
 
-export function getCalendar(req: Request, res: Response, next: NextFunction): Response {
+export async function getCalendar(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   const eventList: Events[] = (req.body.event as Events[]).filter((element: Events) => Events.convertAvailable(element.status) === true)
   const list: any = []
-  eventService.generateDates(eventList).forEach((elem: Events) => list.push({...elem.convertToJson(), stringDays: elem.stringDays}) )
+  for(let elem of eventService.generateDates(eventList)) {
+    let user = await userService.findAditionalUser(familiarType, elem.familiar)
+    list.push({...elem.convertToJson(), familiar: user, stringDays: elem.stringDays})
+  }
   return res.status(HttpStatus.CREATED).send({ events: list})
   }
 
