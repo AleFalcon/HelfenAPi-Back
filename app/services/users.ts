@@ -156,10 +156,7 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
           })
         })
 
-    console.log("resultado faceId:" + success)
-    console.log(results)
-    console.log(results.toString().toLowerCase() === 'true')
-    console.log("--------------------------")
+    console.log("resultado faceId:" + results.toString().toLowerCase() === 'true')
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
@@ -168,7 +165,6 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
 }
 
 async function checkSmilePythonScript(dni: string): Promise<boolean> {
-  console.log("Primera linea, script Smile")
   const image = pythonPath + dni + '-3.jpg'
   
   const options = { 
@@ -176,7 +172,6 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
     args: [image]
   }
   
-  console.log("Creacion de promesa")
   const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
       {
         console.log("Start Smile Script")
@@ -192,10 +187,7 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
         })
       })
 
-  console.log("resultado smile:" + success)
-  console.log(results)
-  console.log(results.toString().toLowerCase() === 'true')
-  console.log("--------------------------")
+  console.log("resultado smile:" + results.toString().toLowerCase() === 'true')
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
@@ -204,7 +196,6 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
 }
 
 async function checkEyesPythonScript(dni: string): Promise<boolean> {
-  console.log("Primera linea, script Eyes")
   const image = pythonPath + dni + '-4.jpg'
   
   const options = { 
@@ -212,7 +203,6 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
     args: [image]
   }
   
-  console.log("Creacion de promesa")
   const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
       {
         console.log("Start Eyes Script")
@@ -228,7 +218,7 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
         })
       })
 
-  console.log("resultado eyes:" + success)
+  console.log("resultado eyes:" + results.toString().toLowerCase() === 'true')
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
@@ -240,19 +230,13 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
   try{
     let flag = true
     if(!await checkFacePythonScript(dni)) { flag = false }
-    console.log(flag)
-    console.log("if de smile")
     if(flag && !await checkSmilePythonScript(dni)) { flag = false }
-    console.log(flag)
-    console.log("if de eyes")
     if(flag && !await checkEyesPythonScript(dni)) { flag = false }
-    console.log(flag)
 
     console.log("borrado de imagenes")
     for(let count = 1; count < 5; count++){
       deleteImage(pythonPath + dni + '-' + count +'.jpg')
     }
-    console.log(flag)
     return flag
   }catch(err){
     const error = err as HandlerError

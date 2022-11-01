@@ -1,4 +1,3 @@
-import { internalError } from '../errors/constantsErrors';
 import { HandlerError } from '../errors/handlerError';
 import { DeleteResult, getRepository, Repository } from 'typeorm';
 import { Events } from '../models/event';
@@ -15,9 +14,10 @@ export async function createAndSave(events: Events[]): Promise<Events[]> {
 }
 
 export async function modify(event: Events): Promise<Events | void> {
-    await eventRepository().update({id: event.id}, event)
+    await eventRepository().update({id: event.id}, {day: event.day, startEvent: event.startEvent, endEvent: event.endEvent, 
+      expirationDate: event.expirationDate, notes: event.notes, localAddress: event.localAddress, status: event.status })
     .then( () => { return event })
-    .catch( () => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR) });
+    .catch( (e) => { throw new HandlerError(e.message, HttpStatus.INTERNAL_SERVER_ERROR) });
 }
 
 
