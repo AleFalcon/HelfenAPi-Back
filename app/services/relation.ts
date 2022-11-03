@@ -46,6 +46,29 @@ export async function findNotificationRelations(options?: FindConditions<Possibl
     .catch(() => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR)})
 }
 
+export async function findRelations(options?: FindConditions<PossibleContacts>): Promise<PossibleContacts[]> {
+    return await possibleContactsRepository().find(options)
+    .then((possibleContactsList: PossibleContacts[]) => {
+        return removeRepeated(possibleContactsList)
+    })
+    .catch(() => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR)})
+}
+
+function removeRepeated(possibleContactsList: PossibleContacts[]): PossibleContacts[] {
+    const newPossibleContacts: PossibleContacts[] = []
+    for(let possibleContact of possibleContactsList){
+        if(newPossibleContacts.length === 0){
+            newPossibleContacts.push(possibleContact)
+        } else {
+            let aux = possibleContactsList.find((elemt: PossibleContacts) => possibleContact.carer === elemt.carer && possibleContact.familiar === elemt.familiar)
+            if (aux === undefined) {
+                newPossibleContacts.push(possibleContact)
+            }
+        }
+    }
+    return newPossibleContacts
+}
+
 export async function deleteRelation(relationId: number): Promise<DeleteResult | void> {
     await possibleContactsRepository().delete(relationId)
 }
@@ -54,6 +77,7 @@ export default {
     savePossibleContact,
     updateRelation,
     findNotificationContacts,
+    findRelations,
     findNotificationRelations,
     deleteRelation,
     findContacts

@@ -103,6 +103,21 @@ export async function getNotificationRelations(req: Request, res: Response, next
         });        
     }
 
+export async function getCarerListByRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const idFamiliar = Number.parseInt(req.params.familiarId); 
+    return await relationService
+        .findRelations({ familiar: idFamiliar, contactConfirmated: 0, relationConfirmated: 0 } as FindConditions<PossibleContacts>)
+        .then( (possibleContactsList: PossibleContacts[]) => {
+            const possibleContacts: PossibleContacts[] = [];
+            possibleContactsList.forEach(elem => possibleContacts.push(elem.convertToJson()))
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts })
+        } )
+        .catch( (handlerError: any) => {
+            res.status(handlerError.getErrorCode()).send( {message: handlerError.getMessage()} );
+            next();
+        });        
+    }
+
 export async function deleteContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const relationId = Number.parseInt(req.params.relationId); 
     return await relationService
@@ -117,7 +132,7 @@ export async function deleteContact(req: Request, res: Response, next: NextFunct
 }
 
 export async function confirmateRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const list: PossibleContacts[] =await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars, contactConfirmated: 0})
+    const list: PossibleContacts[] = await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars, contactConfirmated: 0})
     const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === 1)
     if (possibleContacts !== undefined){
         possibleContacts.setRelationConfirmated(req.body.relationConfirmated);
