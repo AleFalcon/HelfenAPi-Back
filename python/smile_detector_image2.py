@@ -1,8 +1,8 @@
 import cv2
 import sys
 
-width = 600
-height = 800
+width = 800
+height = 600
 white = [255,255,255]
 
 # load the image, resize it, and convert it to grayscale
