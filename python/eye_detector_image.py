@@ -1,15 +1,15 @@
 import cv2
 import sys
 
-width = 600
-height = 700
+width = 800
+height = 600
 white = [255,255,255]
 
 # load the image, resize it, and convert it to grayscale
 image = cv2.imread(sys.argv[1])
-image = cv2.resize(image, (width, height))
-newimage= cv2.copyMakeBorder(image,0,0,50,50,cv2.BORDER_CONSTANT,value=white)
-gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
+#image = cv2.resize(image, (width, height))
+#newimage= cv2.copyMakeBorder(image,0,0,50,50,cv2.BORDER_CONSTANT,value=white)
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # load the haar cascades face and smile detectors
 face_detector = cv2.CascadeClassifier("python/haar_cascade/haarcascade_frontalface_default.xml")
 eye_detector = cv2.CascadeClassifier("python/haar_cascade/haarcascade_eye.xml")
