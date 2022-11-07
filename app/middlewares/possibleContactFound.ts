@@ -17,7 +17,7 @@ export async function contactFound (req: Request, res: Response, next: NextFunct
         const familiar = req.query.familiarId as Familiars;
         const carer = req.query.carerId as Carers;
         if ( familiar !== undefined || carer !== undefined){
-            const possibleContacts: PossibleContacts | undefined = await possibleContactsRepository().findOne({carer: carer, familiar: familiar, relationConfirmated: 1});
+            const possibleContacts: PossibleContacts | undefined = await possibleContactsRepository().findOne({carer: carer, familiar: familiar, relationConfirmated: 0});
             if( possibleContacts === undefined ) {
                 throw new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
             } else {
