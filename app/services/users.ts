@@ -156,7 +156,7 @@ async function checkFacePythonScript(dni: string): Promise<boolean> {
           })
         })
 
-    console.log("resultado faceId:" + results.toString().toLowerCase() === 'true')
+    console.log(`resultado faceId: ${results.toString().toLowerCase()}`)
     if (!success) {
       throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
     } else {
@@ -187,7 +187,7 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
         })
       })
 
-  console.log("resultado smile:" + results.toString().toLowerCase() === 'true')
+  console.log(`resultado smile: ${results.toString().toLowerCase()}`)
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
@@ -218,7 +218,7 @@ async function checkEyesPythonScript(dni: string): Promise<boolean> {
         })
       })
 
-  console.log("resultado eyes:" + results.toString().toLowerCase() === 'true')
+  console.log(`resultado eyes: ${results.toString().toLowerCase()}`)
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
