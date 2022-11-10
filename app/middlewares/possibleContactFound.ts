@@ -21,10 +21,10 @@ export async function contactFound (req: Request, res: Response, next: NextFunct
             if( possibleContacts === undefined ) {
                 throw new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
             } else {
-                const event: Events | undefined = await EventsRepository().findOne({familiar: possibleContacts.familiar.id, carer: possibleContacts.carer as Carers, day: req.query.eventDay as number, status: 1})
+                const event: Events | undefined = await EventsRepository().findOne({familiar: possibleContacts.familiar.id, carer: possibleContacts.carer as Carers, day: req.query.eventDay as number, status: 0})
                 if(event !== undefined){
                     let now = new Date();
-                    if (event.expirationDate === undefined || now.getDate() < new Date(event.expirationDate).getDate()) {
+                    if (event.expirationDate === undefined || now < new Date(event.expirationDate)) {
                         const startDate = new Date()
                         startDate.setHours(Number.parseInt(event.startEvent.split(":")[0]), Number.parseInt(event.startEvent.split(":")[1]))
                         const endDate = new Date()
