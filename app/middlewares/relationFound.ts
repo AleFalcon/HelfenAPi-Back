@@ -12,13 +12,14 @@ const relationRepository = (): Repository<PossibleContacts> => getRepository(Pos
 export async function relationFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const carer: Carers = req.body.carerId as Carers
-        await relationRepository().findOne({carer: carer})
-            .then( (relation: PossibleContacts) => {
-                if(relation.familiar.id === req.body.familiar.id){
-                    return next();
-                } else {
-                    throw new HandlerError(relationNotExist, HttpStatus.NOT_FOUND)
+        await relationRepository().find({carer: carer})
+            .then( (relations: PossibleContacts[]) => {
+                for(let relation of relations) {
+                    if(relation.familiar.id === req.body.familiar.id){
+                        return next();
+                    }
                 }
+                throw new HandlerError(relationNotExist, HttpStatus.NOT_FOUND)
             })
             .catch( () => { throw new HandlerError(relationNotExist, HttpStatus.NOT_FOUND) })
     } catch (e) {
