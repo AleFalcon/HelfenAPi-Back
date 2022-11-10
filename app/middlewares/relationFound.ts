@@ -11,7 +11,7 @@ const relationRepository = (): Repository<PossibleContacts> => getRepository(Pos
 
 export async function relationFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const carer: Carers = req.body.carer as Carers
+        const carer: Carers = req.body.carerId as Carers
         await relationRepository().findOne({carer: carer})
             .then( (relation: PossibleContacts) => {
                 if(relation.familiar.id === req.body.familiar.id){
