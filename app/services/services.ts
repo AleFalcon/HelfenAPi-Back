@@ -83,14 +83,15 @@ function generateUserList(servicesList: Services[]): Carers[] {
 }
 
 export async function findAllUserList(latitude: string, longitude: string, specialty: string, options?: String[], gender?: String): Promise<any[]> {
-    const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
-    const listWithoutDuplicates = generateUserList(userServicesList); 
-    const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) 
-      && filterByServices(elem, options) && filterBySpecialty(elem, specialty))
-    listFiltered.forEach((elem: Carers) => {
-      elem.setDistance(getDistanciaKm(Number.parseFloat(latitude), Number.parseFloat(longitude), elem))
-    })
-    return listFiltered.sort((elem1, elem2) => elem1.distance - elem2.distance);
+  const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
+  console.log(options)  
+  const listWithoutDuplicates = generateUserList(userServicesList); 
+  const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) 
+    && filterByServices(elem, options) && filterBySpecialty(elem, specialty))
+  listFiltered.forEach((elem: Carers) => {
+    elem.setDistance(getDistanciaKm(Number.parseFloat(latitude), Number.parseFloat(longitude), elem))
+  })
+  return listFiltered.sort((elem1, elem2) => elem1.distance - elem2.distance);
   }
 
   function getDistanciaKm(latitude: number, longitude: number, carer: Carers){
