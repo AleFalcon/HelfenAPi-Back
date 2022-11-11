@@ -55,26 +55,28 @@ function generateDatesString(list: Events[]): Events[]{
           desplazamiento = numberDay - day.getDay()
         }
         day.setDate(day.getDate() + desplazamiento)
-        generateListDays(day, elem.expirationDate).forEach((day: string) => listDays.push(day))
+        generateListDays(day, elem.date, elem.expirationDate).forEach((day: string) => listDays.push(day))
       })
       elem.stringDays = listDays.sort()
     })
   return list
 }
 
-function generateListDays(initialDay: Date, expirationDate?: string): string[]{
+function generateListDays(initialDay: Date, initialDate: string, expirationDate?: string): string[]{
   const listDays: string[] = []
   const expiration = (expirationDate !== undefined) ? new Date(expirationDate) : undefined
+  const startDate = new Date(initialDate)
   var nextDay = new Date();
   for(let count = 0 ; count < 10 ; count++){
     nextDay.setDate(initialDay.getDate() + (count * 7));
-    if ( expiration === undefined || nextDay < expiration ){
-      let stringDay: string = nextDay.toISOString().split('T')[0]
-      listDays.push(stringDay)
-    } else {
-      count = 10
+    if (nextDay > startDate) {
+      if (expiration === undefined || nextDay < expiration){
+        let stringDay: string = nextDay.toISOString().split('T')[0]
+        listDays.push(stringDay)
+      } else {
+        count = 10
+      }
     }
-    
   }
   return listDays
 }
