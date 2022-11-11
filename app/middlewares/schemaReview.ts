@@ -31,7 +31,7 @@ export function validateClassification (req: Request, res: Response, next: NextF
         const error = new HandlerError(classificationGraterThan0, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
-    if (classification >= 5 ) {
+    if (classification > 5 ) {
         const error = new HandlerError(classificationGraterThan5, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     }
