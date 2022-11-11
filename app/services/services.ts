@@ -21,7 +21,7 @@ export async function deleteService(serviceId: string): Promise<DeleteResult | v
   } 
 
 function filterByGender(elem: Carers, gender?: String): boolean{
-  if(gender !== undefined) {
+  if(gender !== "") {
     if(gender === elem.user.gender){
       return true;
     } else {
