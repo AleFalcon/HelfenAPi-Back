@@ -84,7 +84,6 @@ function generateUserList(servicesList: Services[]): Carers[] {
 
 export async function findAllUserList(latitude: string, longitude: string, specialty: string, options?: String[], gender?: String): Promise<any[]> {
   const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
-  console.log(options)  
   const listWithoutDuplicates = generateUserList(userServicesList); 
   const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) 
     && filterByServices(elem, options) && filterBySpecialty(elem, specialty))
