@@ -11,7 +11,7 @@ import { FindConditions } from 'typeorm';
 import { relationNotExist } from '../errors/constantsErrors';
 
 export async function createPossibleContact(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, false, false);
+    const possibleContacts: PossibleContacts = new PossibleContacts(req.body.carer as Carers, req.body.familiar as Familiars, false, null);
     return await relationService
         .savePossibleContact(possibleContacts)
         .then( (possibleContacts: PossibleContacts) => {

@@ -11,7 +11,7 @@ export class possibleContacts1661981794652 implements MigrationInterface {
               { name: 'carer', type: 'int'},
               { name: 'familiar', type: 'int'},
               { name: 'contactConfirmated', type: 'boolean'},
-              { name: 'relationConfirmated', type: 'boolean'},
+              { name: 'relationConfirmated', type: 'boolean', isNullable: true},
             ]
           })
         )

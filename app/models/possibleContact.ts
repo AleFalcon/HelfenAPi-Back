@@ -18,19 +18,19 @@ export class PossibleContacts {
   @Column({
     type: 'int',
     nullable: false})
-    contactConfirmated: number;
+    contactConfirmated: number | null;
 
   @Column({
     type: 'int',
     nullable: false})
-  relationConfirmated: number;
+  relationConfirmated: number | null;
 
   @Column({
     type: 'varchar',
     nullable: false})
   resume: string;
 
-  constructor(carer: Carers, familiar: Familiars, contactConfirmated: Boolean, relationConfirmated: Boolean){
+  constructor(carer: Carers, familiar: Familiars, contactConfirmated: Boolean, relationConfirmated: Boolean | null){
     this.carer = carer;
     this.familiar = familiar
     this.contactConfirmated = this.convertBoolean(contactConfirmated)
@@ -62,11 +62,20 @@ export class PossibleContacts {
       return { carer: carer.id, familiar: familiar.id }
     }
 
-    convertBoolean(value: Boolean): number {
-      return value ? 0 : 1
+    convertBoolean(value?: Boolean | null): number | null{
+      if (value === null){
+        return null
+      } else {
+        return value ? 0 : 1
+      }
     }
 
-    convertAvailable(value: number): Boolean {
-      return value == 0 ? true : false
+    
+    convertAvailable(value: number | null): Boolean | null {
+      if (value === null){
+        return null
+      } else {
+        return value == 0 ? true : false
+      }
     }
   }

@@ -9,7 +9,9 @@ const possibleContactsRepository = (): Repository<PossibleContacts> => getReposi
 export async function savePossibleContact(possibleContacts: PossibleContacts): Promise<PossibleContacts | void> {
     return await possibleContactsRepository().save(possibleContacts)
     .then((newPossibleContacts: PossibleContacts) => { return newPossibleContacts })
-    .catch( () => { throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR) });
+    .catch( (error) => { 
+        console.log(error)
+        throw new HandlerError(internalError, HttpStatus.INTERNAL_SERVER_ERROR) });
 }
 
 export async function updateRelation(possibleContacts: PossibleContacts): Promise<PossibleContacts | void> {
