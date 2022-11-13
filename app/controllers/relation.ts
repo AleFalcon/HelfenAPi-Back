@@ -46,8 +46,9 @@ export async function confirmateContact(req: Request, res: Response, next: NextF
 
 export async function createRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const list: PossibleContacts[] = await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars, contactConfirmated: 0})
-    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === 1)
+    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === null)
     if (possibleContacts !== undefined){
+            possibleContacts.setRelationConfirmated(false)
             possibleContacts.setResume(req.body.resume)
             await relationService.updateRelation(possibleContacts)
             res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
