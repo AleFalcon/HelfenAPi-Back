@@ -11,6 +11,26 @@ import { carerType } from '../constants/globalConstants';
 
 export async function carerUserFound(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+        const carerId = req.body.carer;
+        if ( carerId !== undefined ){
+            const user: Carers = await userService.findAditionalUser(carerType, carerId )
+            if( user === undefined ) {
+                throw new HandlerError(userNotFoundError, HttpStatus.NOT_FOUND);
+            } else {
+                req.body.carer = user;
+                return next();
+            }
+        } else {
+            throw new HandlerError(userIdRequered, HttpStatus.BAD_REQUEST);
+        }
+    } catch (e) {
+        const error: HandlerError = e as HandlerError;
+        res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+    }
+}
+
+export async function carerUserFoundByEvent(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
         const carerId = req.body.event.id;
         if ( carerId !== undefined ){
             const user: Carers = await userService.findAditionalUser(carerType, carerId )
