@@ -20,6 +20,26 @@ export async function modify(event: Events): Promise<Events | void> {
     .catch( (e) => { throw new HandlerError(e.message, HttpStatus.INTERNAL_SERVER_ERROR) });
 }
 
+export async function modifyList(newEvent: Events, note: string): Promise<void> {
+  const events: Events[] | void = await eventRepository().find({familiar: newEvent.familiar, carer: newEvent.carer, startEvent: newEvent.startEvent, endEvent: newEvent.endEvent})
+  if(events) {
+    for(let event of events) {
+      event.setNote(note)
+      await eventRepository().update({id: event.id}, {day: event.day, startEvent: event.startEvent, endEvent: event.endEvent, 
+        expirationDate: event.expirationDate, notes: event.notes, localAddress: event.localAddress, status: event.status })
+      }
+  }
+}
+
+export async function acceptList(newEvent: Events): Promise<void> {
+  const events: Events[] | void = await eventRepository().find({familiar: newEvent.familiar, carer: newEvent.carer, startEvent: newEvent.startEvent, endEvent: newEvent.endEvent})
+  if(events) {
+    for(let event of events) {
+      await eventRepository().update({id: event.id}, {day: event.day, startEvent: event.startEvent, endEvent: event.endEvent, 
+        expirationDate: event.expirationDate, notes: event.notes, localAddress: event.localAddress, status: 0 })
+      }
+  }
+}
 
 export async function deleteEvent(eventId: string): Promise<DeleteResult | void> {
   const eventIdNumber: number = Number.parseInt(eventId);
@@ -85,5 +105,7 @@ export default {
     createAndSave,
     modify,
     deleteEvent,
+    modifyList,
+    acceptList,
     generateDates
   };

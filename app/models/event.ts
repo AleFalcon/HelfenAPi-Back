@@ -104,6 +104,12 @@ export class Events {
       this.status = value ? 0 : 1
     }
 
+    setNote(note: string): void {
+      if (note !== undefined){
+        this.notes = note
+      }
+    }
+
     convertBoolean(value: Boolean): number {
       return value ? 0 : 1
     }

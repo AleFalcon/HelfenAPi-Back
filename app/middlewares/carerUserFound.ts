@@ -11,7 +11,7 @@ import { carerType } from '../constants/globalConstants';
 
 export async function carerUserFound(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const carerId = req.body.carer;
+        const carerId = req.body.event.id;
         if ( carerId !== undefined ){
             const user: Carers = await userService.findAditionalUser(carerType, carerId )
             if( user === undefined ) {

@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"latitude\": \"2\",\n    \"longitude\": \"2\",\n    \"gender\": \"M\",\n    \"price\": 200,\n    \"isNurse\": false,\n    \"specialty\": \"Acompaniante\"\n}",
+							"raw": "{\n    \"userType\": 2,\n    \"name\": \"Carer\" ,\n    \"lastName\": \"Carer\",\n    \"dateOfBirth\": \"1994-10-25\",\n    \"dniNumber\": \"11111111\",\n    \"localAddress\": \"calle falsa 123\",\n    \"postalCode\": \"1234\",\n    \"province\": \"Springfield\",\n    \"mail\": \"Carer@alex.com\",\n    \"phoneNumber\": \"1111112221\",\n    \"password\": \"123456789\",\n    \"latitude\": \"2\",\n    \"longitude\": \"2\",\n    \"gender\": \"M\",\n    \"price\": 200,\n    \"isNurse\": true,\n    \"specialty\": \"Cuidador\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -430,13 +430,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{path}}/user/11111112",
+							"raw": "{{path}}/user/38522048",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"user",
-								"11111112"
+								"38522048"
 							]
 						}
 					},
@@ -1294,7 +1294,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": \"-34.642620\",\n    \"longitude\": \"-58.522116\",\n    \"description\": [\n        \"Aseo del espacio\"\n    ],\n    \"specialty\": \"Cuidador\",\n    \"gender\": \"M\"\n}",
+							"raw": "{\n    \"latitude\": \"-34.642620\",\n    \"longitude\": \"-58.522116\",\n    \"description\": [\n        \"Acompañamiento en rehabilitación\",\n        \"Paseos de rutina\",\n        \"Baño sin movilidad\"\n    ],\n    \"specialty\": \"Cuidador\",\n    \"gender\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1494,7 +1494,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"3\",\n    \"latitudeCurrent\": \"4\",\n    \"longitudeCurrent\": \"4\"\n} ",
+							"raw": "{\n    \"userId\": \"72\",\n    \"latitudeCurrent\": \"-34.642620\",\n    \"longitudeCurrent\": \"-58.522116\"\n} ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1519,7 +1519,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/location?familiarId=1&carerId=1&eventDay=2",
+							"raw": "{{path}}/location?familiarId=16&carerId=57&eventDay=4",
 							"host": [
 								"{{path}}"
 							],
@@ -1529,15 +1529,15 @@
 							"query": [
 								{
 									"key": "familiarId",
-									"value": "1"
+									"value": "16"
 								},
 								{
 									"key": "carerId",
-									"value": "1"
+									"value": "57"
 								},
 								{
 									"key": "eventDay",
-									"value": "2"
+									"value": "4"
 								}
 							]
 						}
@@ -2085,13 +2085,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/event/5",
+							"raw": "{{path}}/event/17",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"event",
-								"5"
+								"17"
 							]
 						}
 					},
@@ -2156,7 +2156,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/events/?careId=5&familiarId=1",
+							"raw": "{{path}}/events/?careId=56&familiarId=17",
 							"host": [
 								"{{path}}"
 							],
@@ -2167,11 +2167,11 @@
 							"query": [
 								{
 									"key": "careId",
-									"value": "5"
+									"value": "56"
 								},
 								{
 									"key": "familiarId",
-									"value": "1"
+									"value": "17"
 								}
 							]
 						}
@@ -2255,13 +2255,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/calendar/5",
+							"raw": "{{path}}/calendar/57",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"calendar",
-								"5"
+								"57"
 							]
 						}
 					},
@@ -2279,7 +2279,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carerId\": 1,\n    \"familiarId\": 1,\n    \"comment\": \"Que comentario\",\n    \"classification\": 3\n}",
+							"raw": "{\n    \"carerId\": 57,\n    \"familiarId\": 16,\n    \"comment\": \"Que comentario\",\n    \"classification\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2695,13 +2695,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/review/1",
+							"raw": "{{path}}/review/10",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"review",
-								"1"
+								"10"
 							]
 						}
 					},
@@ -2806,13 +2806,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/reviews/5",
+							"raw": "{{path}}/reviews/57",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"reviews",
-								"5"
+								"57"
 							]
 						}
 					},
@@ -2969,13 +2969,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/services/1",
+							"raw": "{{path}}/services/57",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"services",
-								"1"
+								"57"
 							]
 						}
 					},
@@ -3105,7 +3105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3192,7 +3192,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1,\n    \"contactConfirmated\": true\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"contactConfirmated\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3280,7 +3280,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 4,\n    \"familiar\": 1,\n    \"relationConfirmated\": false,\n    \"resume\": \"Tenes que hacer todas estas tareas\"\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": false,\n    \"resume\": \"Tenes que hacer todas estas tareas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3367,7 +3367,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"carer\": 5,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
+							"raw": "{\n    \"carer\": 1,\n    \"familiar\": 1,\n    \"relationConfirmated\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3526,13 +3526,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/contact/5",
+							"raw": "{{path}}/contact/1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"contact",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -3544,13 +3544,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/relation/4",
+							"raw": "{{path}}/relation/1",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"relation",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -3562,12 +3562,30 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/contact/1",
+							"raw": "{{path}}/contact/27",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"contact",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Relations for Familiar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path}}/relations/1",
+							"host": [
+								"{{path}}"
+							],
+							"path": [
+								"relations",
 								"1"
 							]
 						}
@@ -3591,23 +3609,23 @@
 									"key": "file",
 									"description": "El nombre del archivo es 'DNI'+'-1.jpg'",
 									"type": "file",
-									"src": "/home/alex/Descargas/123-1.jpg"
+									"src": "/home/alex/Descargas/1234-1.jpg"
 								},
 								{
 									"key": "file1",
 									"description": "El nombre del archivo es 'DNI'+'-2.jpg'",
 									"type": "file",
-									"src": "/home/alex/Descargas/123-2.jpg"
+									"src": "/home/alex/Descargas/1234-2.jpg"
 								},
 								{
 									"key": "file2",
 									"type": "file",
-									"src": "/home/alex/Descargas/Postman/123-3.jpg"
+									"src": "/home/alex/Descargas/1234-3.jpg"
 								},
 								{
 									"key": "file3",
 									"type": "file",
-									"src": "/home/alex/Descargas/123-4.jpg"
+									"src": "/home/alex/Descargas/1234-4.jpg"
 								}
 							]
 						},
@@ -3629,14 +3647,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{path}}/user/checkid/123",
+							"raw": "{{path}}/user/checkid/1234",
 							"host": [
 								"{{path}}"
 							],
 							"path": [
 								"user",
 								"checkid",
-								"123"
+								"1234"
 							]
 						}
 					},

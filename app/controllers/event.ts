@@ -32,11 +32,10 @@ export async function createEvent(req: Request, res: Response, next: NextFunctio
   }
 
 export async function modifyEvent(req: Request, res: Response, next: NextFunction): Promise<Response| void> {
-  const event: Events = Events.builder(req.body.carer as Carers, req.body);
   return await eventService
-    .modify(event)
+    .modifyList(req.body.event as Events, req.body.notes)
     .then( () => {
-      res.status(HttpStatus.OK).send({ event: event.convertToJson() }) 
+      res.status(HttpStatus.NO_CONTENT).send() 
     })
     .catch( (error: HandlerError) => {
       res.status(error.getErrorCode()).send( {message: error.getMessage()} );
@@ -85,12 +84,10 @@ export function getListEvent(req: Request, res: Response, next: NextFunction): R
   }
 
 export async function acceptEvent(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  const event: Events = req.body.event as Events
-  event.setStatus(true)
   return await eventService
-    .modify(event)
+    .acceptList(req.body.event as Events)
     .then( () => {
-      res.status(HttpStatus.OK).send({ event: event.convertToJson() }) 
+      res.status(HttpStatus.NO_CONTENT).send() 
     })
     .catch( (error: HandlerError) => {
       res.status(error.getErrorCode()).send( {message: error.getMessage()} );
