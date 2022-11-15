@@ -26,10 +26,10 @@ export async function contactFound (req: Request, res: Response, next: NextFunct
                     let now = new Date();
                     if (event.expirationDate === undefined || now < new Date(event.expirationDate)) {
                         const startDate = new Date()
-                        startDate.setHours(Number.parseInt(event.startEvent.split(":")[0]), Number.parseInt(event.startEvent.split(":")[1]))
+                        startDate.setHours(Number.parseInt(event.startEvent.split(":")[0])+3, Number.parseInt(event.startEvent.split(":")[1]))
                         const endDate = new Date()
-                        endDate.setHours(Number.parseInt(event.endEvent.split(":")[0]), Number.parseInt(event.endEvent.split(":")[1]))
-                        if(now.getHours() > startDate.getHours() && now.getHours() < endDate.getHours()){
+                        endDate.setHours(Number.parseInt(event.endEvent.split(":")[0])+3, Number.parseInt(event.endEvent.split(":")[1]))
+                        if(now >= startDate && now <= endDate){
                             res.status(HttpStatus.OK).send( {
                                 latitude: event.carer.latitudeCurrent,
                                 longitude: event.carer.longitudeCurrent
