@@ -10,9 +10,9 @@ const eventRepository = (): Repository<Events> => getRepository(Events);
 
 export async function eventFound (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const eventId = req.body.id; 
+        const eventId = Number.parseInt(req.body.id); 
         if ( eventId !== undefined ){
-            const event: Events | undefined = await eventRepository().findOne({id: eventId});
+            const event: Events | undefined = await eventRepository().findOne({id: eventId} as FindConditions<Events>);
             if( event === undefined ) {
                 throw new HandlerError(eventNotFoundError, HttpStatus.NOT_FOUND);
             } else {

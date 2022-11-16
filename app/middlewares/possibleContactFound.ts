@@ -25,7 +25,6 @@ export async function contactFound (req: Request, res: Response, next: NextFunct
                 if(event !== undefined){
                     let now = new Date()
                     now.setHours(now.getHours()-3)
-                    console.log(now)
                     if (event.expirationDate === undefined || now < new Date(event.expirationDate)) {
                         const startDate = new Date()
                         startDate.setHours(Number.parseInt(event.startEvent.split(":")[0]), Number.parseInt(event.startEvent.split(":")[1]))

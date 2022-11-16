@@ -6,7 +6,7 @@ import { validateSchemaUser, validateSpeciality } from './middlewares/schemaUser
 import { passwordConfirm, passwordConfirmMiddleware, validatePasswordMiddleware } from './middlewares/validatePassword';
 import { validateSchemaEvent, validateSchemaEventModify } from './middlewares/schemaEvent';
 import { eventFound, eventFoundByParams, eventList, eventListQueryParams } from './middlewares/eventFound';
-import { carerUserFound, carerUserFoundByEvent } from './middlewares/carerUserFound';
+import { carerUserFound } from './middlewares/carerUserFound';
 import { reviewFound, reviewFoundByParam, reviewFoundByParams, reviewList } from './middlewares/reviewFound';
 import { validateClassification, validateSchemaReview, validateSchemaReviewModify } from './middlewares/schemaReview';
 import { userFounds } from './middlewares/usersFounds';
@@ -40,7 +40,7 @@ export const init = (app: Application): void => {
   app.patch('/event/:eventId', [eventFoundByParams], acceptEvent);
   app.get('/events/', [eventListQueryParams], getListEvent);
   app.post('/event', [validateSchemaEvent, carerUserFound], createEvent);
-  app.put('/event',[validateSchemaEventModify, eventFound, carerUserFoundByEvent], modifyEvent);
+  app.put('/event',[validateSchemaEventModify, eventFound], modifyEvent);
   app.delete('/event/:eventId', deleteEvent);
   //---------------
   app.get('/review/:reviewId', [reviewFoundByParams], getReview);
