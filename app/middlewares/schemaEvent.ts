@@ -23,7 +23,12 @@ export function validateSchemaEvent (req: Request, res: Response, next: NextFunc
         const error = new HandlerError(allFieldRequered + missing, BAD_REQUEST);
         res.status(error.getErrorCode()).send( {message: error.getMessage()} );
     } else {
-        next();
+        if (req.body.startEvent < req.body.endEvent && req.body.endEvent <= "23:59"){
+            next();
+        } else {
+            const error = new HandlerError("La hora de inicio no puede ser mayor que la hora de fin. La hora de fin no puede superar las 23:599", BAD_REQUEST);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+        }
     }
 }
 
