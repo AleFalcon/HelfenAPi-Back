@@ -11,7 +11,7 @@ import HttpStatus from 'http-status-codes';
 import fs from 'fs';
 
 import bcrypt from 'bcrypt';
-import { carerType, familiarType, pythonEyesScript, pythonPath, pythonScript, pythonSmileScript } from '../constants/globalConstants';
+import { carerType, familiarType, pythonPath, pythonScript, pythonSmileScript } from '../constants/globalConstants';
 
 const familiarUserRepository = (): Repository<Familiars> => getRepository(Familiars);
 const carerUserRepository = (): Repository<Carers> => getRepository(Carers);
@@ -188,37 +188,6 @@ async function checkSmilePythonScript(dni: string): Promise<boolean> {
       })
 
   console.log(`resultado smile: ${results.toString().toLowerCase()}`)
-  if (!success) {
-    throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
-  } else {
-    return results
-  }
-}
-
-async function checkEyesPythonScript(dni: string): Promise<boolean> {
-  const image = pythonPath + dni + '-4.jpg'
-  
-  const options = { 
-    scriptPath: pythonPath,
-    args: [image]
-  }
-  
-  const { success, err = '', results }: any = await new Promise( (resolve, reject) =>
-      {
-        console.log("Start Eyes Script")
-        PythonShell.run(pythonEyesScript, options, function (err, result) {
-          if (err) {
-            console.log(err)
-            console.log("Eyes script Failed")
-            reject({ success: false, err })
-          } else {
-            console.log("Eyes script Finished")
-            resolve( { success: true, results: result?.toString().toLowerCase() === 'true' } ); 
-          }
-        })
-      })
-
-  console.log(`resultado eyes: ${results.toString().toLowerCase()}`)
   if (!success) {
     throw new HandlerError(err, HttpStatus.INTERNAL_SERVER_ERROR)
   } else {
