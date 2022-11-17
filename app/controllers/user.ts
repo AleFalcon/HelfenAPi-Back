@@ -97,7 +97,7 @@ const fileMap = new Map<number, any>([
 export async function saveImage(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   try{
     if (req.files != undefined) {
-      for(let count = 0; count < 4 ; count++){
+      for(let count = 0; count < 3 ; count++){
         console.log("Inicio guardado " + count +"da imagen")
         fileMap.get(count)(req.files)
         console.log("Se guardo la " + count +"da imagen")
