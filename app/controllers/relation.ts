@@ -59,6 +59,21 @@ export async function createRelation(req: Request, res: Response, next: NextFunc
         }
     }
 
+export async function modificateRelation(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+    const list: PossibleContacts[] = await relationService.findContacts({carer: req.body.carer as Carers, familiar: req.body.familiar as Familiars, contactConfirmated: 0})
+    const possibleContacts: PossibleContacts | undefined = list.find(elem => elem.relationConfirmated === 1)
+    if (possibleContacts !== undefined){
+            possibleContacts.setRelationConfirmated(false)
+            possibleContacts.setResume(req.body.resume)
+            await relationService.updateRelation(possibleContacts)
+            res.status(HttpStatus.CREATED).send({ possibleContacts: possibleContacts.convertToJson() })
+        } else {
+            const error = new HandlerError(relationNotExist, HttpStatus.NOT_FOUND);
+            res.status(error.getErrorCode()).send( {message: error.getMessage()} );
+            next();
+        }
+    }
+
 export async function getPossibleContacts(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const familiarId = Number.parseInt(req.params.familiarId); 
     return await relationService

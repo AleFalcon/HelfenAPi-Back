@@ -14,7 +14,7 @@ import { createReview, deleteReview, getListReview, getReview, modifyReview } fr
 import { createService, deleteService, getListServices } from './controllers/service';
 import { validateSchemaService } from './middlewares/schemaService';
 import { serviceFoundByParam, serviceList } from './middlewares/serviceFound';
-import { confirmateContact, confirmateRelation, createPossibleContact, createRelation, deleteContact, getCarerListByRelation, getNotificationContacts, getNotificationRelations, getPossibleContacts } from './controllers/relation';
+import { confirmateContact, confirmateRelation, createPossibleContact, createRelation, deleteContact, getCarerListByRelation, getNotificationContacts, getNotificationRelations, getPossibleContacts, modificateRelation } from './controllers/relation';
 import { relationFound } from './middlewares/relationFound';
 import { updateLocation } from './middlewares/carerUserLocation';
 import { contactFound } from './middlewares/possibleContactFound';
@@ -61,5 +61,6 @@ export const init = (app: Application): void => {
   app.get('/relation/:carerId', getNotificationRelations);
   app.get('/relations/:familiarId', getCarerListByRelation)
   app.put('/relation', createRelation);
+  app.post('/relation', modificateRelation);
   app.put('/relation/confirm', confirmateRelation);
 };
