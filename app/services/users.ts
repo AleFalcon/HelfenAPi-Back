@@ -202,7 +202,7 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
     if(flag && !await checkSmilePythonScript(dni)) { flag = false }
 
     console.log("borrado de imagenes")
-    for(let count = 1; count < 5; count++){
+    for(let count = 1; count < 4; count++){
       deleteImage(pythonPath + dni + '-' + count +'.jpg')
     }
     return flag
