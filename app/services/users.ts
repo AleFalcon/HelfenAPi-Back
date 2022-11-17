@@ -231,7 +231,6 @@ export async function checkPythonScript(dni: string): Promise<boolean> {
     let flag = true
     if(!await checkFacePythonScript(dni)) { flag = false }
     if(flag && !await checkSmilePythonScript(dni)) { flag = false }
-    if(flag && !await checkEyesPythonScript(dni)) { flag = false }
 
     console.log("borrado de imagenes")
     for(let count = 1; count < 5; count++){
