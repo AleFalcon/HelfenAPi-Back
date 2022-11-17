@@ -66,7 +66,7 @@ export function generateDates(events: Events[]): Events[] {
 }
 
 function generateDatesString(list: Events[]): Events[]{
-  const listDays: string[] = []
+  let listDays: string[] = []
   list.forEach((elem: Events) => {
     elem.days.forEach((numberDay: number) => {
         const day = new Date()
@@ -78,6 +78,7 @@ function generateDatesString(list: Events[]): Events[]{
         generateListDays(day, elem.date, elem.expirationDate).forEach((day: string) => listDays.push(day))
       })
       elem.stringDays = listDays.sort()
+      listDays = []
     })
   return list
 }
