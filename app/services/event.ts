@@ -85,13 +85,19 @@ function generateDatesString(list: Events[]): Events[]{
 
 function generateListDays(initialDay: Date, initialDate: string, expirationDate?: string): string[]{
   const listDays: string[] = []
-  const expiration = (expirationDate !== undefined) ? new Date(expirationDate) : undefined
+  let expiration
+  if (expirationDate !== undefined) {
+    expiration = new Date(expirationDate)
+    expiration.setHours(23)
+    expiration.setMinutes(59)
+    expiration.setSeconds(59)
+  }
   const startDate = new Date(initialDate)
   var nextDay = new Date();
   for(let count = 0 ; count < 10 ; count++){
     nextDay.setDate(initialDay.getDate() + (count * 7));
     if (nextDay > startDate) {
-      if (expiration === undefined || nextDay < expiration){
+      if (expiration === undefined || nextDay <= expiration){
         let stringDay: string = nextDay.toISOString().split('T')[0]
         listDays.push(stringDay)
       } else {
