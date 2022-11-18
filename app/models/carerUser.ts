@@ -83,7 +83,7 @@ export class Carers {
     this.user = user;
   }
 
-  constructor(amountCare: number, price: number, user: Users, specialty: string, isNurse: boolean, latitudeCurrent?: string, longitudeCurrent?: string, experience?: string) {
+  constructor(amountCare: number, price: number, user: Users, specialty: string, isNurse: boolean, experience?: string, latitudeCurrent?: string, longitudeCurrent?: string) {
     this.user = user;
     this.amountCare = amountCare;
     this.price = price;
