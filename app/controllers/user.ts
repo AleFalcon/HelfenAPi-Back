@@ -61,7 +61,7 @@ export async function modifyUser(req: Request, res: Response, next: NextFunction
 }
 
 export async function getUserByServices(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.specialty ,req.body.description, req.body.gender)
+  return await userService.findUsersByServices(req.body.latitude, req.body.longitude, req.body.specialty, req.body.isNurse, req.body.description, req.body.gender)
   .then( async (carersList: Carers[]) => {
     const jsonList: any[] = []
     for(let element of carersList) {

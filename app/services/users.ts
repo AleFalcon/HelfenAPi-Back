@@ -101,8 +101,8 @@ export async function modifyAditionalInformation(type: number, aditionalInformat
 }
 
 
-export async function findUsersByServices(latitude: string, longitude: string, specialty: string, services?: String[], gender?: String): Promise<any> {
-  return await serviceService.findAllUserList(latitude, longitude, specialty, services, gender)
+export async function findUsersByServices(latitude: string, longitude: string, specialty: string, isNurse: string, services?: String[], gender?: String): Promise<any> {
+  return await serviceService.findAllUserList(latitude, longitude, specialty, isNurse, services, gender)
 }
 
 export async function findAditionalUser(type: number, idUser: number): Promise<any> {

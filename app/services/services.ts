@@ -32,6 +32,14 @@ function filterByGender(elem: Carers, gender?: String): boolean{
   }
 }
 
+function filterByNurse(elem: Carers, isNurse: boolean): boolean{
+    if(isNurse === Carers.convertAvailable(elem.isNurse)){
+      return true;
+    } else {
+      return false
+    }
+  }
+
 function filterByServices(elem: Carers, options?: String[]): boolean{
   if(options !== undefined) {
     const optionsFiltered = options.map(function(option) {
@@ -82,10 +90,10 @@ function generateUserList(servicesList: Services[]): Carers[] {
   return aux;
 }
 
-export async function findAllUserList(latitude: string, longitude: string, specialty: string, options?: String[], gender?: String): Promise<any[]> {
+export async function findAllUserList(latitude: string, longitude: string, specialty: string, isNurse: string, options?: String[], gender?: String): Promise<any[]> {
   const userServicesList: Services[] | undefined = await serviceRepository().find(undefined)
   const listWithoutDuplicates = generateUserList(userServicesList); 
-  const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByGender(elem, gender) 
+  const listFiltered = listWithoutDuplicates.filter(( elem: Carers )=> filterByNurse(elem, Boolean(isNurse)) && filterByGender(elem, gender) 
     && filterByServices(elem, options) && filterBySpecialty(elem, specialty))
   listFiltered.forEach((elem: Carers) => {
     elem.setDistance(getDistanciaKm(Number.parseFloat(latitude), Number.parseFloat(longitude), elem))
